@@ -6,7 +6,7 @@ NOTPARALLEL:
 
 SHELL := /bin/bash
 
-DIRS=hw_isol_gem5
+DIRS=hw_isol_gem5 walkspec-hfi
 
 x86_64-linux-musl-native.tgz:
 	wget https://musl.cc/x86_64-linux-musl-native.tgz
@@ -17,6 +17,10 @@ musl-gcc: x86_64-linux-musl-native.tgz
 
 hw_isol_gem5:
 	git clone git@github.com:PLSysSec/hw_isol_gem5.git
+
+walkspec-hfi:
+	git clone git@github.com:PLSysSec/walkspec-hfi.git
+	cd walkspec-hfi && make walkspec_deps && cd ..
 
 get_source: $(DIRS) musl-gcc
 
@@ -33,7 +37,8 @@ pull:
 	$(MAKE) pull_subrepos
 
 build:
-	cd hw_isol_gem5/mybuild && make build
+	cd hw_isol_gem5/mybuild && make build && cd ..
+	cd walkspec-hfi && make build
 
 test-gem5:
 	cd hw_isol_gem5/mybuild && make test
