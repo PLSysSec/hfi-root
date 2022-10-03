@@ -1,6 +1,6 @@
 NOTPARALLEL:
 
-.PHONY: build pull pull_subrepos clean
+.PHONY: build pull pull_subrepos test-gem5 clean
 
 .DEFAULT_GOAL := build
 
@@ -34,6 +34,9 @@ pull:
 
 build:
 	cd hw_isol_gem5/mybuild && make build
+
+test-gem5:
+	cd hw_isol_gem5/mybuild && make test
 
 clean:
 	cd hw_isol_gem5/mybuild && make clean
