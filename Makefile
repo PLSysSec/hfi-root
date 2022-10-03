@@ -8,13 +8,20 @@ SHELL := /bin/bash
 
 DIRS=hw_isol_gem5
 
+x86_64-linux-musl-native.tgz:
+	wget https://musl.cc/x86_64-linux-musl-native.tgz
+
+musl-gcc: x86_64-linux-musl-native.tgz
+	mkdir -p $@
+	tar -zxf x86_64-linux-musl-native.tgz -C $@ --strip-components 1
+
 hw_isol_gem5:
 	git clone git@github.com:PLSysSec/hw_isol_gem5.git
 
 get_source: $(DIRS)
 
 bootstrap: get_source
-	sudo apt install make gcc g++ clang cmake python3 python-is-python3 scons m4
+	sudo apt install -y make gcc g++ clang cmake python3 python-is-python3 scons m4 libgoogle-perftools-dev libpng-dev protobuf-compiler
 
 autopull_%:
 	cd $* && git pull --rebase --autostash
