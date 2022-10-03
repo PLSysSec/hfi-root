@@ -18,7 +18,7 @@ musl-gcc: x86_64-linux-musl-native.tgz
 hw_isol_gem5:
 	git clone git@github.com:PLSysSec/hw_isol_gem5.git
 
-get_source: $(DIRS)
+get_source: $(DIRS) musl-gcc
 
 bootstrap: get_source
 	sudo apt install -y make gcc g++ clang cmake python3 python-is-python3 scons m4 libgoogle-perftools-dev libpng-dev protobuf-compiler
@@ -30,7 +30,7 @@ pull_subrepos: $(addprefix autopull_,$(DIRS))
 
 pull:
 	git pull --rebase --autostash
-	$(MAKE) -C pull_subrepos
+	$(MAKE) pull_subrepos
 
 build:
 	cd hw_isol_gem5/mybuild && make build
