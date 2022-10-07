@@ -16,11 +16,14 @@ musl-gcc: x86_64-linux-musl-native.tgz
 	tar -zxf x86_64-linux-musl-native.tgz -C $@ --strip-components 1
 
 hw_isol_gem5:
-	git clone git@github.com:PLSysSec/hw_isol_gem5.git
+	git clone --recursive git@github.com:PLSysSec/hw_isol_gem5.git
 
 walkspec-hfi:
-	git clone git@github.com:PLSysSec/walkspec-hfi.git
-	cd walkspec-hfi && make walkspec_deps && cd ..
+	git clone --recursive git@github.com:PLSysSec/walkspec-hfi.git
+	cd walkspec-hfi && make walkspec_deps
+
+hfi_wasm2c_sandbox_compiler:
+	git clone --recursive git@github.com:PLSysSec/wasm2c_sandbox_compiler.git hfi_wasm2c_sandbox_compiler
 
 get_source: $(DIRS) musl-gcc
 

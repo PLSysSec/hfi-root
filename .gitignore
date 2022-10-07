@@ -1,2 +1,4 @@
 x86_64-linux-musl-native.tgz
 musl-gcc/*
+hw_isol_gem5_new/*
+old_*/*
