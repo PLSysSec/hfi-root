@@ -40,7 +40,8 @@ pull:
 	$(MAKE) pull_subrepos
 
 build:
-	cd hw_isol_gem5/mybuild && make build && cd ..
+	cd hw_isol_gem5/mybuild && make build && cd ../..
+	cd hfi_wasm2c_sandbox_compiler/mybuild && make build && cd ../..
 	cd walkspec-hfi && make build
 
 test-gem5:
