@@ -28,7 +28,10 @@ hfi_wasm2c_sandbox_compiler:
 get_source: $(DIRS) musl-gcc
 
 bootstrap: get_source
-	sudo apt install -y make gcc g++ clang cmake python3 python-is-python3 scons m4 libgoogle-perftools-dev libpng-dev protobuf-compiler libuv1-dev
+	sudo apt install -y make gcc g++ clang cmake python3 libpng-dev libuv1-dev \
+		build-essential git m4 scons zlib1g zlib1g-dev \
+		libprotobuf-dev protobuf-compiler libprotoc-dev libgoogle-perftools-dev \
+		python3-dev python-is-python3 libboost-all-dev pkg-config
 
 autopull_%:
 	cd $* && git pull --rebase --autostash
