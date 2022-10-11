@@ -6,7 +6,7 @@ NOTPARALLEL:
 
 SHELL := /bin/bash
 
-DIRS=hw_isol_gem5 walkspec-hfi hfi_wasm2c_sandbox_compiler
+DIRS=hw_isol_gem5 walkspec-hfi hfi_wasm2c_sandbox_compiler hfi_misc
 
 x86_64-linux-musl-native.tgz:
 	wget https://musl.cc/x86_64-linux-musl-native.tgz
@@ -24,6 +24,9 @@ walkspec-hfi:
 
 hfi_wasm2c_sandbox_compiler:
 	git clone --recursive git@github.com:PLSysSec/hfi_wasm2c_sandbox_compiler.git
+
+hfi_misc:
+	git clone --recursive git@github.com:PLSysSec/hfi_misc.git
 
 get_source: $(DIRS) musl-gcc
 
