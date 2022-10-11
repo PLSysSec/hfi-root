@@ -24,13 +24,21 @@ hfi_misc:
 hfi_firefox:
 	git clone --recursive git@github.com:PLSysSec/hfi_firefox.git
 
-get_source: $(DIRS)
+wasi-sdk-14.0-linux.tar.gz:
+	wget https://github.com/WebAssembly/wasi-sdk/releases/download/wasi-sdk-14/wasi-sdk-14.0-linux.tar.gz
+
+wasi-sdk: wasi-sdk-14.0-linux.tar.gz
+	mkdir -p $@
+	tar -zxf $< -C $@ --strip-components 1
+
+get_source: $(DIRS) wasi-sdk
 
 bootstrap: get_source
 	sudo apt install -y make gcc g++ clang cmake python3 libpng-dev libuv1-dev \
 		build-essential git m4 scons zlib1g zlib1g-dev \
 		libprotobuf-dev protobuf-compiler libprotoc-dev libgoogle-perftools-dev \
-		python3-dev python-is-python3 libboost-all-dev pkg-config
+		python3-dev python-is-python3 python3-pip libboost-all-dev pkg-config
+	cd hfi_firefox/mybuild && make bootstrap
 
 autopull_%:
 	cd $* && git pull --rebase --autostash
@@ -42,13 +50,15 @@ pull:
 	$(MAKE) pull_subrepos
 
 build:
-	cd hw_isol_gem5/mybuild && make build && cd ../..
-	cd hfi_wasm2c_sandbox_compiler/mybuild && make build && cd ../..
+	cd hw_isol_gem5/mybuild && make build
+	cd hfi_wasm2c_sandbox_compiler/mybuild && make build
 	cd walkspec-hfi && make build
+	cd hfi_firefox/mybuild && make build
 
 test-gem5:
 	cd hw_isol_gem5/mybuild && make test
 
 clean:
 	cd hw_isol_gem5/mybuild && make clean
-
+	cd hfi_wasm2c_sandbox_compiler/mybuild && make clean
+	cd hfi_firefox/mybuild && make clean
