@@ -6,7 +6,7 @@ NOTPARALLEL:
 
 SHELL := /bin/bash
 
-DIRS=hw_isol_gem5 walkspec-hfi hfi_wasm2c_sandbox_compiler hfi_misc
+DIRS=hw_isol_gem5 walkspec-hfi hfi_wasm2c_sandbox_compiler hfi_misc hfi_firefox
 
 hw_isol_gem5:
 	git clone --recursive git@github.com:PLSysSec/hw_isol_gem5.git
@@ -20,6 +20,9 @@ hfi_wasm2c_sandbox_compiler:
 
 hfi_misc:
 	git clone --recursive git@github.com:PLSysSec/hfi_misc.git
+
+hfi_firefox:
+	git clone --recursive git@github.com:PLSysSec/hfi_firefox.git
 
 get_source: $(DIRS)
 
