@@ -49,14 +49,25 @@ pull:
 	git pull --rebase --autostash
 	$(MAKE) pull_subrepos
 
-build:
+build-gem5:
 	cd hw_isol_gem5/mybuild && make build
-	cd hfi_wasm2c_sandbox_compiler/mybuild && make build
+
+build-spec:
 	cd walkspec-hfi && make build
+
+build-wasm2c:
+	cd hfi_wasm2c_sandbox_compiler/mybuild && make build
+
+build-firefox:
 	cd hfi_firefox/mybuild && make build
+
+build: build-gem5 build-spec build-wasm2c build-firefox
 
 test-gem5:
 	cd hw_isol_gem5/mybuild && make test
+
+benchmark_graphite:
+	cd hfi_firefox && ./testsRunGraphiteTest "../benchmarks/graphite_test_$(shell date --iso=seconds)"
 
 clean:
 	cd hw_isol_gem5/mybuild && make clean
