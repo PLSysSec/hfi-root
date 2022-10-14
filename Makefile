@@ -6,17 +6,10 @@ NOTPARALLEL:
 
 SHELL := /bin/bash
 
-DIRS=hw_isol_gem5 walkspec-hfi hfi_wasm2c_sandbox_compiler hfi_misc hfi_firefox hfi_spec
+DIRS=hw_isol_gem5 hfi_wasm2c_sandbox_compiler hfi_misc hfi_firefox
 
 hw_isol_gem5:
 	git clone --recursive git@github.com:PLSysSec/hw_isol_gem5.git
-
-walkspec-hfi:
-	git clone --recursive git@github.com:PLSysSec/walkspec-hfi.git
-	cd walkspec-hfi && make walkspec_deps
-
-hfi_spec:
-	git clone --recursive git@github.com:PLSysSec/sfi-spectre-spec.git $@
 
 hfi_wasm2c_sandbox_compiler:
 	git clone --recursive git@github.com:PLSysSec/hfi_wasm2c_sandbox_compiler.git
@@ -56,16 +49,13 @@ pull:
 build_gem5:
 	cd hw_isol_gem5/mybuild && make build
 
-build_spec:
-	cd walkspec-hfi && make build
-
 build_wasm2c:
 	cd hfi_wasm2c_sandbox_compiler/mybuild && make build
 
 build_firefox:
 	cd hfi_firefox/mybuild && make build
 
-build: build_gem5 build_spec build_wasm2c build_firefox
+build: build_gem5 build_wasm2c build_firefox
 
 test-gem5:
 	cd hw_isol_gem5/mybuild && make test
@@ -111,6 +101,32 @@ testmode_benchmark_jpeg:
 
 benchmark_jpeg: benchmark_env_setup
 	export DISPLAY=:99 && make testmode_benchmark_jpeg
+
+
+#### Keep Spec stuff separate so we can easily release other artifacts
+SPEC_BUILDS=wasm_hfi_wasm2c_guardpages wasm_hfi_wasm2c_boundschecks wasm_hfi_wasm2c_masking wasm_hfi_wasm2c_hfiemulate wasm_hfi_wasm2c_hfiemulate2
+
+hfi_spec:
+	git clone --recursive git@github.com:PLSysSec/hfi_spec.git
+	cd $@ && SPEC_INSTALL_NOCHECK=1 SPEC_FORCE_INSTALL=1 sh install.sh -f
+
+build_spec: hfi_spec autopull_hfi_spec
+	cd hfi_spec && source shrc &&  cd config && \
+	for spec_build in $(SPEC_BUILDS); do \
+		runspec --config=$$spec_build.cfg --action=build --define cores=1 --iterations=1 --noreportable --size=ref all_c_cpp; \
+	done
+
+testmode_benchmark_spec:
+	cd hfi_spec && source shrc && cd config && \
+	for spec_build in $(SPEC_BUILDS); do \
+		runspec --config=$$spec_build.cfg --action=run --define cores=1 --iterations=1 --noreportable --size=ref all_c_cpp; \
+	done
+	python3 spec_stats.py -i hfi_spec/result --filter  \
+		"hfi_spec/result/spec_results=wasm_hfi_wasm2c_guardpages:GuardPages,wasm_hfi_wasm2c_boundschecks:BoundsChecks,wasm_hfi_wasm2c_masking:Masking,wasm_hfi_wasm2c_hfiemulate:HfiEmulateLB,wasm_hfi_wasm2c_hfiemulate2:HfiEmulateUB" -n 5 --usePercent
+	mv hfi_spec/result/ benchmarks/spec_$(shell date --iso=seconds)
+
+benchmark_spec: benchmark_env_setup
+	export DISPLAY=:99 && make testmode_benchmark_spec
 
 clean:
 	cd hw_isol_gem5/mybuild && make clean
