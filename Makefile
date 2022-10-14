@@ -6,7 +6,7 @@ NOTPARALLEL:
 
 SHELL := /bin/bash
 
-DIRS=hw_isol_gem5 walkspec-hfi hfi_wasm2c_sandbox_compiler hfi_misc hfi_firefox
+DIRS=hw_isol_gem5 walkspec-hfi hfi_wasm2c_sandbox_compiler hfi_misc hfi_firefox hfi_spec
 
 hw_isol_gem5:
 	git clone --recursive git@github.com:PLSysSec/hw_isol_gem5.git
@@ -14,6 +14,9 @@ hw_isol_gem5:
 walkspec-hfi:
 	git clone --recursive git@github.com:PLSysSec/walkspec-hfi.git
 	cd walkspec-hfi && make walkspec_deps
+
+hfi_spec:
+	git clone --recursive git@github.com:PLSysSec/sfi-spectre-spec.git $@
 
 hfi_wasm2c_sandbox_compiler:
 	git clone --recursive git@github.com:PLSysSec/hfi_wasm2c_sandbox_compiler.git
@@ -97,10 +100,17 @@ benchmark_env_setup: disable_hyperthreading
 benchmark_env_close: restore_hyperthreading shielding_off
 
 testmode_benchmark_graphite:
-	cd hfi_firefox && ./testsRunGraphiteTest "../benchmarks/graphite_test_$(shell date --iso=seconds)" "graphite_perf_test"
+	cd hfi_firefox && ./testsRunBenchmark "../benchmarks/graphite_test_$(shell date --iso=seconds)" "graphite_perf_test"
 
 benchmark_graphite: benchmark_env_setup
 	export DISPLAY=:99 && make testmode_benchmark_graphite
+
+testmode_benchmark_jpeg:
+	cd hfi_firefox && ./testsRunBenchmark "../benchmarks/jpeg_test_$(shell date --iso=seconds)" "jpeg_perf"
+	cd hfi_firefox && ./testsRunBenchmark "../benchmarks/jpeg_black_width_test_$(shell date --iso=seconds)" "jpeg_black_width_perf"
+
+benchmark_jpeg: benchmark_env_setup
+	export DISPLAY=:99 && make testmode_benchmark_jpeg
 
 clean:
 	cd hw_isol_gem5/mybuild && make clean
