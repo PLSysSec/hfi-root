@@ -6,6 +6,8 @@ NOTPARALLEL:
 
 SHELL := /bin/bash
 
+PARALLEL_COUNT=$(shell nproc)
+
 DIRS=hw_isol_gem5 hfi_wasm2c_sandbox_compiler hfi_misc hfi_firefox
 
 hw_isol_gem5:
@@ -110,16 +112,20 @@ hfi_spec:
 	git clone --recursive git@github.com:PLSysSec/hfi_spec.git
 	cd $@ && SPEC_INSTALL_NOCHECK=1 SPEC_FORCE_INSTALL=1 sh install.sh -f
 
-build_spec: hfi_spec autopull_hfi_spec
+build_wasm2c_dependency:
+	cd hfi_wasm2c_sandbox_compiler/mybuild && make ../build_release_guardpages
+	cd hfi_wasm2c_sandbox_compiler/build_release_guardpages && make -j$(PARALLEL_COUNT)
+
+build_spec: hfi_spec autopull_hfi_spec build_wasm2c_dependency
 	cd hfi_spec && source shrc &&  cd config && \
 	for spec_build in $(SPEC_BUILDS); do \
-		runspec --config=$$spec_build.cfg --action=build --define cores=1 --iterations=1 --noreportable --size=ref all_c_cpp; \
+		runspec --config=$$spec_build.cfg --action=build --define cores=1 --iterations=1 --noreportable --size=ref intwasm; \
 	done
 
 testmode_benchmark_spec:
 	cd hfi_spec && source shrc && cd config && \
 	for spec_build in $(SPEC_BUILDS); do \
-		runspec --config=$$spec_build.cfg --action=run --define cores=1 --iterations=1 --noreportable --size=ref all_c_cpp; \
+		runspec --config=$$spec_build.cfg --action=run --define cores=1 --iterations=1 --noreportable --size=ref intwasm; \
 	done
 	python3 spec_stats.py -i hfi_spec/result --filter  \
 		"hfi_spec/result/spec_results=wasm_hfi_wasm2c_guardpages:GuardPages,wasm_hfi_wasm2c_boundschecks:BoundsChecks,wasm_hfi_wasm2c_masking:Masking,wasm_hfi_wasm2c_hfiemulate:HfiEmulateLB,wasm_hfi_wasm2c_hfiemulate2:HfiEmulateUB" -n 5 --usePercent
