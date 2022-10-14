@@ -97,7 +97,7 @@ benchmark_env_setup: disable_hyperthreading
 benchmark_env_close: restore_hyperthreading shielding_off
 
 testmode_benchmark_graphite:
-	cd hfi_firefox && ./testsRunGraphiteTest "../benchmarks/graphite_test_$(shell date --iso=seconds)"
+	cd hfi_firefox && ./testsRunGraphiteTest "../benchmarks/graphite_test_$(shell date --iso=seconds)" "graphite_perf_test"
 
 benchmark_graphite: benchmark_env_setup
 	export DISPLAY=:99 && make testmode_benchmark_graphite
