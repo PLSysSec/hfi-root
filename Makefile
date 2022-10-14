@@ -38,6 +38,7 @@ bootstrap: get_source
 		python3-dev python-is-python3 python3-pip libboost-all-dev pkg-config \
 		cpuset cpufrequtils xvfb
 	cd hfi_firefox/mybuild && make bootstrap
+	pip3 install simplejson matplotlib
 
 autopull_%:
 	cd $* && git pull --rebase --autostash
@@ -118,14 +119,19 @@ build_wasm2c_dependency:
 
 build_spec: hfi_spec autopull_hfi_spec build_wasm2c_dependency
 	cd hfi_spec && source shrc &&  cd config && \
+	echo "Cleaning dirs..." && \
 	for spec_build in $(SPEC_BUILDS); do \
-		runspec --config=$$spec_build.cfg --action=build --define cores=1 --iterations=1 --noreportable --size=ref intwasm; \
+		runspec --config=$$spec_build.cfg --action=clobber --define cores=1 --iterations=1 --noreportable --size=ref wasmint 2&>1 > /dev/null; \
+	done && \
+	for spec_build in $(SPEC_BUILDS); do \
+		echo "Building $$spec_build"; \
+		runspec --config=$$spec_build.cfg --action=build --define cores=1 --iterations=1 --noreportable --size=ref wasmint | grep "Build "; \
 	done
 
 testmode_benchmark_spec:
 	cd hfi_spec && source shrc && cd config && \
 	for spec_build in $(SPEC_BUILDS); do \
-		runspec --config=$$spec_build.cfg --action=run --define cores=1 --iterations=1 --noreportable --size=ref intwasm; \
+		runspec --config=$$spec_build.cfg --action=run --define cores=1 --iterations=1 --noreportable --size=ref wasmint; \
 	done
 	python3 spec_stats.py -i hfi_spec/result --filter  \
 		"hfi_spec/result/spec_results=wasm_hfi_wasm2c_guardpages:GuardPages,wasm_hfi_wasm2c_boundschecks:BoundsChecks,wasm_hfi_wasm2c_masking:Masking,wasm_hfi_wasm2c_hfiemulate:HfiEmulateLB,wasm_hfi_wasm2c_hfiemulate2:HfiEmulateUB" -n 5 --usePercent
