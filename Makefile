@@ -101,15 +101,15 @@ testmode_benchmark_graphite:
 benchmark_graphite: benchmark_env_setup
 	export DISPLAY=:99 && make testmode_benchmark_graphite
 
+# cd hfi_firefox && ./testsRunBenchmark "../benchmarks/jpeg_black_width_test_$(CURR_TIME)" "jpeg_black_width_perf"
+
 testmode_benchmark_jpeg:
 	cd hfi_firefox && ./testsRunBenchmark "../benchmarks/jpeg_test_$(CURR_TIME)" "jpeg_perf"
-	cd hfi_firefox && ./testsRunBenchmark "../benchmarks/jpeg_black_width_test_$(CURR_TIME)" "jpeg_black_width_perf"
 	./hfi_firefox/testsProduceImagePlotData.py ./benchmarks/jpeg_test_$(CURR_TIME)/compare_stock_terminal_analysis.json.dat ./benchmarks/jpeg_test_$(CURR_TIME)/jpeg_perf.plotdat
 	gnuplot -e "inputfilename='./benchmarks/jpeg_test_$(CURR_TIME)/jpeg_perf.plotdat';outputfilename='./benchmarks/jpeg_test_$(CURR_TIME)/jpeg_perf.pdf'" ./hfi_firefox/testsProduceImagePlot.gnu
 
 benchmark_jpeg: benchmark_env_setup
 	export DISPLAY=:99 && make testmode_benchmark_jpeg
-
 
 #### Keep Spec stuff separate so we can easily release other artifacts
 SPEC_BUILDS=wasm_hfi_wasm2c_guardpages wasm_hfi_wasm2c_boundschecks wasm_hfi_wasm2c_masking wasm_hfi_wasm2c_hfiemulate wasm_hfi_wasm2c_hfiemulate2
