@@ -143,7 +143,7 @@ testmode_benchmark_spec:
 	mv hfi_spec/result/ benchmarks/spec_$(CURR_TIME)
 
 benchmark_spec: benchmark_env_setup
-	export DISPLAY=:99 && make testmode_benchmark_spec
+	make testmode_benchmark_spec
 
 clean:
 	cd hw_isol_gem5/mybuild && make clean
