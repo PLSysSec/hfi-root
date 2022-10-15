@@ -8,6 +8,7 @@ SHELL := /bin/bash
 
 CURR_USER=${USER}
 CURR_PATH=${PATH}
+CURR_TIME=$(shell date --iso=seconds)
 PARALLEL_COUNT=$(shell nproc)
 
 DIRS=hw_isol_gem5 hfi_wasm2c_sandbox_compiler hfi_misc hfi_firefox
@@ -38,7 +39,7 @@ bootstrap: get_source
 		build-essential git m4 scons zlib1g zlib1g-dev \
 		libprotobuf-dev protobuf-compiler libprotoc-dev libgoogle-perftools-dev \
 		python3-dev python-is-python3 python3-pip libboost-all-dev pkg-config \
-		cpuset cpufrequtils xvfb
+		cpuset cpufrequtils xvfb gnuplot
 	cd hfi_firefox/mybuild && make bootstrap
 	pip3 install simplejson matplotlib
 
@@ -95,14 +96,16 @@ benchmark_env_setup: disable_hyperthreading
 benchmark_env_close: restore_hyperthreading shielding_off
 
 testmode_benchmark_graphite:
-	cd hfi_firefox && ./testsRunBenchmark "../benchmarks/graphite_test_$(shell date --iso=seconds)" "graphite_perf_test"
+	cd hfi_firefox && ./testsRunBenchmark "../benchmarks/graphite_test_$(CURR_TIME)" "graphite_perf_test"
 
 benchmark_graphite: benchmark_env_setup
 	export DISPLAY=:99 && make testmode_benchmark_graphite
 
 testmode_benchmark_jpeg:
-	cd hfi_firefox && ./testsRunBenchmark "../benchmarks/jpeg_test_$(shell date --iso=seconds)" "jpeg_perf"
-	cd hfi_firefox && ./testsRunBenchmark "../benchmarks/jpeg_black_width_test_$(shell date --iso=seconds)" "jpeg_black_width_perf"
+	cd hfi_firefox && ./testsRunBenchmark "../benchmarks/jpeg_test_$(CURR_TIME)" "jpeg_perf"
+	cd hfi_firefox && ./testsRunBenchmark "../benchmarks/jpeg_black_width_test_$(CURR_TIME)" "jpeg_black_width_perf"
+	./hfi_firefox/testsProduceImagePlotData.py ./benchmarks/jpeg_test_$(CURR_TIME)/compare_stock_terminal_analysis.json.dat ./benchmarks/jpeg_test_$(CURR_TIME)/jpeg_perf.plotdat
+	gnuplot -e "inputfilename='./benchmarks/jpeg_test_$(CURR_TIME)/jpeg_perf.plotdat';outputfilename='./benchmarks/jpeg_test_$(CURR_TIME)/jpeg_perf.pdf'" ./hfi_firefox/testsProduceImagePlot.gnu
 
 benchmark_jpeg: benchmark_env_setup
 	export DISPLAY=:99 && make testmode_benchmark_jpeg
@@ -137,7 +140,7 @@ testmode_benchmark_spec:
 	done
 	python3 spec_stats.py -i hfi_spec/result --filter  \
 		"hfi_spec/result/spec_results=wasm_hfi_wasm2c_guardpages:GuardPages,wasm_hfi_wasm2c_boundschecks:BoundsChecks,wasm_hfi_wasm2c_masking:Masking,wasm_hfi_wasm2c_hfiemulate:HfiEmulateLB,wasm_hfi_wasm2c_hfiemulate2:HfiEmulateUB" -n 5 --usePercent
-	mv hfi_spec/result/ benchmarks/spec_$(shell date --iso=seconds)
+	mv hfi_spec/result/ benchmarks/spec_$(CURR_TIME)
 
 benchmark_spec: benchmark_env_setup
 	export DISPLAY=:99 && make testmode_benchmark_spec
