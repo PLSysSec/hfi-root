@@ -1,0 +1,2 @@
+Benchmark,stock,hfiemu,boundschecks,masking,hfiemu2
+Graphite,1823.0 (1.0),1678.0 (0.92),2022.0 (1.109),1999.0 (1.097),1677.0 (0.92)
