@@ -6,6 +6,8 @@ NOTPARALLEL:
 
 SHELL := /bin/bash
 
+CURR_USER=${USER}
+CURR_PATH=${PATH}
 PARALLEL_COUNT=$(shell nproc)
 
 DIRS=hw_isol_gem5 hfi_wasm2c_sandbox_compiler hfi_misc hfi_firefox
