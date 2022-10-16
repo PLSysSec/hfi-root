@@ -34,7 +34,9 @@ def load_data(input_path):
         lines = data.split('\n')
     return lines
 
-def get_lock_num(result_path, spec2017=False):
+def get_lock_num(result_path, spec2017=False,speclocknum=None):
+    if speclocknum:
+        return int(speclocknum)
     if spec2017:
         path = result_path + "/lock.CPU2017"
     else:
@@ -94,7 +96,8 @@ def make_graph(all_times, output_path, use_percent=False):
     ax = fig.add_subplot(111)
 
     plt.rcParams['pdf.fonttype'] = 42 # true type font
-    plt.rcParams['font.family'] = 'Times New Roman'
+    plt.rcParams['font.family'] = 'serif'
+    plt.rcParams['font.serif'] = ['Times New Roman'] + plt.rcParams['font.serif']
     plt.rcParams['font.size'] = '8'
 
     vals = all_times_to_vals(all_times)
@@ -202,6 +205,8 @@ def normalize_times(times):
         base_times = times["Stock"]
     elif "wasm_lucet" in times:
         base_times = times["wasm_lucet"]
+    elif "hfi_wasm2c_guardpages" in times:
+        base_times = times["hfi_wasm2c_guardpages"]
     else:
         raise Exception("Could not find baseline times to normalize against. Expected either 'Stock' or 'wasm_lucet'. Got " + str(times.keys()))
 
@@ -218,8 +223,8 @@ def normalize_times(times):
     return dict(normalized_times)
 
 # "spec.cpu2006.results.464_h264ref.base.000.valid:"
-def run(result_path, n, output_path):
-    lock_num = get_lock_num(result_path)
+def run(result_path, n, output_path,speclocknum=None):
+    lock_num = get_lock_num(result_path,speclocknum=speclocknum)
     all_times = {}
     for idx in range(n):
         name,times = get_merged_summary(result_path, lock_num - n + idx + 1)
@@ -232,9 +237,9 @@ def run(result_path, n, output_path):
     make_graph(normalized_times, output_path)
 
 
-def run_w_filter(result_path, bench_filter, n, use_percent, spec2017=False, extra_spec2017_path=None, extra_spec2017_n=None):
+def run_w_filter(result_path, bench_filter, n, use_percent, spec2017=False, extra_spec2017_path=None, extra_spec2017_n=None,speclocknum=None):
     all_times = {}
-    lock_num = get_lock_num(result_path, spec2017=spec2017)
+    lock_num = get_lock_num(result_path, spec2017=spec2017,speclocknum=speclocknum)
     if spec2017:
         for idx in range(n):
             name,times = get_merged_summary_spec2017(result_path, lock_num - n + idx + 1)
@@ -260,7 +265,7 @@ def run_w_filter(result_path, bench_filter, n, use_percent, spec2017=False, extr
         if extra_spec2017_path != None:
             assert(extra_spec2017_n != None)
             all_times_extra = {}
-            loc_num_extra = lock_num = get_lock_num(extra_spec2017_path, spec2017=True)
+            loc_num_extra = lock_num = get_lock_num(extra_spec2017_path, spec2017=True,speclocknum=speclocknum)
             for idx in range(extra_spec2017_n):
                 name,times = get_merged_summary_spec2017(extra_spec2017_path, lock_num - extra_spec2017_n + idx + 1)
                 all_times_extra[name] = times
@@ -363,8 +368,13 @@ def main():
     parser.add_argument('--spec2017', dest='spec2017', default=False, action='store_true')
     parser.add_argument("--filter", dest="filter", type=BenchFilter)
     parser.add_argument("-n", dest="n", type=int)
+    parser.add_argument("--speclocknum", dest="speclocknum", default=None, type=int)
     args = parser.parse_args()
-    run_w_filter(args.input_path, args.filter, args.n, use_percent=args.usePercent, spec2017=args.spec2017, extra_spec2017_path=args.extra_spec2017_path, extra_spec2017_n=args.extra_spec2017_n)
+
+    with open(args.input_path + '/spec_results.cmd', 'w') as f:
+        f.write("Command: " + str(sys.argv))
+
+    run_w_filter(args.input_path, args.filter, args.n, use_percent=args.usePercent, spec2017=args.spec2017, extra_spec2017_path=args.extra_spec2017_path, extra_spec2017_n=args.extra_spec2017_n,speclocknum=args.speclocknum)
 
 
 if __name__ == '__main__':
