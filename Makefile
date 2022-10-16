@@ -156,7 +156,7 @@ benchmark_benchmark_sightglass_emulated: benchmark_env_setup
 	make testmode_benchmark_benchmark_sightglass_emulated
 
 #### Keep Spec stuff separate so we can easily release other artifacts
-SPEC_BUILDS=wasm_hfi_wasm2c_guardpages wasm_hfi_wasm2c_boundschecks wasm_hfi_wasm2c_masking wasm_hfi_wasm2c_hfiemulate wasm_hfi_wasm2c_hfiemulate2
+SPEC_BUILDS=wasm_hfi_wasm2c_guardpages wasm_hfi_wasm2c_boundschecks wasm_hfi_wasm2c_masking wasm_hfi_wasm2c_hfiemulate2 wasm_hfi_wasm2c_hfiemulate
 
 hfi_spec:
 	git clone --recursive git@github.com:PLSysSec/hfi_spec.git
