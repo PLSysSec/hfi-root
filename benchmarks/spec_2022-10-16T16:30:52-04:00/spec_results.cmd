@@ -1,1 +1,1 @@
-Command: ['spec_stats.py', '-i', 'hfi_spec/result', '--filter', 'hfi_spec/result/spec_results=hfi_wasm2c_guardpages:GuardPages,hfi_wasm2c_boundschecks:BoundsChecks,hfi_wasm2c_masking:Masking', '-n', '3', '--usePercent', '--speclocknum', '162']
+Command: ['../../spec_stats.py', '-i', './', '--filter', './=hfi_wasm2c_boundschecks:BoundsChecks,hfi_wasm2c_masking:Masking', '-n', '3', '--usePercent', '--speclocknum', '162']

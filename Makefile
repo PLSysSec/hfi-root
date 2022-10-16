@@ -12,7 +12,7 @@ CURR_TIME=$(shell date --iso=seconds)
 PARALLEL_COUNT=$(shell nproc)
 REPO_PATH=$(shell realpath .)
 
-DIRS=hw_isol_gem5 hfi_wasm2c_sandbox_compiler hfi_misc hfi_firefox hfi-sightglass
+DIRS=hw_isol_gem5 hfi_wasm2c_sandbox_compiler hfi_misc hfi_firefox hfi-sightglass  lucet-spectre hfi_spectre_webserver
 
 hw_isol_gem5:
 	git clone --recursive git@github.com:PLSysSec/hw_isol_gem5.git
@@ -28,6 +28,12 @@ hfi_firefox:
 
 hfi-sightglass:
 	git clone --recursive git@github.com:PLSysSec/hfi-sightglass
+
+lucet-spectre:
+	git clone --recursive git@github.com:PLSysSec/lucet-spectre
+
+hfi_spectre_webserver:
+	git clone --recursive git@github.com:PLSysSec/hfi_spectre_webserver.git
 
 wasi-sdk-14.0-linux.tar.gz:
 	wget https://github.com/WebAssembly/wasi-sdk/releases/download/wasi-sdk-14/wasi-sdk-14.0-linux.tar.gz
@@ -86,11 +92,16 @@ build_wasm2c:
 build_sightglass:
 	cd hfi-sightglass/mybuild && make -j$(PARALLEL_COUNT) build
 
+build_lucet_spectre:
+	cd lucet-spectre && cargo build --release
+
+build_hfi_spectre_webserver:
+	cd ./hfi_spectre_webserver && cargo build --release
+
 build_firefox:
 	cd hfi_firefox/mybuild && make build
 
-build: build_gem5 build_wasm2c build_sightglass build_firefox
-
+build: build_gem5 build_wasm2c build_sightglass build_lucet_spectre build_hfi_spectre_webserver build_firefox
 
 test-gem5:
 	cd hw_isol_gem5/mybuild && make test
@@ -183,7 +194,7 @@ testmode_benchmark_spec:
 		runspec --config=$$spec_build.cfg --action=run --define cores=1 --iterations=1 --noreportable --size=ref wasmint; \
 	done
 	python3 spec_stats.py -i hfi_spec/result --filter  \
-		"hfi_spec/result/spec_results=hfi_wasm2c_guardpages:GuardPages,hfi_wasm2c_boundschecks:BoundsChecks,hfi_wasm2c_masking:Masking,hfi_wasm2c_hfiemulate:HfiEmulateLB,hfi_wasm2c_hfiemulate2:HfiEmulateUB" -n $(words $(SPEC_BUILDS)) --usePercent
+		"hfi_spec/result/spec_results=hfi_wasm2c_boundschecks:BoundsChecks,hfi_wasm2c_masking:Masking,hfi_wasm2c_hfiemulate:HfiEmulateLB,hfi_wasm2c_hfiemulate2:HfiEmulateUB" -n $(words $(SPEC_BUILDS)) --usePercent
 	mv hfi_spec/result/ benchmarks/spec_$(CURR_TIME)
 
 benchmark_spec: benchmark_env_setup
