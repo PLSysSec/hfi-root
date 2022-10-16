@@ -183,7 +183,7 @@ testmode_benchmark_spec:
 		runspec --config=$$spec_build.cfg --action=run --define cores=1 --iterations=1 --noreportable --size=ref wasmint; \
 	done
 	python3 spec_stats.py -i hfi_spec/result --filter  \
-		"hfi_spec/result/spec_results=wasm_hfi_wasm2c_guardpages:GuardPages,wasm_hfi_wasm2c_boundschecks:BoundsChecks,wasm_hfi_wasm2c_masking:Masking,wasm_hfi_wasm2c_hfiemulate:HfiEmulateLB,wasm_hfi_wasm2c_hfiemulate2:HfiEmulateUB" -n $(words $(SPEC_BUILDS)) --usePercent
+		"hfi_spec/result/spec_results=hfi_wasm2c_guardpages:GuardPages,hfi_wasm2c_boundschecks:BoundsChecks,hfi_wasm2c_masking:Masking,hfi_wasm2c_hfiemulate:HfiEmulateLB,hfi_wasm2c_hfiemulate2:HfiEmulateUB" -n $(words $(SPEC_BUILDS)) --usePercent
 	mv hfi_spec/result/ benchmarks/spec_$(CURR_TIME)
 
 benchmark_spec: benchmark_env_setup
