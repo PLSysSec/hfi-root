@@ -14,7 +14,7 @@ HFIROOT=$(dirname $(realpath -s $0))
 GEM5DIR=${HFIROOT}/hw_isol_gem5
 BMKSDIR=${HFIROOT}/benchmarks/sightglass_${MODE}_$(date +%b%d-%H:%M)
 
-mkdir -p BMKSDIR
+mkdir -p $BMKSDIR
 
 # assume that the user ran `make bootstrap` already and that everything is built
 
@@ -31,7 +31,7 @@ run_bmks_cmd="(cd ${bmk} && ${gem5_run_cmd} && cd ..)"
 for bmk in $BMKS; 
 do
     NOTIMED=1 CC=clang make ${bmk}_build_${MODE} -j21
-    gem5_run_cmd="${GEM5DIR}/build/X86/gem5.fast --outdir=${BMKSDIR}/benchmarks/${bmk}_gem5 ${GEM5DIR}/configs/example/se.py --cpu-type=Skylake --caches -c ./benchmark_${MODE}"
+    gem5_run_cmd="${GEM5DIR}/build/X86/gem5.fast --outdir=${BMKSDIR}/${bmk}_gem5 ${GEM5DIR}/configs/example/se.py --cpu-type=Skylake --caches -c ./benchmark_${MODE}"
     run_bmks_cmd="${run_bmks_cmd} & (cd ${bmk} && ${gem5_run_cmd} && cd ..)"
 done
 
