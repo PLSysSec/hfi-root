@@ -6,14 +6,16 @@ NOTPARALLEL:
 
 SHELL := /bin/bash
 
-DIRS=hw_isol_gem5 walkspec-hfi hfi_wasm2c_sandbox_compiler hfi_misc hfi_firefox
+CURR_USER=${USER}
+CURR_PATH=${PATH}
+CURR_TIME=$(shell date --iso=seconds)
+PARALLEL_COUNT=$(shell nproc)
+REPO_PATH=$(shell realpath .)
+
+DIRS=hw_isol_gem5 hfi_wasm2c_sandbox_compiler hfi_misc hfi_firefox hfi-sightglass
 
 hw_isol_gem5:
 	git clone --recursive git@github.com:PLSysSec/hw_isol_gem5.git
-
-walkspec-hfi:
-	git clone --recursive git@github.com:PLSysSec/walkspec-hfi.git
-	cd walkspec-hfi && make walkspec_deps
 
 hfi_wasm2c_sandbox_compiler:
 	git clone --recursive git@github.com:PLSysSec/hfi_wasm2c_sandbox_compiler.git
@@ -23,6 +25,9 @@ hfi_misc:
 
 hfi_firefox:
 	git clone --recursive git@github.com:PLSysSec/hfi_firefox.git
+
+hfi-sightglass:
+	git clone --recursive git@github.com:PLSysSec/hfi-sightglass
 
 wasi-sdk-14.0-linux.tar.gz:
 	wget https://github.com/WebAssembly/wasi-sdk/releases/download/wasi-sdk-14/wasi-sdk-14.0-linux.tar.gz
@@ -37,8 +42,31 @@ bootstrap: get_source
 	sudo apt install -y make gcc g++ clang cmake python3 libpng-dev libuv1-dev \
 		build-essential git m4 scons zlib1g zlib1g-dev \
 		libprotobuf-dev protobuf-compiler libprotoc-dev libgoogle-perftools-dev \
-		python3-dev python-is-python3 python3-pip libboost-all-dev pkg-config
+		python3-dev python-is-python3 python3-pip libboost-all-dev pkg-config \
+		cpuset cpufrequtils xvfb gnuplot \
+		ca-certificates curl gnupg lsb-release libssl-dev
 	cd hfi_firefox/mybuild && make bootstrap
+	pip3 install simplejson matplotlib
+	pip3 install --upgrade requests
+
+# Only needed if you need to rebuild sightglass wasm files
+install_docker:
+	sudo mkdir -p /etc/apt/keyrings
+ 	curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+	echo \
+	"deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+		$(shell lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+	sudo apt-get update
+	sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+	sudo service docker start
+	sudo usermod -a -G docker ${CURR_USER}
+	@echo "--------------------------------------------------------------------------"
+	@echo "Attention!!!!!!:"
+	@echo ""
+	@echo "Installed new packages, docker etc."
+	@echo "You need to reboot before proceeding."
+	@echo ""
+	@echo "--------------------------------------------------------------------------"
 
 autopull_%:
 	cd $* && git pull --rebase --autostash
@@ -49,14 +77,117 @@ pull:
 	git pull --rebase --autostash
 	$(MAKE) pull_subrepos
 
-build:
+build_gem5:
 	cd hw_isol_gem5/mybuild && make build
+
+build_wasm2c:
 	cd hfi_wasm2c_sandbox_compiler/mybuild && make build
-	cd walkspec-hfi && make build
+
+build_sightglass:
+	cd hfi-sightglass/mybuild && make -j$(PARALLEL_COUNT) build
+
+build_firefox:
 	cd hfi_firefox/mybuild && make build
+
+build: build_gem5 build_wasm2c build_sightglass build_firefox
+
 
 test-gem5:
 	cd hw_isol_gem5/mybuild && make test
+
+run_xvfb:
+	if [ -z "$(shell pgrep Xvfb)" ]; then \
+		Xvfb :99 & \
+	fi
+
+shielding_on: run_xvfb
+	sudo cset shield -c 1 -k on
+	sudo cset shield -e sudo -- -u ${CURR_USER} env "PATH=${CURR_PATH}" bash
+
+shielding_off:
+	sudo cset shield --reset
+
+disable_hyperthreading:
+	sudo bash -c "echo off > /sys/devices/system/cpu/smt/control"
+
+restore_hyperthreading:
+	sudo bash -c "echo on > /sys/devices/system/cpu/smt/control"
+
+benchmark_env_setup: disable_hyperthreading
+	sudo cset shield -c 1 -k on
+	(taskset -c 1 echo "testing shield..." > /dev/null 2>&1 && echo "Shielded shell running!") || (echo "Shielded shell not running. Run make shielding_on first!" && sudo cset shield --reset && exit 1)
+	if [ -x "$(shell command -v cpupower)" ]; then \
+		sudo cpupower -c 1 frequency-set -g performance && sudo cpupower -c 1 frequency-set --min 2200MHz --max 2200MHz; \
+	else \
+		sudo cpufreq-set -c 1 -g performance && sudo cpufreq-set -c 1 --min 2200MHz --max 2200MHz; \
+	fi
+
+benchmark_env_close: restore_hyperthreading shielding_off
+
+testmode_benchmark_graphite:
+	cd hfi_firefox && ./testsRunBenchmark "../benchmarks/graphite_test_$(CURR_TIME)" "graphite_perf_test"
+
+benchmark_graphite: benchmark_env_setup
+	export DISPLAY=:99 && make testmode_benchmark_graphite
+
+# cd hfi_firefox && ./testsRunBenchmark "../benchmarks/jpeg_black_width_test_$(CURR_TIME)" "jpeg_black_width_perf"
+
+testmode_benchmark_jpeg:
+	cd hfi_firefox && ./testsRunBenchmark "../benchmarks/jpeg_test_$(CURR_TIME)" "jpeg_perf"
+	./hfi_firefox/testsProduceImagePlotData.py ./benchmarks/jpeg_test_$(CURR_TIME)/compare_stock_terminal_analysis.json.dat ./benchmarks/jpeg_test_$(CURR_TIME)/jpeg_perf.plotdat
+	gnuplot -e "inputfilename='./benchmarks/jpeg_test_$(CURR_TIME)/jpeg_perf.plotdat';outputfilename='./benchmarks/jpeg_test_$(CURR_TIME)/jpeg_perf.pdf'" ./hfi_firefox/testsProduceImagePlot.gnu
+
+benchmark_jpeg: benchmark_env_setup
+	export DISPLAY=:99 && make testmode_benchmark_jpeg
+
+SIGHTGLASS_OUTPUTFOLDER="$(REPO_PATH)/benchmarks/sightglass_emulated_$(CURR_TIME)/"
+
+testmode_benchmark_sightglass_emulated:
+	mkdir -p "$(SIGHTGLASS_OUTPUTFOLDER)" && \
+		export SIGHTGLASS_OUTPUTFOLDER="$(SIGHTGLASS_OUTPUTFOLDER)" && \
+		export SIGHTGLASS_WRITEOUTPUT=1 && \
+		cd hfi-sightglass/mybuild && \
+		make run_guardpage && \
+		make run_guardpage_asmmove && \
+		make run_hfiemulate && \
+		make run_hfiemulate2
+
+benchmark_benchmark_sightglass_emulated: benchmark_env_setup
+	make testmode_benchmark_benchmark_sightglass_emulated
+
+#### Keep Spec stuff separate so we can easily release other artifacts
+SPEC_BUILDS=wasm_hfi_wasm2c_guardpages wasm_hfi_wasm2c_boundschecks wasm_hfi_wasm2c_masking wasm_hfi_wasm2c_hfiemulate wasm_hfi_wasm2c_hfiemulate2
+
+hfi_spec:
+	git clone --recursive git@github.com:PLSysSec/hfi_spec.git
+	cd $@ && SPEC_INSTALL_NOCHECK=1 SPEC_FORCE_INSTALL=1 sh install.sh -f
+
+build_wasm2c_dependency:
+	cd hfi_wasm2c_sandbox_compiler/mybuild && make ../build_release_guardpages
+	cd hfi_wasm2c_sandbox_compiler/build_release_guardpages && make -j$(PARALLEL_COUNT)
+
+build_spec: hfi_spec autopull_hfi_spec build_wasm2c_dependency
+	cd hfi_spec && source shrc &&  cd config && \
+	echo "Cleaning dirs..." && \
+	for spec_build in $(SPEC_BUILDS); do \
+		runspec --config=$$spec_build.cfg --action=clobber --define cores=1 --iterations=1 --noreportable --size=ref wasmint 2&>1 > /dev/null; \
+	done && \
+	for spec_build in $(SPEC_BUILDS); do \
+		echo "Building $$spec_build"; \
+		runspec --config=$$spec_build.cfg --action=build --define cores=1 --iterations=1 --noreportable --size=ref wasmint | grep "Build "; \
+	done
+
+testmode_benchmark_spec:
+	cd hfi_spec && source shrc && cd config && \
+	for spec_build in $(SPEC_BUILDS); do \
+		runspec --config=$$spec_build.cfg --action=run --define cores=1 --iterations=1 --noreportable --size=ref wasmint; \
+	done
+	python3 spec_stats.py -i hfi_spec/result --filter  \
+		"hfi_spec/result/spec_results=wasm_hfi_wasm2c_guardpages:GuardPages,wasm_hfi_wasm2c_boundschecks:BoundsChecks,wasm_hfi_wasm2c_masking:Masking,wasm_hfi_wasm2c_hfiemulate:HfiEmulateLB,wasm_hfi_wasm2c_hfiemulate2:HfiEmulateUB" -n $(words $(SPEC_BUILDS)) --usePercent
+	mv hfi_spec/result/ benchmarks/spec_$(CURR_TIME)
+
+benchmark_spec: benchmark_env_setup
+	make testmode_benchmark_spec
 
 clean:
 	cd hw_isol_gem5/mybuild && make clean
