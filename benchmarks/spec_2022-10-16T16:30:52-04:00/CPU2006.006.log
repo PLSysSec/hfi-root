@@ -1,0 +1,22 @@
+runspec v6152 started at Fri Oct 14 09:00:52 2022 on "shr-Desktop"
+runspec is: /home/shr/Code/HardwareIsolation/hfi_spec/bin/runspec
+runspec: runspec --config=wasm_hfi_wasm2c_guardpages.cfg --action=build --define cores=1 --iterations=1 --noreportable --size=ref CINT2006wasm
+toolset: linux-suse101-AMD64
+
+Locating benchmarks...found 31 benchmarks in 9 benchsets.
+Reading config file '/home/shr/Code/HardwareIsolation/hfi_spec/config/wasm_hfi_wasm2c_guardpages.cfg'
+
+Can't find benchmark 'CINT2006wasm'
+Can't parse 'CINT2006wasm' into a benchmark
+
+No benchmarks specified!
+
+The log for this run is in /home/shr/Code/HardwareIsolation/hfi_spec/result/CPU2006.006.log
+The debug log for this run is in /home/shr/Code/HardwareIsolation/hfi_spec/result/CPU2006.006.log.debug
+
+*
+* Temporary files were NOT deleted; keeping temporaries such as
+* /home/shr/Code/HardwareIsolation/hfi_spec/result/CPU2006.006.log.debug
+* (These may be large!)
+*
+runspec finished at Fri Oct 14 09:00:53 2022; 1 total seconds elapsed

@@ -1,0 +1,1059 @@
+==============================================================================
+Debug log for CPU2006.  This file contains very detailed debugging
+output from the CPU2006 tools (as if "--verbose 99" had been specified) and is
+typically useful only to developers of the CPU2006 toolset.   
+
+For a successful run, this debug log will be removed automatically, unless you
+specify "--keeptmp" on the command line, or "keeptmp=1" in your config file.
+
+If you file a support request with cpu2006support@spec.org, you may be
+asked to submit this file.
+------------------------------------------------------------------------------
+
+Environment variables that should have been set or changed by shrc:
+SPEC: /home/shr/Code/HardwareIsolation/hfi_spec
+PATH: /home/shr/Code/HardwareIsolation/hfi_spec/bin:/home/shr/.cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+SPECPERLLIB: /home/shr/Code/HardwareIsolation/hfi_spec/bin:/home/shr/Code/HardwareIsolation/hfi_spec/bin/lib
+LD_LIBRARY_PATH: 
+DYLD_LIBRARY_PATH: 
+LC_ALL: C
+LC_LANG: C
+SPECDB_PWD: /home/shr/Code/HardwareIsolation/hfi_spec/config
+------------------------------------------------------------------------------
+
+Runspec's verbose version output:
+                 This is the SPEC CPU2006 benchmark tools suite.
+
+Version summary:
+    CPU2006 version: 1.1
+ Benchmarks version: 110
+      Tools version: 111
+    runspec version: 6152 ($Id: runspec 6152 2008-05-07 05:25:30Z cloyce $)
+
+Tools information:
+ Tools package installed: linux-suse101-AMD64
+ File locking method: fcntl(2) (probably network-safe)
+Mode |  UID  |  GID  |   Size  |    Modified Date   | Name
+0755 | 1000  | 1000  |  197376 | 17-May-2007 10:05:18 | specmake
+0755 | 1000  | 1000  | 1269511 | 17-May-2007 10:05:18 | specperl
+0755 | 1000  | 1000  |   25160 | 17-May-2007 10:05:18 | specinvoke
+0755 | 1000  | 1000  |   28176 | 17-May-2007 10:05:18 | specinvoke_pm
+0755 | 1000  | 1000  |   87352 | 17-May-2007 10:05:18 | specbzip2
+0755 | 1000  | 1000  |   20056 | 17-May-2007 10:05:18 | specmd5sum
+0775 | 1000  | 1000  |    7637 | 14-Oct-2022 14:07:58 | specdiff
+0775 | 1000  | 1000  |   86545 | 14-Oct-2022 14:07:58 | specpp
+0755 | 1000  | 1000  |  264960 | 17-May-2007 10:05:18 | specrxp
+0775 | 1000  | 1000  |  121907 | 14-Oct-2022 14:07:58 | runspec
+
+Version info for specinvoke (specinvoke): Version: 5000
+Version info for specmake (specmake): GNU Make 3.81
+Version info for specbzip2 (/home/shr/Code/HardwareIsolation/hfi_spec/bin/specbzip2): bzip2 v1.0.3, 15-Feb-2005
+Version info for specpp (/home/shr/Code/HardwareIsolation/hfi_spec/bin/specperl): filepp version 1.7.1SPEC
+Version info for specperl (/home/shr/Code/HardwareIsolation/hfi_spec/bin/specperl): This is specperl, v5.8.8 built for x86_64-linux
+                           For more detail on specperl, say 'specperl -V'
+
+==============================================================================
+
+1665756481.04: runspec v6152 started at Fri Oct 14 10:07:59 2022 on "shr-Desktop"
+1665756481.04: runspec is: /home/shr/Code/HardwareIsolation/hfi_spec/bin/runspec
+1665756481.04: runspec: runspec --config=wasm_hfi_wasm2c_guardpages.cfg --action=build --define cores=1 --iterations=1 --noreportable --size=ref tmpwasmint
+1665756481.04: toolset: linux-suse101-AMD64
+
+1665756481.04(0.02s): Locating benchmarks...Created default regexp '(?:^|(?<=\s))[-/]DSPEC_CPU(?:=\S*)?(?=\s|$)' for DSPEC_CPU in /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/flags-mandatory.xml
+1665756481.06: Created default regexp '(?:^|(?<=\s))[-/]USPEC_CPU(?:=\S*)?(?=\s|$)' for USPEC_CPU in /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/flags-mandatory.xml
+1665756481.07: Created default regexp '(?:^|(?<=\s))[-/]DNDEBUG(?:=\S*)?(?=\s|$)' for DNDEBUG in /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/flags-mandatory.xml
+1665756481.07: Created default regexp '(?:^|(?<=\s))[-/]UNDEBUG(?:=\S*)?(?=\s|$)' for UNDEBUG in /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/flags-mandatory.xml
+1665756481.07: Created default regexp '(?:^|(?<=\s))[-/]DSPEC_CPU_WINDOWS(?:=\S*)?(?=\s|$)' for DSPEC_CPU_WINDOWS in /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/flags-mandatory.xml
+1665756481.07: Created default regexp '(?:^|(?<=\s))[-/]DSPEC_CPU_ILP32(?:=\S*)?(?=\s|$)' for DSPEC_CPU_ILP32 in /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/flags-mandatory.xml
+1665756481.07: Created default regexp '(?:^|(?<=\s))[-/]DSPEC_CPU_P64(?:=\S*)?(?=\s|$)' for DSPEC_CPU_P64 in /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/flags-mandatory.xml
+1665756481.07: Created default regexp '(?:^|(?<=\s))[-/]DSPEC_CPU_LP64(?:=\S*)?(?=\s|$)' for DSPEC_CPU_LP64 in /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/flags-mandatory.xml
+1665756481.07: Created default regexp '(?:^|(?<=\s))[-/]DSPEC_CPU_ILP64(?:=\S*)?(?=\s|$)' for DSPEC_CPU_ILP64 in /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/flags-mandatory.xml
+1665756481.07: Reading suite directory for 'flags-mandatory.xml', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec'
+1665756481.07: Reading suite directory for 'Makefile.defaults', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec'
+1665756481.07: Reading suite directory for 'version.txt', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec'
+1665756481.07: Reading suite directory for 'CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec'
+1665756481.07:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', 'tmpwasmCINT2006.bset'
+1665756481.07:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', 'oakland.bset'
+1665756481.07:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '433.milc'
+1665756481.07:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/433.milc/Spec/object.pm in 0.000156879s
+1665756481.07:     Instantiated Spec::Benchmark::milc433 in 0.000161886s
+1665756481.07:     Finding src.alts took 0.000030994s
+1665756481.07:   Setting up milc took 0.000468016s
+
+1665756481.07:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '999.specrand'
+1665756481.07:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/999.specrand/Spec/object.pm in 0.000118971s
+1665756481.07:     Instantiated Spec::Benchmark::specrand999 in 0.000049114s
+1665756481.07:     Finding src.alts took 0.000019073s
+1665756481.07:   Setting up specrand took 0.000283957s
+
+1665756481.07:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', 'all_cpp.bset'
+1665756481.07:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', 'CINT2006.bset'
+1665756481.07:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '456.hmmer'
+1665756481.07:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/456.hmmer/Spec/object.pm in 0.000162840s
+1665756481.07:     Instantiated Spec::Benchmark::hmmer456 in 0.000049829s
+1665756481.07:     Finding src.alts took 0.000019073s
+1665756481.07:   Setting up hmmer took 0.000331879s
+
+1665756481.07:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', 'all_c.bset'
+1665756481.07:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '400.perlbench'
+1665756481.07:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/400.perlbench/Spec/object.pm in 0.000577927s
+1665756481.07:     Instantiated Spec::Benchmark::perlbench400 in 0.000061035s
+1665756481.07:     Finding src.alts took 0.000020027s
+1665756481.07:   Setting up perlbench took 0.000760078s
+
+1665756481.07:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '453.povray'
+1665756481.07:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/453.povray/Spec/object.pm in 0.000153065s
+1665756481.07:     Instantiated Spec::Benchmark::povray453 in 0.000060081s
+1665756481.07:     Finding src.alts took 0.000018120s
+1665756481.07:   Setting up povray took 0.000328064s
+
+1665756481.07:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '436.cactusADM'
+1665756481.07:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/436.cactusADM/Spec/object.pm in 0.000258923s
+1665756481.07:     Instantiated Spec::Benchmark::cactusADM436 in 0.000074863s
+1665756481.07:     Finding src.alts took 0.000019073s
+1665756481.07:   Setting up cactusADM took 0.000452995s
+
+1665756481.07:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', 'extra.bset'
+1665756481.07:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '473.astar'
+1665756481.07:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/473.astar/Spec/object.pm in 0.000180006s
+1665756481.07:     Instantiated Spec::Benchmark::astar473 in 0.000048161s
+1665756481.07:     Finding src.alts took 0.000019073s
+1665756481.07:   Setting up astar took 0.000344038s
+
+1665756481.07:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '437.leslie3d'
+1665756481.07:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/437.leslie3d/Spec/object.pm in 0.000136137s
+1665756481.07:     Instantiated Spec::Benchmark::leslie3d437 in 0.000049114s
+1665756481.07:     Finding src.alts took 0.000018120s
+1665756481.07:   Setting up leslie3d took 0.000298023s
+
+1665756481.07:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '403.gcc'
+1665756481.07:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/403.gcc/Spec/object.pm in 0.000156164s
+1665756481.07:     Instantiated Spec::Benchmark::gcc403 in 0.000057936s
+1665756481.07:     Finding src.alts took 0.000017881s
+1665756481.07:   Setting up gcc took 0.000329018s
+
+1665756481.07:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '481.wrf'
+1665756481.07:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/481.wrf/Spec/object.pm in 0.000844002s
+1665756481.07:     Instantiated Spec::Benchmark::wrf481 in 0.000093937s
+1665756481.07:     Finding src.alts took 0.000019073s
+1665756481.07:   Setting up wrf took 0.001060963s
+
+1665756481.07:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', 'all_mixed.bset'
+1665756481.07:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '454.calculix'
+1665756481.07:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/454.calculix/Spec/object.pm in 0.000247955s
+1665756481.07:     Instantiated Spec::Benchmark::calculix454 in 0.000070810s
+1665756481.07:     Finding src.alts took 0.000018835s
+1665756481.07:   Setting up calculix took 0.000438929s
+
+1665756481.07:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '471.omnetpp'
+1665756481.07:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/471.omnetpp/Spec/object.pm in 0.000129938s
+1665756481.07:     Instantiated Spec::Benchmark::omnetpp471 in 0.000047922s
+1665756481.07:     Finding src.alts took 0.000017881s
+1665756481.07:   Setting up omnetpp took 0.000288963s
+
+1665756481.07:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '434.zeusmp'
+1665756481.07:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/434.zeusmp/Spec/object.pm in 0.000112057s
+1665756481.07:     Instantiated Spec::Benchmark::zeusmp434 in 0.000055075s
+1665756481.07:     Finding src.alts took 0.000016928s
+1665756481.07:   Setting up zeusmp took 0.000280142s
+
+1665756481.07:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '462.libquantum'
+1665756481.07:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/462.libquantum/Spec/object.pm in 0.000112057s
+1665756481.07:     Instantiated Spec::Benchmark::libquantum462 in 0.000048161s
+1665756481.07:     Finding src.alts took 0.000017166s
+1665756481.07:   Setting up libquantum took 0.000271082s
+
+1665756481.07:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '464.h264ref'
+1665756481.07:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/464.h264ref/Spec/object.pm in 0.000164986s
+1665756481.07:     Instantiated Spec::Benchmark::h264ref464 in 0.000046968s
+1665756481.07:     Finding src.alts took 0.000017881s
+1665756481.07:   Setting up h264ref took 0.000327110s
+
+1665756481.07:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '444.namd'
+1665756481.07:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/444.namd/Spec/object.pm in 0.000135899s
+1665756481.07:     Instantiated Spec::Benchmark::namd444 in 0.000052929s
+1665756481.07:     Finding src.alts took 0.000017881s
+1665756481.07:   Setting up namd took 0.000300884s
+
+1665756481.07:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '482.sphinx3'
+1665756481.07:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/482.sphinx3/Spec/object.pm in 0.000324011s
+1665756481.07:     Instantiated Spec::Benchmark::sphinx3482 in 0.000059128s
+1665756481.07:     Finding src.alts took 0.000018835s
+1665756481.07:   Setting up sphinx3 took 0.000505924s
+
+1665756481.07:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '483.xalancbmk'
+1665756481.08:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/483.xalancbmk/Spec/object.pm in 0.000729084s
+1665756481.08:     Instantiated Spec::Benchmark::xalancbmk483 in 0.000092983s
+1665756481.08:     Finding src.alts took 0.000020027s
+1665756481.08:   Setting up xalancbmk took 0.000944138s
+
+1665756481.08:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '401.bzip2'
+1665756481.08:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/401.bzip2/Spec/object.pm in 0.000106096s
+1665756481.08:     Instantiated Spec::Benchmark::bzip2401 in 0.000044823s
+1665756481.08:     Finding src.alts took 0.000017881s
+1665756481.08:   Setting up bzip2 took 0.000262022s
+
+1665756481.08:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '429.mcf'
+1665756481.08:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/429.mcf/Spec/object.pm in 0.000112057s
+1665756481.08:     Instantiated Spec::Benchmark::mcf429 in 0.000048161s
+1665756481.08:     Finding src.alts took 0.000018120s
+1665756481.08:   Setting up mcf took 0.000272989s
+
+1665756481.08:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '410.bwaves'
+1665756481.08:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/410.bwaves/Spec/object.pm in 0.000101089s
+1665756481.08:     Instantiated Spec::Benchmark::bwaves410 in 0.000052929s
+1665756481.08:     Finding src.alts took 0.000017881s
+1665756481.08:   Setting up bwaves took 0.000268221s
+
+1665756481.08:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '459.GemsFDTD'
+1665756481.08:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/459.GemsFDTD/Spec/object.pm in 0.000174046s
+1665756481.08:     Instantiated Spec::Benchmark::GemsFDTD459 in 0.000046015s
+1665756481.08:     Finding src.alts took 0.000017881s
+1665756481.08:   Setting up GemsFDTD took 0.000330925s
+
+1665756481.08:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '416.gamess'
+1665756481.08:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/416.gamess/Spec/object.pm in 0.000169039s
+1665756481.08:     Instantiated Spec::Benchmark::gamess416 in 0.000057936s
+1665756481.08:     Finding src.alts took 0.000018835s
+1665756481.08:   Setting up gamess took 0.000342131s
+
+1665756481.08:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '450.soplex'
+1665756481.08:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/450.soplex/Spec/object.pm in 0.000185013s
+1665756481.08:     Instantiated Spec::Benchmark::soplex450 in 0.000043869s
+1665756481.08:     Finding src.alts took 0.000018835s
+1665756481.08:   Setting up soplex took 0.000346184s
+
+1665756481.08:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '445.gobmk'
+1665756481.08:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/445.gobmk/Spec/object.pm in 0.000139952s
+1665756481.08:     Instantiated Spec::Benchmark::gobmk445 in 0.000051975s
+1665756481.08:     Finding src.alts took 0.000017881s
+1665756481.08:   Setting up gobmk took 0.000304222s
+
+1665756481.08:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', 'CFP2006.bset'
+1665756481.08:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '470.lbm'
+1665756481.08:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/470.lbm/Spec/object.pm in 0.000104904s
+1665756481.08:     Instantiated Spec::Benchmark::lbm470 in 0.000051022s
+1665756481.08:     Finding src.alts took 0.000018120s
+1665756481.08:   Setting up lbm took 0.000269890s
+
+1665756481.08:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', 'wasmCINT2006.bset'
+1665756481.08:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '465.tonto'
+1665756481.08:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/465.tonto/Spec/object.pm in 0.000749111s
+1665756481.08:     Instantiated Spec::Benchmark::tonto465 in 0.000070095s
+1665756481.08:     Finding src.alts took 0.000018835s
+1665756481.08:   Setting up tonto took 0.000940084s
+
+1665756481.08:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '435.gromacs'
+1665756481.08:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/435.gromacs/Spec/object.pm in 0.000155926s
+1665756481.08:     Instantiated Spec::Benchmark::gromacs435 in 0.000057936s
+1665756481.08:     Finding src.alts took 0.000019073s
+1665756481.08:   Setting up gromacs took 0.000329018s
+
+1665756481.08:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '447.dealII'
+1665756481.08:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/447.dealII/Spec/object.pm in 0.000344038s
+1665756481.08:     Instantiated Spec::Benchmark::dealII447 in 0.000066042s
+1665756481.08:     Finding src.alts took 0.000021935s
+1665756481.08:   Setting up dealII took 0.000533819s
+
+1665756481.08:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', 'all_fortran.bset'
+1665756481.08:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '998.specrand'
+1665756481.08:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/998.specrand/Spec/object.pm in 0.000107050s
+1665756481.08:     Instantiated Spec::Benchmark::specrand998 in 0.000049829s
+1665756481.08:     Finding src.alts took 0.000018835s
+1665756481.08:   Setting up specrand took 0.000272989s
+
+1665756481.08:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '458.sjeng'
+1665756481.08:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/458.sjeng/Spec/object.pm in 0.000113964s
+1665756481.08:     Instantiated Spec::Benchmark::sjeng458 in 0.000050068s
+1665756481.08:     Finding src.alts took 0.000018835s
+1665756481.08:   Setting up sjeng took 0.000277042s
+
+1665756481.08: Setting up suite took 0.015792131s
+1665756481.08: found 31 benchmarks in 10 benchsets.
+1665756481.08: Reading config file '/home/shr/Code/HardwareIsolation/hfi_spec/config/wasm_hfi_wasm2c_guardpages.cfg'
+
+1665756481.10:   '433.milc' added
+1665756481.11: Verbosity = 5
+1665756481.11: Action    = build
+1665756481.11: Tune      = base
+1665756481.11: Ext       = hfi_wasm2c_guardpages
+1665756481.11: Size      = ref
+1665756481.11: Machine   = default
+1665756481.11: benchmarks= 433.milc
+1665756481.11: outputs   = asc
+1665756481.11: username  = shr
+1665756481.11: Benchmarks selected: 433.milc
+1665756481.11: Compiling Binaries
+
+1665756481.11: ------------------------------------------------------------------------
+1665756481.11: When checking options for /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/433.milc/exe/milc_base.hfi_wasm2c_guardpages, no MD5 sums were
+1665756481.11:   found in the config file.  They will be installed after build.
+1665756481.11:   Building 433.milc base hfi_wasm2c_guardpages default: (build_base_hfi_wasm2c_guardpages.0000)
+1665756481.13: Comparing MD5 hashes:
+1665756481.13:   d84b4ba86f793c8e9c8f2eb4dcb7b461 /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/433.milc/src/Makefile
+1665756481.13:   d84b4ba86f793c8e9c8f2eb4dcb7b461 /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/433.milc/build/build_base_hfi_wasm2c_guardpages.0000/Makefile
+1665756481.14: Wrote to makefile '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/433.milc/build/build_base_hfi_wasm2c_guardpages.0000/Makefile.deps':
+
+1665756481.14: # These are the build dependencies
+
+1665756481.14: # End dependencies
+1665756481.14: Wrote to makefile '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/433.milc/build/build_base_hfi_wasm2c_guardpages.0000/Makefile.spec':
+1665756481.14: TUNE=base
+1665756481.14: EXT=hfi_wasm2c_guardpages
+1665756481.14: NUMBER=433
+1665756481.14: NAME=milc
+1665756481.14: SOURCES= control.c f_meas.c gauge_info.c setup.c update.c update_h.c \
+1665756481.14: 	 update_u.c layout_hyper.c check_unitarity.c d_plaq4.c gaugefix2.c \
+1665756481.14: 	 io_helpers.c io_lat4.c make_lattice.c path_product.c ploop3.c ranmom.c \
+1665756481.14: 	 ranstuff.c reunitarize2.c gauge_stuff.c grsource_imp.c mat_invert.c \
+1665756481.14: 	 quark_stuff.c rephase.c cmplx.c addmat.c addvec.c clear_mat.c clearvec.c \
+1665756481.14: 	 m_amatvec.c m_mat_an.c m_mat_na.c m_mat_nn.c m_matvec.c make_ahmat.c \
+1665756481.14: 	 rand_ahmat.c realtr.c s_m_a_mat.c s_m_a_vec.c s_m_s_mat.c s_m_vec.c \
+1665756481.14: 	 s_m_mat.c su3_adjoint.c su3_dot.c su3_rdot.c su3_proj.c su3mat_copy.c \
+1665756481.14: 	 submat.c subvec.c trace_su3.c uncmp_ahmat.c msq_su3vec.c sub4vecs.c \
+1665756481.14: 	 m_amv_4dir.c m_amv_4vec.c m_mv_s_4dir.c m_su2_mat_vec_n.c l_su2_hit_n.c \
+1665756481.14: 	 r_su2_hit_a.c m_su2_mat_vec_a.c gaussrand.c byterevn.c m_mat_hwvec.c \
+1665756481.14: 	 m_amat_hwvec.c dslash_fn2.c d_congrad5_fn.c com_vanilla.c io_nonansi.c
+1665756481.14: EXEBASE=milc
+1665756481.14: NEED_MATH=yes
+1665756481.14: BENCHLANG=C
+1665756481.14: ONESTEP=
+1665756481.14: CONESTEP=
+
+1665756481.14: BENCH_FLAGS      = -I. -DFN -DFAST -DCONGRAD_TMP_VECTORS -DDSLASH_TMP_LINKS
+1665756481.14: CC               = $(WASI_SDK_PATH)/bin/clang $(WASI_FLAGS)
+1665756481.14: COPTIMIZE        = -O2
+1665756481.14: CXX              = $(WASI_SDK_PATH)/bin/clang++ $(WASI_FLAGS) -fno-exceptions
+1665756481.14: CXXOPTIMIZE      = -O2
+1665756481.14: FC               = /usr/bin/gfortran
+1665756481.14: FOPTIMIZE        = -O2
+1665756481.14: FPBASE           = yes
+1665756481.14: LUCET_TYPE       = hfi_wasm2c_guardpages
+1665756481.14: OS               = unix
+1665756481.14: PORTABILITY      = -DSPEC_CPU_LP64
+1665756481.14: WASI_FLAGS       = --sysroot $(WASI_SDK_PATH)/share/wasi-sysroot -Wl,--export-all -Wl,--global-base=100000 -Wl,-z,stack-size=1048576 -Wl,--growable-table -D_WASI_EMULATED_SIGNAL -lwasi-emulated-signal -lm
+1665756481.14: WASI_SDK_PATH    = $(SPEC)/../wasi-sdk/
+1665756481.14: absolutely_no_locking = 0
+1665756481.14: action           = build
+1665756481.14: allow_extension_override = 0
+1665756481.14: backup_config    = 1
+1665756481.14: baseexe          = milc
+1665756481.14: basepeak         = 0
+1665756481.14: benchdir         = benchspec
+1665756481.14: benchmark        = 433.milc
+1665756481.14: binary           = 
+1665756481.14: bindir           = exe
+1665756481.14: build_in_build_dir = 1
+1665756481.14: builddir         = build
+1665756481.14: bundleaction     = 
+1665756481.14: bundlename       = 
+1665756481.14: calctol          = 0
+1665756481.14: changedmd5       = 0
+1665756481.14: check_integrity  = 1
+1665756481.14: check_md5        = 1
+1665756481.14: check_version    = 1
+1665756481.14: command_add_redirect = 0
+1665756481.14: commanderrfile   = speccmds.err
+1665756481.14: commandexe       = milc_base.hfi_wasm2c_guardpages
+1665756481.14: commandfile      = speccmds.cmd
+1665756481.14: commandoutfile   = speccmds.out
+1665756481.14: commandstdoutfile = speccmds.stdout
+1665756481.14: compareerrfile   = compare.err
+1665756481.14: comparefile      = compare.cmd
+1665756481.14: compareoutfile   = compare.out
+1665756481.14: comparestdoutfile = compare.stdout
+1665756481.14: compile_error    = 0
+1665756481.14: compwhite        = 
+1665756481.14: configdir        = config
+1665756481.14: configpath       = /home/shr/Code/HardwareIsolation/hfi_spec/config/wasm_hfi_wasm2c_guardpages.cfg
+1665756481.14: copies           = 1
+1665756481.14: datadir          = data
+1665756481.14: delay            = 0
+1665756481.14: deletebinaries   = 0
+1665756481.14: deletework       = 0
+1665756481.14: difflines        = 10
+1665756481.14: dirprot          = 511
+1665756481.14: endian           = 12345678
+1665756481.14: env_vars         = 0
+1665756481.14: exitvals         = spec_exit
+1665756481.14: expand_notes     = 0
+1665756481.14: expid            = 
+1665756481.14: ext              = hfi_wasm2c_guardpages
+1665756481.14: fake             = 0
+1665756481.14: feedback         = 1
+1665756481.14: flag_url_base    = http://www.spec.org/auto/cpu2006/flags/
+1665756481.14: floatcompare     = 
+1665756481.14: help             = 0
+1665756481.14: http_proxy       = 
+1665756481.14: http_timeout     = 30
+1665756481.14: hw_avail         = Dec-9999
+1665756481.14: hw_cpu_char      = 
+1665756481.14: hw_cpu_mhz       = 3000
+1665756481.14: hw_cpu_name      = AMD Opteron 256
+1665756481.14: hw_disk          = SATA
+1665756481.14: hw_fpu           = Integrated
+1665756481.14: hw_memory        = 2 GB (2 x 1GB DDR333 CL2.5)
+1665756481.14: hw_model         = Tyan Thunder KKQS Pro (S4882)
+1665756481.14: hw_nchips        = 1
+1665756481.14: hw_ncores        = 1
+1665756481.14: hw_ncoresperchip = 1
+1665756481.14: hw_ncpuorder     = 1 chip
+1665756481.14: hw_nthreadspercore = 1
+1665756481.14: hw_ocache        = None
+1665756481.14: hw_pcache        = 64 KB I + 64 KB D on chip per chip
+1665756481.14: hw_scache        = 1 MB I+D on chip per chip
+1665756481.14: hw_tcache        = None
+1665756481.14: hw_vendor        = Tyan
+1665756481.14: ignore_errors    = yes
+1665756481.14: ignore_sigint    = 0
+1665756481.14: ignorecase       = 
+1665756481.14: info_wrap_columns = 50
+1665756481.14: inputdir         = input
+1665756481.14: iteration        = -1
+1665756481.14: iterations       = 1
+1665756481.14: keeptmp          = 0
+1665756481.14: license_num      = 0
+1665756481.14: line_width       = 0
+1665756481.14: locking          = 1
+1665756481.14: log              = CPU2006
+1665756481.14: log_line_width   = 0
+1665756481.14: log_timestamp    = 0
+1665756481.14: logname          = /home/shr/Code/HardwareIsolation/hfi_spec/result/CPU2006.091.log
+1665756481.14: lognum           = 091
+1665756481.14: mach             = default
+1665756481.14: mail_reports     = all
+1665756481.14: mailcompress     = 0
+1665756481.14: mailmethod       = smtp
+1665756481.14: mailport         = 25
+1665756481.14: mailserver       = 127.0.0.1
+1665756481.14: mailto           = 
+1665756481.14: make             = specmake
+1665756481.14: make_no_clobber  = 0
+1665756481.14: makeflags        = 
+1665756481.14: max_active_compares = 0
+1665756481.14: mean_anyway      = 0
+1665756481.14: min_report_runs  = 3
+1665756481.14: minimize_builddirs = 0
+1665756481.14: minimize_rundirs = 0
+1665756481.14: name             = milc
+1665756481.14: need_math        = yes
+1665756481.14: no_input_handler = close
+1665756481.14: no_monitor       = 
+1665756481.14: note_preenv      = 0
+1665756481.14: notes0100        =  C base flags: -O2
+1665756481.14: notes0110        =  C++ base flags: -O2
+1665756481.14: notes0120        =  Fortran base flags: -O2
+1665756481.14: notes25          =  PORTABILITY=-DSPEC_CPU_LP64 is applied to all benchmarks in base.
+1665756481.14: notes_wrap_columns = 0
+1665756481.14: notes_wrap_indent =   
+1665756481.14: num              = 433
+1665756481.14: obiwan           = 
+1665756481.14: os_exe_ext       = 
+1665756481.14: output           = asc
+1665756481.14: output_format    = asc
+1665756481.14: output_root      = 
+1665756481.14: outputdir        = output
+1665756481.14: parallel_setup   = 1
+1665756481.14: parallel_setup_prefork = 
+1665756481.14: parallel_setup_type = fork
+1665756481.14: parallel_test    = 0
+1665756481.14: parallel_test_submit = 0
+1665756481.14: path             = /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/433.milc
+1665756481.14: plain_train      = 1
+1665756481.14: preenv           = 1
+1665756481.14: prefix           = 
+1665756481.14: prepared_by      = 
+1665756481.14: ranks            = 1
+1665756481.14: rate             = 0
+1665756481.14: realuser         = your name here
+1665756481.14: rebuild          = 0
+1665756481.14: reftime          = reftime
+1665756481.14: reportable       = 0
+1665756481.14: resultdir        = result
+1665756481.14: review           = 0
+1665756481.14: run              = all
+1665756481.14: rundir           = run
+1665756481.14: runspec          = /home/shr/Code/HardwareIsolation/hfi_spec/bin/runspec --config=wasm_hfi_wasm2c_guardpages.cfg --action=build --define cores=1 --iterations=1 --noreportable --size=ref tmpwasmint
+1665756481.14: safe_eval        = 1
+1665756481.14: section_specifier_fatal = 1
+1665756481.14: sendmail         = /usr/sbin/sendmail
+1665756481.14: setpgrp_enabled  = 1
+1665756481.14: setprocgroup     = 1
+1665756481.14: shrate           = 0
+1665756481.14: sigint           = 2
+1665756481.14: size             = ref
+1665756481.14: size_class       = ref
+1665756481.14: skipabstol       = 
+1665756481.14: skipobiwan       = 
+1665756481.14: skipreltol       = 
+1665756481.14: skiptol          = 
+1665756481.14: smarttune        = base
+1665756481.14: specdiff         = specdiff
+1665756481.14: specmake         = Makefile.YYYtArGeTYYYspec
+1665756481.14: specrun          = specinvoke
+1665756481.14: speed            = 0
+1665756481.14: srcalt           = 
+1665756481.14: srcdir           = src
+1665756481.14: stagger          = 10
+1665756481.14: strict_rundir_verify = 1
+1665756481.14: sw_avail         = Dec-9999
+1665756481.14: sw_base_ptrsize  = 64-bit
+1665756481.14: sw_compiler      = clang , clang++ & gfortran 4.1.0 (for AMD64)
+1665756481.14: sw_file          = ext3
+1665756481.14: sw_os            = SUSE SLES9 (for AMD64)
+1665756481.14: sw_other         = None
+1665756481.14: sw_peak_ptrsize  = Not Applicable
+1665756481.14: sw_state         = runlevel 3
+1665756481.14: sysinfo_program  = 
+1665756481.14: table            = 1
+1665756481.14: teeout           = yes
+1665756481.14: teerunout        = yes
+1665756481.14: test_date        = Oct-2022
+1665756481.14: test_sponsor     = Turbo Computers
+1665756481.14: tester           = 
+1665756481.14: top              = /home/shr/Code/HardwareIsolation/hfi_spec
+1665756481.14: train_with       = train
+1665756481.14: tune             = base
+1665756481.14: uid              = 1000
+1665756481.14: unbuffer         = 1
+1665756481.14: update-flags     = 0
+1665756481.14: use_submit_for_speed = 0
+1665756481.14: username         = shr
+1665756481.14: vendor           = anon
+1665756481.14: vendor_makefiles = 0
+1665756481.14: verbose          = 5
+1665756481.14: version          = 0
+1665756481.14: version_url      = http://www.spec.org/auto/cpu2006/current_version
+1665756481.14: worklist         = list
+1665756481.14: OUTPUT_RMFILES   = su3imp.out
+1665756481.14:   Compile for '433.milc' started at: Fri Oct 14 10:08:01 2022 (1665756481)
+1665756481.14: Issuing make.clean command 'specmake clean'
+1665756481.14: specmake clean 2> make.clean.err | tee make.clean.out
+1665756481.14: Start make.clean command: Fri Oct 14 10:08:01 2022 (1665756481)
+1665756481.15: specmake[1]: Entering directory `/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/433.milc/build/build_base_hfi_wasm2c_guardpages.0000'
+1665756481.15: rm -rf milc
+1665756481.15: rm -rf milc.exe
+1665756481.15: rm -rf *.o  su3imp.out
+1665756481.15: find . \( -name \*.o -o -name '*.fppized.f*' \) -print | xargs rm -rf
+1665756481.15: rm -rf core
+1665756481.15: rm -rf 
+1665756481.15: specmake[1]: Leaving directory `/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/433.milc/build/build_base_hfi_wasm2c_guardpages.0000'
+1665756481.15: Tee child 1922241 exited with code 0 (exit code=0, signal=0)
+1665756481.15: Stop make.clean command: Fri Oct 14 10:08:01 2022 (1665756481)
+1665756481.15: Elapsed time for make.clean command: 00:00:00 (0)
+1665756481.15: Issuing make command 'specmake build'
+1665756481.15: specmake build 2> make.err | tee make.out
+1665756481.15: Start make command: Fri Oct 14 10:08:01 2022 (1665756481)
+1665756481.16: specmake[1]: Entering directory `/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/433.milc/build/build_base_hfi_wasm2c_guardpages.0000'
+1665756481.16: /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//bin/clang --sysroot /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//share/wasi-sysroot -Wl,--export-all -Wl,--global-base=100000 -Wl,-z,stack-size=1048576 -Wl,--growable-table -D_WASI_EMULATED_SIGNAL -lwasi-emulated-signal -lm -c -o control.o -DSPEC_CPU -DNDEBUG -I. -DFN -DFAST -DCONGRAD_TMP_VECTORS -DDSLASH_TMP_LINKS   -O2       -DSPEC_CPU_LP64         control.c
+1665756481.17: clang-13: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1665756481.17: clang-13: warning: -Wl,--global-base=100000: 'linker' input unused [-Wunused-command-line-argument]
+1665756481.17: clang-13: warning: -Wl,-z,stack-size=1048576: 'linker' input unused [-Wunused-command-line-argument]
+1665756481.17: clang-13: warning: -Wl,--growable-table: 'linker' input unused [-Wunused-command-line-argument]
+1665756481.17: clang-13: warning: -lwasi-emulated-signal: 'linker' input unused [-Wunused-command-line-argument]
+1665756481.17: clang-13: warning: -lm: 'linker' input unused [-Wunused-command-line-argument]
+1665756481.20: /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//bin/clang --sysroot /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//share/wasi-sysroot -Wl,--export-all -Wl,--global-base=100000 -Wl,-z,stack-size=1048576 -Wl,--growable-table -D_WASI_EMULATED_SIGNAL -lwasi-emulated-signal -lm -c -o f_meas.o -DSPEC_CPU -DNDEBUG -I. -DFN -DFAST -DCONGRAD_TMP_VECTORS -DDSLASH_TMP_LINKS   -O2       -DSPEC_CPU_LP64         f_meas.c
+1665756481.21: clang-13: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1665756481.21: clang-13: warning: -Wl,--global-base=100000: 'linker' input unused [-Wunused-command-line-argument]
+1665756481.21: clang-13: warning: -Wl,-z,stack-size=1048576: 'linker' input unused [-Wunused-command-line-argument]
+1665756481.21: clang-13: warning: -Wl,--growable-table: 'linker' input unused [-Wunused-command-line-argument]
+1665756481.21: clang-13: warning: -lwasi-emulated-signal: 'linker' input unused [-Wunused-command-line-argument]
+1665756481.21: clang-13: warning: -lm: 'linker' input unused [-Wunused-command-line-argument]
+1665756481.24: /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//bin/clang --sysroot /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//share/wasi-sysroot -Wl,--export-all -Wl,--global-base=100000 -Wl,-z,stack-size=1048576 -Wl,--growable-table -D_WASI_EMULATED_SIGNAL -lwasi-emulated-signal -lm -c -o gauge_info.o -DSPEC_CPU -DNDEBUG -I. -DFN -DFAST -DCONGRAD_TMP_VECTORS -DDSLASH_TMP_LINKS   -O2       -DSPEC_CPU_LP64         gauge_info.c
+1665756481.25: clang-13: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1665756481.25: clang-13: warning: -Wl,--global-base=100000: 'linker' input unused [-Wunused-command-line-argument]
+1665756481.25: clang-13: warning: -Wl,-z,stack-size=1048576: 'linker' input unused [-Wunused-command-line-argument]
+1665756481.25: clang-13: warning: -Wl,--growable-table: 'linker' input unused [-Wunused-command-line-argument]
+1665756481.25: clang-13: warning: -lwasi-emulated-signal: 'linker' input unused [-Wunused-command-line-argument]
+1665756481.25: clang-13: warning: -lm: 'linker' input unused [-Wunused-command-line-argument]
+1665756481.27: /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//bin/clang --sysroot /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//share/wasi-sysroot -Wl,--export-all -Wl,--global-base=100000 -Wl,-z,stack-size=1048576 -Wl,--growable-table -D_WASI_EMULATED_SIGNAL -lwasi-emulated-signal -lm -c -o setup.o -DSPEC_CPU -DNDEBUG -I. -DFN -DFAST -DCONGRAD_TMP_VECTORS -DDSLASH_TMP_LINKS   -O2       -DSPEC_CPU_LP64         setup.c
+1665756481.28: clang-13: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1665756481.28: clang-13: warning: -Wl,--global-base=100000: 'linker' input unused [-Wunused-command-line-argument]
+1665756481.28: clang-13: warning: -Wl,-z,stack-size=1048576: 'linker' input unused [-Wunused-command-line-argument]
+1665756481.28: clang-13: warning: -Wl,--growable-table: 'linker' input unused [-Wunused-command-line-argument]
+1665756481.28: clang-13: warning: -lwasi-emulated-signal: 'linker' input unused [-Wunused-command-line-argument]
+1665756481.28: clang-13: warning: -lm: 'linker' input unused [-Wunused-command-line-argument]
+1665756481.34: /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//bin/clang --sysroot /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//share/wasi-sysroot -Wl,--export-all -Wl,--global-base=100000 -Wl,-z,stack-size=1048576 -Wl,--growable-table -D_WASI_EMULATED_SIGNAL -lwasi-emulated-signal -lm -c -o update.o -DSPEC_CPU -DNDEBUG -I. -DFN -DFAST -DCONGRAD_TMP_VECTORS -DDSLASH_TMP_LINKS   -O2       -DSPEC_CPU_LP64         update.c
+1665756481.34: clang-13: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1665756481.34: clang-13: warning: -Wl,--global-base=100000: 'linker' input unused [-Wunused-command-line-argument]
+1665756481.34: clang-13: warning: -Wl,-z,stack-size=1048576: 'linker' input unused [-Wunused-command-line-argument]
+1665756481.34: clang-13: warning: -Wl,--growable-table: 'linker' input unused [-Wunused-command-line-argument]
+1665756481.34: clang-13: warning: -lwasi-emulated-signal: 'linker' input unused [-Wunused-command-line-argument]
+1665756481.34: clang-13: warning: -lm: 'linker' input unused [-Wunused-command-line-argument]
+1665756481.38: /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//bin/clang --sysroot /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//share/wasi-sysroot -Wl,--export-all -Wl,--global-base=100000 -Wl,-z,stack-size=1048576 -Wl,--growable-table -D_WASI_EMULATED_SIGNAL -lwasi-emulated-signal -lm -c -o update_h.o -DSPEC_CPU -DNDEBUG -I. -DFN -DFAST -DCONGRAD_TMP_VECTORS -DDSLASH_TMP_LINKS   -O2       -DSPEC_CPU_LP64         update_h.c
+1665756481.38: clang-13: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1665756481.38: clang-13: warning: -Wl,--global-base=100000: 'linker' input unused [-Wunused-command-line-argument]
+1665756481.38: clang-13: warning: -Wl,-z,stack-size=1048576: 'linker' input unused [-Wunused-command-line-argument]
+1665756481.38: clang-13: warning: -Wl,--growable-table: 'linker' input unused [-Wunused-command-line-argument]
+1665756481.38: clang-13: warning: -lwasi-emulated-signal: 'linker' input unused [-Wunused-command-line-argument]
+1665756481.38: clang-13: warning: -lm: 'linker' input unused [-Wunused-command-line-argument]
+1665756481.41: /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//bin/clang --sysroot /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//share/wasi-sysroot -Wl,--export-all -Wl,--global-base=100000 -Wl,-z,stack-size=1048576 -Wl,--growable-table -D_WASI_EMULATED_SIGNAL -lwasi-emulated-signal -lm -c -o update_u.o -DSPEC_CPU -DNDEBUG -I. -DFN -DFAST -DCONGRAD_TMP_VECTORS -DDSLASH_TMP_LINKS   -O2       -DSPEC_CPU_LP64         update_u.c
+1665756481.41: clang-13: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1665756481.41: clang-13: warning: -Wl,--global-base=100000: 'linker' input unused [-Wunused-command-line-argument]
+1665756481.41: clang-13: warning: -Wl,-z,stack-size=1048576: 'linker' input unused [-Wunused-command-line-argument]
+1665756481.41: clang-13: warning: -Wl,--growable-table: 'linker' input unused [-Wunused-command-line-argument]
+1665756481.41: clang-13: warning: -lwasi-emulated-signal: 'linker' input unused [-Wunused-command-line-argument]
+1665756481.41: clang-13: warning: -lm: 'linker' input unused [-Wunused-command-line-argument]
+1665756481.44: /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//bin/clang --sysroot /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//share/wasi-sysroot -Wl,--export-all -Wl,--global-base=100000 -Wl,-z,stack-size=1048576 -Wl,--growable-table -D_WASI_EMULATED_SIGNAL -lwasi-emulated-signal -lm -c -o layout_hyper.o -DSPEC_CPU -DNDEBUG -I. -DFN -DFAST -DCONGRAD_TMP_VECTORS -DDSLASH_TMP_LINKS   -O2       -DSPEC_CPU_LP64         layout_hyper.c
+1665756481.45: clang-13: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1665756481.45: clang-13: warning: -Wl,--global-base=100000: 'linker' input unused [-Wunused-command-line-argument]
+1665756481.45: clang-13: warning: -Wl,-z,stack-size=1048576: 'linker' input unused [-Wunused-command-line-argument]
+1665756481.45: clang-13: warning: -Wl,--growable-table: 'linker' input unused [-Wunused-command-line-argument]
+1665756481.45: clang-13: warning: -lwasi-emulated-signal: 'linker' input unused [-Wunused-command-line-argument]
+1665756481.45: clang-13: warning: -lm: 'linker' input unused [-Wunused-command-line-argument]
+1665756481.49: /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//bin/clang --sysroot /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//share/wasi-sysroot -Wl,--export-all -Wl,--global-base=100000 -Wl,-z,stack-size=1048576 -Wl,--growable-table -D_WASI_EMULATED_SIGNAL -lwasi-emulated-signal -lm -c -o check_unitarity.o -DSPEC_CPU -DNDEBUG -I. -DFN -DFAST -DCONGRAD_TMP_VECTORS -DDSLASH_TMP_LINKS   -O2       -DSPEC_CPU_LP64         check_unitarity.c
+1665756481.50: clang-13: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1665756481.50: clang-13: warning: -Wl,--global-base=100000: 'linker' input unused [-Wunused-command-line-argument]
+1665756481.50: clang-13: warning: -Wl,-z,stack-size=1048576: 'linker' input unused [-Wunused-command-line-argument]
+1665756481.50: clang-13: warning: -Wl,--growable-table: 'linker' input unused [-Wunused-command-line-argument]
+1665756481.50: clang-13: warning: -lwasi-emulated-signal: 'linker' input unused [-Wunused-command-line-argument]
+1665756481.50: clang-13: warning: -lm: 'linker' input unused [-Wunused-command-line-argument]
+1665756481.55: /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//bin/clang --sysroot /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//share/wasi-sysroot -Wl,--export-all -Wl,--global-base=100000 -Wl,-z,stack-size=1048576 -Wl,--growable-table -D_WASI_EMULATED_SIGNAL -lwasi-emulated-signal -lm -c -o d_plaq4.o -DSPEC_CPU -DNDEBUG -I. -DFN -DFAST -DCONGRAD_TMP_VECTORS -DDSLASH_TMP_LINKS   -O2       -DSPEC_CPU_LP64         d_plaq4.c
+1665756481.56: clang-13: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1665756481.56: clang-13: warning: -Wl,--global-base=100000: 'linker' input unused [-Wunused-command-line-argument]
+1665756481.56: clang-13: warning: -Wl,-z,stack-size=1048576: 'linker' input unused [-Wunused-command-line-argument]
+1665756481.56: clang-13: warning: -Wl,--growable-table: 'linker' input unused [-Wunused-command-line-argument]
+1665756481.56: clang-13: warning: -lwasi-emulated-signal: 'linker' input unused [-Wunused-command-line-argument]
+1665756481.56: clang-13: warning: -lm: 'linker' input unused [-Wunused-command-line-argument]
+1665756481.60: /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//bin/clang --sysroot /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//share/wasi-sysroot -Wl,--export-all -Wl,--global-base=100000 -Wl,-z,stack-size=1048576 -Wl,--growable-table -D_WASI_EMULATED_SIGNAL -lwasi-emulated-signal -lm -c -o gaugefix2.o -DSPEC_CPU -DNDEBUG -I. -DFN -DFAST -DCONGRAD_TMP_VECTORS -DDSLASH_TMP_LINKS   -O2       -DSPEC_CPU_LP64         gaugefix2.c
+1665756481.61: clang-13: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1665756481.61: clang-13: warning: -Wl,--global-base=100000: 'linker' input unused [-Wunused-command-line-argument]
+1665756481.61: clang-13: warning: -Wl,-z,stack-size=1048576: 'linker' input unused [-Wunused-command-line-argument]
+1665756481.61: clang-13: warning: -Wl,--growable-table: 'linker' input unused [-Wunused-command-line-argument]
+1665756481.61: clang-13: warning: -lwasi-emulated-signal: 'linker' input unused [-Wunused-command-line-argument]
+1665756481.61: clang-13: warning: -lm: 'linker' input unused [-Wunused-command-line-argument]
+1665756481.72: /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//bin/clang --sysroot /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//share/wasi-sysroot -Wl,--export-all -Wl,--global-base=100000 -Wl,-z,stack-size=1048576 -Wl,--growable-table -D_WASI_EMULATED_SIGNAL -lwasi-emulated-signal -lm -c -o io_helpers.o -DSPEC_CPU -DNDEBUG -I. -DFN -DFAST -DCONGRAD_TMP_VECTORS -DDSLASH_TMP_LINKS   -O2       -DSPEC_CPU_LP64         io_helpers.c
+1665756481.73: clang-13: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1665756481.73: clang-13: warning: -Wl,--global-base=100000: 'linker' input unused [-Wunused-command-line-argument]
+1665756481.73: clang-13: warning: -Wl,-z,stack-size=1048576: 'linker' input unused [-Wunused-command-line-argument]
+1665756481.73: clang-13: warning: -Wl,--growable-table: 'linker' input unused [-Wunused-command-line-argument]
+1665756481.73: clang-13: warning: -lwasi-emulated-signal: 'linker' input unused [-Wunused-command-line-argument]
+1665756481.73: clang-13: warning: -lm: 'linker' input unused [-Wunused-command-line-argument]
+1665756481.81: /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//bin/clang --sysroot /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//share/wasi-sysroot -Wl,--export-all -Wl,--global-base=100000 -Wl,-z,stack-size=1048576 -Wl,--growable-table -D_WASI_EMULATED_SIGNAL -lwasi-emulated-signal -lm -c -o io_lat4.o -DSPEC_CPU -DNDEBUG -I. -DFN -DFAST -DCONGRAD_TMP_VECTORS -DDSLASH_TMP_LINKS   -O2       -DSPEC_CPU_LP64         io_lat4.c
+1665756481.82: clang-13: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1665756481.82: clang-13: warning: -Wl,--global-base=100000: 'linker' input unused [-Wunused-command-line-argument]
+1665756481.82: clang-13: warning: -Wl,-z,stack-size=1048576: 'linker' input unused [-Wunused-command-line-argument]
+1665756481.82: clang-13: warning: -Wl,--growable-table: 'linker' input unused [-Wunused-command-line-argument]
+1665756481.82: clang-13: warning: -lwasi-emulated-signal: 'linker' input unused [-Wunused-command-line-argument]
+1665756481.82: clang-13: warning: -lm: 'linker' input unused [-Wunused-command-line-argument]
+1665756482.36: /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//bin/clang --sysroot /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//share/wasi-sysroot -Wl,--export-all -Wl,--global-base=100000 -Wl,-z,stack-size=1048576 -Wl,--growable-table -D_WASI_EMULATED_SIGNAL -lwasi-emulated-signal -lm -c -o make_lattice.o -DSPEC_CPU -DNDEBUG -I. -DFN -DFAST -DCONGRAD_TMP_VECTORS -DDSLASH_TMP_LINKS   -O2       -DSPEC_CPU_LP64         make_lattice.c
+1665756482.37: clang-13: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1665756482.37: clang-13: warning: -Wl,--global-base=100000: 'linker' input unused [-Wunused-command-line-argument]
+1665756482.37: clang-13: warning: -Wl,-z,stack-size=1048576: 'linker' input unused [-Wunused-command-line-argument]
+1665756482.37: clang-13: warning: -Wl,--growable-table: 'linker' input unused [-Wunused-command-line-argument]
+1665756482.37: clang-13: warning: -lwasi-emulated-signal: 'linker' input unused [-Wunused-command-line-argument]
+1665756482.37: clang-13: warning: -lm: 'linker' input unused [-Wunused-command-line-argument]
+1665756482.41: /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//bin/clang --sysroot /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//share/wasi-sysroot -Wl,--export-all -Wl,--global-base=100000 -Wl,-z,stack-size=1048576 -Wl,--growable-table -D_WASI_EMULATED_SIGNAL -lwasi-emulated-signal -lm -c -o path_product.o -DSPEC_CPU -DNDEBUG -I. -DFN -DFAST -DCONGRAD_TMP_VECTORS -DDSLASH_TMP_LINKS   -O2       -DSPEC_CPU_LP64         path_product.c
+1665756482.42: clang-13: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1665756482.42: clang-13: warning: -Wl,--global-base=100000: 'linker' input unused [-Wunused-command-line-argument]
+1665756482.42: clang-13: warning: -Wl,-z,stack-size=1048576: 'linker' input unused [-Wunused-command-line-argument]
+1665756482.42: clang-13: warning: -Wl,--growable-table: 'linker' input unused [-Wunused-command-line-argument]
+1665756482.42: clang-13: warning: -lwasi-emulated-signal: 'linker' input unused [-Wunused-command-line-argument]
+1665756482.42: clang-13: warning: -lm: 'linker' input unused [-Wunused-command-line-argument]
+1665756482.49: /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//bin/clang --sysroot /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//share/wasi-sysroot -Wl,--export-all -Wl,--global-base=100000 -Wl,-z,stack-size=1048576 -Wl,--growable-table -D_WASI_EMULATED_SIGNAL -lwasi-emulated-signal -lm -c -o ploop3.o -DSPEC_CPU -DNDEBUG -I. -DFN -DFAST -DCONGRAD_TMP_VECTORS -DDSLASH_TMP_LINKS   -O2       -DSPEC_CPU_LP64         ploop3.c
+1665756482.50: clang-13: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1665756482.50: clang-13: warning: -Wl,--global-base=100000: 'linker' input unused [-Wunused-command-line-argument]
+1665756482.50: clang-13: warning: -Wl,-z,stack-size=1048576: 'linker' input unused [-Wunused-command-line-argument]
+1665756482.50: clang-13: warning: -Wl,--growable-table: 'linker' input unused [-Wunused-command-line-argument]
+1665756482.50: clang-13: warning: -lwasi-emulated-signal: 'linker' input unused [-Wunused-command-line-argument]
+1665756482.50: clang-13: warning: -lm: 'linker' input unused [-Wunused-command-line-argument]
+1665756482.54: /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//bin/clang --sysroot /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//share/wasi-sysroot -Wl,--export-all -Wl,--global-base=100000 -Wl,-z,stack-size=1048576 -Wl,--growable-table -D_WASI_EMULATED_SIGNAL -lwasi-emulated-signal -lm -c -o ranmom.o -DSPEC_CPU -DNDEBUG -I. -DFN -DFAST -DCONGRAD_TMP_VECTORS -DDSLASH_TMP_LINKS   -O2       -DSPEC_CPU_LP64         ranmom.c
+1665756482.54: clang-13: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1665756482.54: clang-13: warning: -Wl,--global-base=100000: 'linker' input unused [-Wunused-command-line-argument]
+1665756482.54: clang-13: warning: -Wl,-z,stack-size=1048576: 'linker' input unused [-Wunused-command-line-argument]
+1665756482.54: clang-13: warning: -Wl,--growable-table: 'linker' input unused [-Wunused-command-line-argument]
+1665756482.54: clang-13: warning: -lwasi-emulated-signal: 'linker' input unused [-Wunused-command-line-argument]
+1665756482.54: clang-13: warning: -lm: 'linker' input unused [-Wunused-command-line-argument]
+1665756482.57: /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//bin/clang --sysroot /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//share/wasi-sysroot -Wl,--export-all -Wl,--global-base=100000 -Wl,-z,stack-size=1048576 -Wl,--growable-table -D_WASI_EMULATED_SIGNAL -lwasi-emulated-signal -lm -c -o ranstuff.o -DSPEC_CPU -DNDEBUG -I. -DFN -DFAST -DCONGRAD_TMP_VECTORS -DDSLASH_TMP_LINKS   -O2       -DSPEC_CPU_LP64         ranstuff.c
+1665756482.58: clang-13: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1665756482.58: clang-13: warning: -Wl,--global-base=100000: 'linker' input unused [-Wunused-command-line-argument]
+1665756482.58: clang-13: warning: -Wl,-z,stack-size=1048576: 'linker' input unused [-Wunused-command-line-argument]
+1665756482.58: clang-13: warning: -Wl,--growable-table: 'linker' input unused [-Wunused-command-line-argument]
+1665756482.58: clang-13: warning: -lwasi-emulated-signal: 'linker' input unused [-Wunused-command-line-argument]
+1665756482.58: clang-13: warning: -lm: 'linker' input unused [-Wunused-command-line-argument]
+1665756482.61: /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//bin/clang --sysroot /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//share/wasi-sysroot -Wl,--export-all -Wl,--global-base=100000 -Wl,-z,stack-size=1048576 -Wl,--growable-table -D_WASI_EMULATED_SIGNAL -lwasi-emulated-signal -lm -c -o reunitarize2.o -DSPEC_CPU -DNDEBUG -I. -DFN -DFAST -DCONGRAD_TMP_VECTORS -DDSLASH_TMP_LINKS   -O2       -DSPEC_CPU_LP64         reunitarize2.c
+1665756482.62: clang-13: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1665756482.62: clang-13: warning: -Wl,--global-base=100000: 'linker' input unused [-Wunused-command-line-argument]
+1665756482.62: clang-13: warning: -Wl,-z,stack-size=1048576: 'linker' input unused [-Wunused-command-line-argument]
+1665756482.62: clang-13: warning: -Wl,--growable-table: 'linker' input unused [-Wunused-command-line-argument]
+1665756482.62: clang-13: warning: -lwasi-emulated-signal: 'linker' input unused [-Wunused-command-line-argument]
+1665756482.62: clang-13: warning: -lm: 'linker' input unused [-Wunused-command-line-argument]
+1665756482.68: /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//bin/clang --sysroot /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//share/wasi-sysroot -Wl,--export-all -Wl,--global-base=100000 -Wl,-z,stack-size=1048576 -Wl,--growable-table -D_WASI_EMULATED_SIGNAL -lwasi-emulated-signal -lm -c -o gauge_stuff.o -DSPEC_CPU -DNDEBUG -I. -DFN -DFAST -DCONGRAD_TMP_VECTORS -DDSLASH_TMP_LINKS   -O2       -DSPEC_CPU_LP64         gauge_stuff.c
+1665756482.68: clang-13: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1665756482.68: clang-13: warning: -Wl,--global-base=100000: 'linker' input unused [-Wunused-command-line-argument]
+1665756482.68: clang-13: warning: -Wl,-z,stack-size=1048576: 'linker' input unused [-Wunused-command-line-argument]
+1665756482.68: clang-13: warning: -Wl,--growable-table: 'linker' input unused [-Wunused-command-line-argument]
+1665756482.68: clang-13: warning: -lwasi-emulated-signal: 'linker' input unused [-Wunused-command-line-argument]
+1665756482.68: clang-13: warning: -lm: 'linker' input unused [-Wunused-command-line-argument]
+1665756482.84: /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//bin/clang --sysroot /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//share/wasi-sysroot -Wl,--export-all -Wl,--global-base=100000 -Wl,-z,stack-size=1048576 -Wl,--growable-table -D_WASI_EMULATED_SIGNAL -lwasi-emulated-signal -lm -c -o grsource_imp.o -DSPEC_CPU -DNDEBUG -I. -DFN -DFAST -DCONGRAD_TMP_VECTORS -DDSLASH_TMP_LINKS   -O2       -DSPEC_CPU_LP64         grsource_imp.c
+1665756482.85: clang-13: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1665756482.85: clang-13: warning: -Wl,--global-base=100000: 'linker' input unused [-Wunused-command-line-argument]
+1665756482.85: clang-13: warning: -Wl,-z,stack-size=1048576: 'linker' input unused [-Wunused-command-line-argument]
+1665756482.85: clang-13: warning: -Wl,--growable-table: 'linker' input unused [-Wunused-command-line-argument]
+1665756482.85: clang-13: warning: -lwasi-emulated-signal: 'linker' input unused [-Wunused-command-line-argument]
+1665756482.85: clang-13: warning: -lm: 'linker' input unused [-Wunused-command-line-argument]
+1665756482.88: /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//bin/clang --sysroot /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//share/wasi-sysroot -Wl,--export-all -Wl,--global-base=100000 -Wl,-z,stack-size=1048576 -Wl,--growable-table -D_WASI_EMULATED_SIGNAL -lwasi-emulated-signal -lm -c -o mat_invert.o -DSPEC_CPU -DNDEBUG -I. -DFN -DFAST -DCONGRAD_TMP_VECTORS -DDSLASH_TMP_LINKS   -O2       -DSPEC_CPU_LP64         mat_invert.c
+1665756482.89: clang-13: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1665756482.89: clang-13: warning: -Wl,--global-base=100000: 'linker' input unused [-Wunused-command-line-argument]
+1665756482.89: clang-13: warning: -Wl,-z,stack-size=1048576: 'linker' input unused [-Wunused-command-line-argument]
+1665756482.89: clang-13: warning: -Wl,--growable-table: 'linker' input unused [-Wunused-command-line-argument]
+1665756482.89: clang-13: warning: -lwasi-emulated-signal: 'linker' input unused [-Wunused-command-line-argument]
+1665756482.89: clang-13: warning: -lm: 'linker' input unused [-Wunused-command-line-argument]
+1665756482.94: /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//bin/clang --sysroot /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//share/wasi-sysroot -Wl,--export-all -Wl,--global-base=100000 -Wl,-z,stack-size=1048576 -Wl,--growable-table -D_WASI_EMULATED_SIGNAL -lwasi-emulated-signal -lm -c -o quark_stuff.o -DSPEC_CPU -DNDEBUG -I. -DFN -DFAST -DCONGRAD_TMP_VECTORS -DDSLASH_TMP_LINKS   -O2       -DSPEC_CPU_LP64         quark_stuff.c
+1665756482.94: clang-13: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1665756482.94: clang-13: warning: -Wl,--global-base=100000: 'linker' input unused [-Wunused-command-line-argument]
+1665756482.94: clang-13: warning: -Wl,-z,stack-size=1048576: 'linker' input unused [-Wunused-command-line-argument]
+1665756482.94: clang-13: warning: -Wl,--growable-table: 'linker' input unused [-Wunused-command-line-argument]
+1665756482.94: clang-13: warning: -lwasi-emulated-signal: 'linker' input unused [-Wunused-command-line-argument]
+1665756482.94: clang-13: warning: -lm: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.29: /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//bin/clang --sysroot /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//share/wasi-sysroot -Wl,--export-all -Wl,--global-base=100000 -Wl,-z,stack-size=1048576 -Wl,--growable-table -D_WASI_EMULATED_SIGNAL -lwasi-emulated-signal -lm -c -o rephase.o -DSPEC_CPU -DNDEBUG -I. -DFN -DFAST -DCONGRAD_TMP_VECTORS -DDSLASH_TMP_LINKS   -O2       -DSPEC_CPU_LP64         rephase.c
+1665756483.29: clang-13: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.29: clang-13: warning: -Wl,--global-base=100000: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.29: clang-13: warning: -Wl,-z,stack-size=1048576: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.29: clang-13: warning: -Wl,--growable-table: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.29: clang-13: warning: -lwasi-emulated-signal: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.29: clang-13: warning: -lm: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.35: /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//bin/clang --sysroot /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//share/wasi-sysroot -Wl,--export-all -Wl,--global-base=100000 -Wl,-z,stack-size=1048576 -Wl,--growable-table -D_WASI_EMULATED_SIGNAL -lwasi-emulated-signal -lm -c -o cmplx.o -DSPEC_CPU -DNDEBUG -I. -DFN -DFAST -DCONGRAD_TMP_VECTORS -DDSLASH_TMP_LINKS   -O2       -DSPEC_CPU_LP64         cmplx.c
+1665756483.36: clang-13: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.36: clang-13: warning: -Wl,--global-base=100000: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.36: clang-13: warning: -Wl,-z,stack-size=1048576: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.36: clang-13: warning: -Wl,--growable-table: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.36: clang-13: warning: -lwasi-emulated-signal: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.36: clang-13: warning: -lm: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.37: /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//bin/clang --sysroot /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//share/wasi-sysroot -Wl,--export-all -Wl,--global-base=100000 -Wl,-z,stack-size=1048576 -Wl,--growable-table -D_WASI_EMULATED_SIGNAL -lwasi-emulated-signal -lm -c -o addmat.o -DSPEC_CPU -DNDEBUG -I. -DFN -DFAST -DCONGRAD_TMP_VECTORS -DDSLASH_TMP_LINKS   -O2       -DSPEC_CPU_LP64         addmat.c
+1665756483.37: clang-13: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.37: clang-13: warning: -Wl,--global-base=100000: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.37: clang-13: warning: -Wl,-z,stack-size=1048576: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.37: clang-13: warning: -Wl,--growable-table: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.37: clang-13: warning: -lwasi-emulated-signal: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.37: clang-13: warning: -lm: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.40: /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//bin/clang --sysroot /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//share/wasi-sysroot -Wl,--export-all -Wl,--global-base=100000 -Wl,-z,stack-size=1048576 -Wl,--growable-table -D_WASI_EMULATED_SIGNAL -lwasi-emulated-signal -lm -c -o addvec.o -DSPEC_CPU -DNDEBUG -I. -DFN -DFAST -DCONGRAD_TMP_VECTORS -DDSLASH_TMP_LINKS   -O2       -DSPEC_CPU_LP64         addvec.c
+1665756483.40: clang-13: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.40: clang-13: warning: -Wl,--global-base=100000: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.40: clang-13: warning: -Wl,-z,stack-size=1048576: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.40: clang-13: warning: -Wl,--growable-table: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.40: clang-13: warning: -lwasi-emulated-signal: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.40: clang-13: warning: -lm: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.42: /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//bin/clang --sysroot /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//share/wasi-sysroot -Wl,--export-all -Wl,--global-base=100000 -Wl,-z,stack-size=1048576 -Wl,--growable-table -D_WASI_EMULATED_SIGNAL -lwasi-emulated-signal -lm -c -o clear_mat.o -DSPEC_CPU -DNDEBUG -I. -DFN -DFAST -DCONGRAD_TMP_VECTORS -DDSLASH_TMP_LINKS   -O2       -DSPEC_CPU_LP64         clear_mat.c
+1665756483.42: clang-13: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.42: clang-13: warning: -Wl,--global-base=100000: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.42: clang-13: warning: -Wl,-z,stack-size=1048576: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.42: clang-13: warning: -Wl,--growable-table: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.42: clang-13: warning: -lwasi-emulated-signal: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.42: clang-13: warning: -lm: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.43: /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//bin/clang --sysroot /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//share/wasi-sysroot -Wl,--export-all -Wl,--global-base=100000 -Wl,-z,stack-size=1048576 -Wl,--growable-table -D_WASI_EMULATED_SIGNAL -lwasi-emulated-signal -lm -c -o clearvec.o -DSPEC_CPU -DNDEBUG -I. -DFN -DFAST -DCONGRAD_TMP_VECTORS -DDSLASH_TMP_LINKS   -O2       -DSPEC_CPU_LP64         clearvec.c
+1665756483.44: clang-13: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.44: clang-13: warning: -Wl,--global-base=100000: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.44: clang-13: warning: -Wl,-z,stack-size=1048576: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.44: clang-13: warning: -Wl,--growable-table: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.44: clang-13: warning: -lwasi-emulated-signal: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.44: clang-13: warning: -lm: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.45: /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//bin/clang --sysroot /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//share/wasi-sysroot -Wl,--export-all -Wl,--global-base=100000 -Wl,-z,stack-size=1048576 -Wl,--growable-table -D_WASI_EMULATED_SIGNAL -lwasi-emulated-signal -lm -c -o m_amatvec.o -DSPEC_CPU -DNDEBUG -I. -DFN -DFAST -DCONGRAD_TMP_VECTORS -DDSLASH_TMP_LINKS   -O2       -DSPEC_CPU_LP64         m_amatvec.c
+1665756483.46: clang-13: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.46: clang-13: warning: -Wl,--global-base=100000: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.46: clang-13: warning: -Wl,-z,stack-size=1048576: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.46: clang-13: warning: -Wl,--growable-table: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.46: clang-13: warning: -lwasi-emulated-signal: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.46: clang-13: warning: -lm: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.48: /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//bin/clang --sysroot /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//share/wasi-sysroot -Wl,--export-all -Wl,--global-base=100000 -Wl,-z,stack-size=1048576 -Wl,--growable-table -D_WASI_EMULATED_SIGNAL -lwasi-emulated-signal -lm -c -o m_mat_an.o -DSPEC_CPU -DNDEBUG -I. -DFN -DFAST -DCONGRAD_TMP_VECTORS -DDSLASH_TMP_LINKS   -O2       -DSPEC_CPU_LP64         m_mat_an.c
+1665756483.48: clang-13: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.48: clang-13: warning: -Wl,--global-base=100000: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.48: clang-13: warning: -Wl,-z,stack-size=1048576: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.48: clang-13: warning: -Wl,--growable-table: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.48: clang-13: warning: -lwasi-emulated-signal: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.48: clang-13: warning: -lm: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.51: /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//bin/clang --sysroot /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//share/wasi-sysroot -Wl,--export-all -Wl,--global-base=100000 -Wl,-z,stack-size=1048576 -Wl,--growable-table -D_WASI_EMULATED_SIGNAL -lwasi-emulated-signal -lm -c -o m_mat_na.o -DSPEC_CPU -DNDEBUG -I. -DFN -DFAST -DCONGRAD_TMP_VECTORS -DDSLASH_TMP_LINKS   -O2       -DSPEC_CPU_LP64         m_mat_na.c
+1665756483.52: clang-13: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.52: clang-13: warning: -Wl,--global-base=100000: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.52: clang-13: warning: -Wl,-z,stack-size=1048576: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.52: clang-13: warning: -Wl,--growable-table: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.52: clang-13: warning: -lwasi-emulated-signal: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.52: clang-13: warning: -lm: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.54: /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//bin/clang --sysroot /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//share/wasi-sysroot -Wl,--export-all -Wl,--global-base=100000 -Wl,-z,stack-size=1048576 -Wl,--growable-table -D_WASI_EMULATED_SIGNAL -lwasi-emulated-signal -lm -c -o m_mat_nn.o -DSPEC_CPU -DNDEBUG -I. -DFN -DFAST -DCONGRAD_TMP_VECTORS -DDSLASH_TMP_LINKS   -O2       -DSPEC_CPU_LP64         m_mat_nn.c
+1665756483.55: clang-13: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.55: clang-13: warning: -Wl,--global-base=100000: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.55: clang-13: warning: -Wl,-z,stack-size=1048576: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.55: clang-13: warning: -Wl,--growable-table: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.55: clang-13: warning: -lwasi-emulated-signal: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.55: clang-13: warning: -lm: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.57: /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//bin/clang --sysroot /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//share/wasi-sysroot -Wl,--export-all -Wl,--global-base=100000 -Wl,-z,stack-size=1048576 -Wl,--growable-table -D_WASI_EMULATED_SIGNAL -lwasi-emulated-signal -lm -c -o m_matvec.o -DSPEC_CPU -DNDEBUG -I. -DFN -DFAST -DCONGRAD_TMP_VECTORS -DDSLASH_TMP_LINKS   -O2       -DSPEC_CPU_LP64         m_matvec.c
+1665756483.58: clang-13: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.58: clang-13: warning: -Wl,--global-base=100000: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.58: clang-13: warning: -Wl,-z,stack-size=1048576: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.58: clang-13: warning: -Wl,--growable-table: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.58: clang-13: warning: -lwasi-emulated-signal: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.58: clang-13: warning: -lm: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.60: /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//bin/clang --sysroot /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//share/wasi-sysroot -Wl,--export-all -Wl,--global-base=100000 -Wl,-z,stack-size=1048576 -Wl,--growable-table -D_WASI_EMULATED_SIGNAL -lwasi-emulated-signal -lm -c -o make_ahmat.o -DSPEC_CPU -DNDEBUG -I. -DFN -DFAST -DCONGRAD_TMP_VECTORS -DDSLASH_TMP_LINKS   -O2       -DSPEC_CPU_LP64         make_ahmat.c
+1665756483.60: clang-13: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.60: clang-13: warning: -Wl,--global-base=100000: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.60: clang-13: warning: -Wl,-z,stack-size=1048576: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.60: clang-13: warning: -Wl,--growable-table: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.60: clang-13: warning: -lwasi-emulated-signal: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.60: clang-13: warning: -lm: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.62: /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//bin/clang --sysroot /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//share/wasi-sysroot -Wl,--export-all -Wl,--global-base=100000 -Wl,-z,stack-size=1048576 -Wl,--growable-table -D_WASI_EMULATED_SIGNAL -lwasi-emulated-signal -lm -c -o rand_ahmat.o -DSPEC_CPU -DNDEBUG -I. -DFN -DFAST -DCONGRAD_TMP_VECTORS -DDSLASH_TMP_LINKS   -O2       -DSPEC_CPU_LP64         rand_ahmat.c
+1665756483.62: clang-13: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.62: clang-13: warning: -Wl,--global-base=100000: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.62: clang-13: warning: -Wl,-z,stack-size=1048576: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.62: clang-13: warning: -Wl,--growable-table: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.62: clang-13: warning: -lwasi-emulated-signal: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.62: clang-13: warning: -lm: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.64: /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//bin/clang --sysroot /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//share/wasi-sysroot -Wl,--export-all -Wl,--global-base=100000 -Wl,-z,stack-size=1048576 -Wl,--growable-table -D_WASI_EMULATED_SIGNAL -lwasi-emulated-signal -lm -c -o realtr.o -DSPEC_CPU -DNDEBUG -I. -DFN -DFAST -DCONGRAD_TMP_VECTORS -DDSLASH_TMP_LINKS   -O2       -DSPEC_CPU_LP64         realtr.c
+1665756483.64: clang-13: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.64: clang-13: warning: -Wl,--global-base=100000: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.64: clang-13: warning: -Wl,-z,stack-size=1048576: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.64: clang-13: warning: -Wl,--growable-table: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.64: clang-13: warning: -lwasi-emulated-signal: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.64: clang-13: warning: -lm: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.66: /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//bin/clang --sysroot /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//share/wasi-sysroot -Wl,--export-all -Wl,--global-base=100000 -Wl,-z,stack-size=1048576 -Wl,--growable-table -D_WASI_EMULATED_SIGNAL -lwasi-emulated-signal -lm -c -o s_m_a_mat.o -DSPEC_CPU -DNDEBUG -I. -DFN -DFAST -DCONGRAD_TMP_VECTORS -DDSLASH_TMP_LINKS   -O2       -DSPEC_CPU_LP64         s_m_a_mat.c
+1665756483.66: clang-13: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.66: clang-13: warning: -Wl,--global-base=100000: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.66: clang-13: warning: -Wl,-z,stack-size=1048576: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.66: clang-13: warning: -Wl,--growable-table: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.66: clang-13: warning: -lwasi-emulated-signal: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.66: clang-13: warning: -lm: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.69: /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//bin/clang --sysroot /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//share/wasi-sysroot -Wl,--export-all -Wl,--global-base=100000 -Wl,-z,stack-size=1048576 -Wl,--growable-table -D_WASI_EMULATED_SIGNAL -lwasi-emulated-signal -lm -c -o s_m_a_vec.o -DSPEC_CPU -DNDEBUG -I. -DFN -DFAST -DCONGRAD_TMP_VECTORS -DDSLASH_TMP_LINKS   -O2       -DSPEC_CPU_LP64         s_m_a_vec.c
+1665756483.70: clang-13: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.70: clang-13: warning: -Wl,--global-base=100000: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.70: clang-13: warning: -Wl,-z,stack-size=1048576: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.70: clang-13: warning: -Wl,--growable-table: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.70: clang-13: warning: -lwasi-emulated-signal: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.70: clang-13: warning: -lm: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.71: /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//bin/clang --sysroot /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//share/wasi-sysroot -Wl,--export-all -Wl,--global-base=100000 -Wl,-z,stack-size=1048576 -Wl,--growable-table -D_WASI_EMULATED_SIGNAL -lwasi-emulated-signal -lm -c -o s_m_s_mat.o -DSPEC_CPU -DNDEBUG -I. -DFN -DFAST -DCONGRAD_TMP_VECTORS -DDSLASH_TMP_LINKS   -O2       -DSPEC_CPU_LP64         s_m_s_mat.c
+1665756483.71: clang-13: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.71: clang-13: warning: -Wl,--global-base=100000: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.71: clang-13: warning: -Wl,-z,stack-size=1048576: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.71: clang-13: warning: -Wl,--growable-table: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.71: clang-13: warning: -lwasi-emulated-signal: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.71: clang-13: warning: -lm: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.74: /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//bin/clang --sysroot /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//share/wasi-sysroot -Wl,--export-all -Wl,--global-base=100000 -Wl,-z,stack-size=1048576 -Wl,--growable-table -D_WASI_EMULATED_SIGNAL -lwasi-emulated-signal -lm -c -o s_m_vec.o -DSPEC_CPU -DNDEBUG -I. -DFN -DFAST -DCONGRAD_TMP_VECTORS -DDSLASH_TMP_LINKS   -O2       -DSPEC_CPU_LP64         s_m_vec.c
+1665756483.75: clang-13: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.75: clang-13: warning: -Wl,--global-base=100000: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.75: clang-13: warning: -Wl,-z,stack-size=1048576: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.75: clang-13: warning: -Wl,--growable-table: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.75: clang-13: warning: -lwasi-emulated-signal: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.75: clang-13: warning: -lm: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.76: /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//bin/clang --sysroot /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//share/wasi-sysroot -Wl,--export-all -Wl,--global-base=100000 -Wl,-z,stack-size=1048576 -Wl,--growable-table -D_WASI_EMULATED_SIGNAL -lwasi-emulated-signal -lm -c -o s_m_mat.o -DSPEC_CPU -DNDEBUG -I. -DFN -DFAST -DCONGRAD_TMP_VECTORS -DDSLASH_TMP_LINKS   -O2       -DSPEC_CPU_LP64         s_m_mat.c
+1665756483.76: clang-13: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.76: clang-13: warning: -Wl,--global-base=100000: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.76: clang-13: warning: -Wl,-z,stack-size=1048576: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.76: clang-13: warning: -Wl,--growable-table: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.76: clang-13: warning: -lwasi-emulated-signal: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.76: clang-13: warning: -lm: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.78: /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//bin/clang --sysroot /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//share/wasi-sysroot -Wl,--export-all -Wl,--global-base=100000 -Wl,-z,stack-size=1048576 -Wl,--growable-table -D_WASI_EMULATED_SIGNAL -lwasi-emulated-signal -lm -c -o su3_adjoint.o -DSPEC_CPU -DNDEBUG -I. -DFN -DFAST -DCONGRAD_TMP_VECTORS -DDSLASH_TMP_LINKS   -O2       -DSPEC_CPU_LP64         su3_adjoint.c
+1665756483.79: clang-13: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.79: clang-13: warning: -Wl,--global-base=100000: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.79: clang-13: warning: -Wl,-z,stack-size=1048576: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.79: clang-13: warning: -Wl,--growable-table: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.79: clang-13: warning: -lwasi-emulated-signal: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.79: clang-13: warning: -lm: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.80: /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//bin/clang --sysroot /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//share/wasi-sysroot -Wl,--export-all -Wl,--global-base=100000 -Wl,-z,stack-size=1048576 -Wl,--growable-table -D_WASI_EMULATED_SIGNAL -lwasi-emulated-signal -lm -c -o su3_dot.o -DSPEC_CPU -DNDEBUG -I. -DFN -DFAST -DCONGRAD_TMP_VECTORS -DDSLASH_TMP_LINKS   -O2       -DSPEC_CPU_LP64         su3_dot.c
+1665756483.81: clang-13: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.81: clang-13: warning: -Wl,--global-base=100000: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.81: clang-13: warning: -Wl,-z,stack-size=1048576: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.81: clang-13: warning: -Wl,--growable-table: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.81: clang-13: warning: -lwasi-emulated-signal: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.81: clang-13: warning: -lm: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.82: /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//bin/clang --sysroot /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//share/wasi-sysroot -Wl,--export-all -Wl,--global-base=100000 -Wl,-z,stack-size=1048576 -Wl,--growable-table -D_WASI_EMULATED_SIGNAL -lwasi-emulated-signal -lm -c -o su3_rdot.o -DSPEC_CPU -DNDEBUG -I. -DFN -DFAST -DCONGRAD_TMP_VECTORS -DDSLASH_TMP_LINKS   -O2       -DSPEC_CPU_LP64         su3_rdot.c
+1665756483.83: clang-13: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.83: clang-13: warning: -Wl,--global-base=100000: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.83: clang-13: warning: -Wl,-z,stack-size=1048576: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.83: clang-13: warning: -Wl,--growable-table: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.83: clang-13: warning: -lwasi-emulated-signal: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.83: clang-13: warning: -lm: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.84: /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//bin/clang --sysroot /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//share/wasi-sysroot -Wl,--export-all -Wl,--global-base=100000 -Wl,-z,stack-size=1048576 -Wl,--growable-table -D_WASI_EMULATED_SIGNAL -lwasi-emulated-signal -lm -c -o su3_proj.o -DSPEC_CPU -DNDEBUG -I. -DFN -DFAST -DCONGRAD_TMP_VECTORS -DDSLASH_TMP_LINKS   -O2       -DSPEC_CPU_LP64         su3_proj.c
+1665756483.84: clang-13: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.84: clang-13: warning: -Wl,--global-base=100000: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.84: clang-13: warning: -Wl,-z,stack-size=1048576: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.84: clang-13: warning: -Wl,--growable-table: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.84: clang-13: warning: -lwasi-emulated-signal: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.84: clang-13: warning: -lm: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.87: /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//bin/clang --sysroot /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//share/wasi-sysroot -Wl,--export-all -Wl,--global-base=100000 -Wl,-z,stack-size=1048576 -Wl,--growable-table -D_WASI_EMULATED_SIGNAL -lwasi-emulated-signal -lm -c -o su3mat_copy.o -DSPEC_CPU -DNDEBUG -I. -DFN -DFAST -DCONGRAD_TMP_VECTORS -DDSLASH_TMP_LINKS   -O2       -DSPEC_CPU_LP64         su3mat_copy.c
+1665756483.88: clang-13: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.88: clang-13: warning: -Wl,--global-base=100000: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.88: clang-13: warning: -Wl,-z,stack-size=1048576: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.88: clang-13: warning: -Wl,--growable-table: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.88: clang-13: warning: -lwasi-emulated-signal: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.88: clang-13: warning: -lm: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.90: /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//bin/clang --sysroot /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//share/wasi-sysroot -Wl,--export-all -Wl,--global-base=100000 -Wl,-z,stack-size=1048576 -Wl,--growable-table -D_WASI_EMULATED_SIGNAL -lwasi-emulated-signal -lm -c -o submat.o -DSPEC_CPU -DNDEBUG -I. -DFN -DFAST -DCONGRAD_TMP_VECTORS -DDSLASH_TMP_LINKS   -O2       -DSPEC_CPU_LP64         submat.c
+1665756483.90: clang-13: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.90: clang-13: warning: -Wl,--global-base=100000: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.90: clang-13: warning: -Wl,-z,stack-size=1048576: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.90: clang-13: warning: -Wl,--growable-table: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.90: clang-13: warning: -lwasi-emulated-signal: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.90: clang-13: warning: -lm: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.93: /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//bin/clang --sysroot /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//share/wasi-sysroot -Wl,--export-all -Wl,--global-base=100000 -Wl,-z,stack-size=1048576 -Wl,--growable-table -D_WASI_EMULATED_SIGNAL -lwasi-emulated-signal -lm -c -o subvec.o -DSPEC_CPU -DNDEBUG -I. -DFN -DFAST -DCONGRAD_TMP_VECTORS -DDSLASH_TMP_LINKS   -O2       -DSPEC_CPU_LP64         subvec.c
+1665756483.93: clang-13: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.93: clang-13: warning: -Wl,--global-base=100000: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.93: clang-13: warning: -Wl,-z,stack-size=1048576: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.93: clang-13: warning: -Wl,--growable-table: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.93: clang-13: warning: -lwasi-emulated-signal: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.93: clang-13: warning: -lm: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.94: /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//bin/clang --sysroot /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//share/wasi-sysroot -Wl,--export-all -Wl,--global-base=100000 -Wl,-z,stack-size=1048576 -Wl,--growable-table -D_WASI_EMULATED_SIGNAL -lwasi-emulated-signal -lm -c -o trace_su3.o -DSPEC_CPU -DNDEBUG -I. -DFN -DFAST -DCONGRAD_TMP_VECTORS -DDSLASH_TMP_LINKS   -O2       -DSPEC_CPU_LP64         trace_su3.c
+1665756483.95: clang-13: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.95: clang-13: warning: -Wl,--global-base=100000: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.95: clang-13: warning: -Wl,-z,stack-size=1048576: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.95: clang-13: warning: -Wl,--growable-table: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.95: clang-13: warning: -lwasi-emulated-signal: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.95: clang-13: warning: -lm: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.96: /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//bin/clang --sysroot /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//share/wasi-sysroot -Wl,--export-all -Wl,--global-base=100000 -Wl,-z,stack-size=1048576 -Wl,--growable-table -D_WASI_EMULATED_SIGNAL -lwasi-emulated-signal -lm -c -o uncmp_ahmat.o -DSPEC_CPU -DNDEBUG -I. -DFN -DFAST -DCONGRAD_TMP_VECTORS -DDSLASH_TMP_LINKS   -O2       -DSPEC_CPU_LP64         uncmp_ahmat.c
+1665756483.97: clang-13: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.97: clang-13: warning: -Wl,--global-base=100000: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.97: clang-13: warning: -Wl,-z,stack-size=1048576: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.97: clang-13: warning: -Wl,--growable-table: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.97: clang-13: warning: -lwasi-emulated-signal: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.97: clang-13: warning: -lm: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.98: /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//bin/clang --sysroot /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//share/wasi-sysroot -Wl,--export-all -Wl,--global-base=100000 -Wl,-z,stack-size=1048576 -Wl,--growable-table -D_WASI_EMULATED_SIGNAL -lwasi-emulated-signal -lm -c -o msq_su3vec.o -DSPEC_CPU -DNDEBUG -I. -DFN -DFAST -DCONGRAD_TMP_VECTORS -DDSLASH_TMP_LINKS   -O2       -DSPEC_CPU_LP64         msq_su3vec.c
+1665756483.99: clang-13: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.99: clang-13: warning: -Wl,--global-base=100000: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.99: clang-13: warning: -Wl,-z,stack-size=1048576: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.99: clang-13: warning: -Wl,--growable-table: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.99: clang-13: warning: -lwasi-emulated-signal: 'linker' input unused [-Wunused-command-line-argument]
+1665756483.99: clang-13: warning: -lm: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.00: /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//bin/clang --sysroot /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//share/wasi-sysroot -Wl,--export-all -Wl,--global-base=100000 -Wl,-z,stack-size=1048576 -Wl,--growable-table -D_WASI_EMULATED_SIGNAL -lwasi-emulated-signal -lm -c -o sub4vecs.o -DSPEC_CPU -DNDEBUG -I. -DFN -DFAST -DCONGRAD_TMP_VECTORS -DDSLASH_TMP_LINKS   -O2       -DSPEC_CPU_LP64         sub4vecs.c
+1665756484.00: clang-13: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.00: clang-13: warning: -Wl,--global-base=100000: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.00: clang-13: warning: -Wl,-z,stack-size=1048576: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.00: clang-13: warning: -Wl,--growable-table: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.00: clang-13: warning: -lwasi-emulated-signal: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.00: clang-13: warning: -lm: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.02: /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//bin/clang --sysroot /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//share/wasi-sysroot -Wl,--export-all -Wl,--global-base=100000 -Wl,-z,stack-size=1048576 -Wl,--growable-table -D_WASI_EMULATED_SIGNAL -lwasi-emulated-signal -lm -c -o m_amv_4dir.o -DSPEC_CPU -DNDEBUG -I. -DFN -DFAST -DCONGRAD_TMP_VECTORS -DDSLASH_TMP_LINKS   -O2       -DSPEC_CPU_LP64         m_amv_4dir.c
+1665756484.03: clang-13: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.03: clang-13: warning: -Wl,--global-base=100000: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.03: clang-13: warning: -Wl,-z,stack-size=1048576: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.03: clang-13: warning: -Wl,--growable-table: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.03: clang-13: warning: -lwasi-emulated-signal: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.03: clang-13: warning: -lm: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.05: /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//bin/clang --sysroot /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//share/wasi-sysroot -Wl,--export-all -Wl,--global-base=100000 -Wl,-z,stack-size=1048576 -Wl,--growable-table -D_WASI_EMULATED_SIGNAL -lwasi-emulated-signal -lm -c -o m_amv_4vec.o -DSPEC_CPU -DNDEBUG -I. -DFN -DFAST -DCONGRAD_TMP_VECTORS -DDSLASH_TMP_LINKS   -O2       -DSPEC_CPU_LP64         m_amv_4vec.c
+1665756484.05: clang-13: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.05: clang-13: warning: -Wl,--global-base=100000: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.05: clang-13: warning: -Wl,-z,stack-size=1048576: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.05: clang-13: warning: -Wl,--growable-table: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.05: clang-13: warning: -lwasi-emulated-signal: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.05: clang-13: warning: -lm: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.07: /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//bin/clang --sysroot /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//share/wasi-sysroot -Wl,--export-all -Wl,--global-base=100000 -Wl,-z,stack-size=1048576 -Wl,--growable-table -D_WASI_EMULATED_SIGNAL -lwasi-emulated-signal -lm -c -o m_mv_s_4dir.o -DSPEC_CPU -DNDEBUG -I. -DFN -DFAST -DCONGRAD_TMP_VECTORS -DDSLASH_TMP_LINKS   -O2       -DSPEC_CPU_LP64         m_mv_s_4dir.c
+1665756484.08: clang-13: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.08: clang-13: warning: -Wl,--global-base=100000: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.08: clang-13: warning: -Wl,-z,stack-size=1048576: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.08: clang-13: warning: -Wl,--growable-table: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.08: clang-13: warning: -lwasi-emulated-signal: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.08: clang-13: warning: -lm: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.11: /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//bin/clang --sysroot /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//share/wasi-sysroot -Wl,--export-all -Wl,--global-base=100000 -Wl,-z,stack-size=1048576 -Wl,--growable-table -D_WASI_EMULATED_SIGNAL -lwasi-emulated-signal -lm -c -o m_su2_mat_vec_n.o -DSPEC_CPU -DNDEBUG -I. -DFN -DFAST -DCONGRAD_TMP_VECTORS -DDSLASH_TMP_LINKS   -O2       -DSPEC_CPU_LP64         m_su2_mat_vec_n.c
+1665756484.11: clang-13: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.11: clang-13: warning: -Wl,--global-base=100000: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.11: clang-13: warning: -Wl,-z,stack-size=1048576: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.11: clang-13: warning: -Wl,--growable-table: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.11: clang-13: warning: -lwasi-emulated-signal: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.11: clang-13: warning: -lm: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.12: /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//bin/clang --sysroot /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//share/wasi-sysroot -Wl,--export-all -Wl,--global-base=100000 -Wl,-z,stack-size=1048576 -Wl,--growable-table -D_WASI_EMULATED_SIGNAL -lwasi-emulated-signal -lm -c -o l_su2_hit_n.o -DSPEC_CPU -DNDEBUG -I. -DFN -DFAST -DCONGRAD_TMP_VECTORS -DDSLASH_TMP_LINKS   -O2       -DSPEC_CPU_LP64         l_su2_hit_n.c
+1665756484.13: clang-13: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.13: clang-13: warning: -Wl,--global-base=100000: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.13: clang-13: warning: -Wl,-z,stack-size=1048576: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.13: clang-13: warning: -Wl,--growable-table: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.13: clang-13: warning: -lwasi-emulated-signal: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.13: clang-13: warning: -lm: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.14: /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//bin/clang --sysroot /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//share/wasi-sysroot -Wl,--export-all -Wl,--global-base=100000 -Wl,-z,stack-size=1048576 -Wl,--growable-table -D_WASI_EMULATED_SIGNAL -lwasi-emulated-signal -lm -c -o r_su2_hit_a.o -DSPEC_CPU -DNDEBUG -I. -DFN -DFAST -DCONGRAD_TMP_VECTORS -DDSLASH_TMP_LINKS   -O2       -DSPEC_CPU_LP64         r_su2_hit_a.c
+1665756484.14: clang-13: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.14: clang-13: warning: -Wl,--global-base=100000: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.14: clang-13: warning: -Wl,-z,stack-size=1048576: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.14: clang-13: warning: -Wl,--growable-table: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.14: clang-13: warning: -lwasi-emulated-signal: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.15: clang-13: warning: -lm: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.16: /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//bin/clang --sysroot /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//share/wasi-sysroot -Wl,--export-all -Wl,--global-base=100000 -Wl,-z,stack-size=1048576 -Wl,--growable-table -D_WASI_EMULATED_SIGNAL -lwasi-emulated-signal -lm -c -o m_su2_mat_vec_a.o -DSPEC_CPU -DNDEBUG -I. -DFN -DFAST -DCONGRAD_TMP_VECTORS -DDSLASH_TMP_LINKS   -O2       -DSPEC_CPU_LP64         m_su2_mat_vec_a.c
+1665756484.16: clang-13: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.16: clang-13: warning: -Wl,--global-base=100000: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.16: clang-13: warning: -Wl,-z,stack-size=1048576: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.16: clang-13: warning: -Wl,--growable-table: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.16: clang-13: warning: -lwasi-emulated-signal: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.16: clang-13: warning: -lm: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.17: /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//bin/clang --sysroot /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//share/wasi-sysroot -Wl,--export-all -Wl,--global-base=100000 -Wl,-z,stack-size=1048576 -Wl,--growable-table -D_WASI_EMULATED_SIGNAL -lwasi-emulated-signal -lm -c -o gaussrand.o -DSPEC_CPU -DNDEBUG -I. -DFN -DFAST -DCONGRAD_TMP_VECTORS -DDSLASH_TMP_LINKS   -O2       -DSPEC_CPU_LP64         gaussrand.c
+1665756484.18: clang-13: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.18: clang-13: warning: -Wl,--global-base=100000: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.18: clang-13: warning: -Wl,-z,stack-size=1048576: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.18: clang-13: warning: -Wl,--growable-table: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.18: clang-13: warning: -lwasi-emulated-signal: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.18: clang-13: warning: -lm: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.19: /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//bin/clang --sysroot /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//share/wasi-sysroot -Wl,--export-all -Wl,--global-base=100000 -Wl,-z,stack-size=1048576 -Wl,--growable-table -D_WASI_EMULATED_SIGNAL -lwasi-emulated-signal -lm -c -o byterevn.o -DSPEC_CPU -DNDEBUG -I. -DFN -DFAST -DCONGRAD_TMP_VECTORS -DDSLASH_TMP_LINKS   -O2       -DSPEC_CPU_LP64         byterevn.c
+1665756484.20: clang-13: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.20: clang-13: warning: -Wl,--global-base=100000: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.20: clang-13: warning: -Wl,-z,stack-size=1048576: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.20: clang-13: warning: -Wl,--growable-table: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.20: clang-13: warning: -lwasi-emulated-signal: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.20: clang-13: warning: -lm: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.21: /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//bin/clang --sysroot /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//share/wasi-sysroot -Wl,--export-all -Wl,--global-base=100000 -Wl,-z,stack-size=1048576 -Wl,--growable-table -D_WASI_EMULATED_SIGNAL -lwasi-emulated-signal -lm -c -o m_mat_hwvec.o -DSPEC_CPU -DNDEBUG -I. -DFN -DFAST -DCONGRAD_TMP_VECTORS -DDSLASH_TMP_LINKS   -O2       -DSPEC_CPU_LP64         m_mat_hwvec.c
+1665756484.22: clang-13: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.22: clang-13: warning: -Wl,--global-base=100000: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.22: clang-13: warning: -Wl,-z,stack-size=1048576: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.22: clang-13: warning: -Wl,--growable-table: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.22: clang-13: warning: -lwasi-emulated-signal: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.22: clang-13: warning: -lm: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.24: /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//bin/clang --sysroot /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//share/wasi-sysroot -Wl,--export-all -Wl,--global-base=100000 -Wl,-z,stack-size=1048576 -Wl,--growable-table -D_WASI_EMULATED_SIGNAL -lwasi-emulated-signal -lm -c -o m_amat_hwvec.o -DSPEC_CPU -DNDEBUG -I. -DFN -DFAST -DCONGRAD_TMP_VECTORS -DDSLASH_TMP_LINKS   -O2       -DSPEC_CPU_LP64         m_amat_hwvec.c
+1665756484.25: clang-13: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.25: clang-13: warning: -Wl,--global-base=100000: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.25: clang-13: warning: -Wl,-z,stack-size=1048576: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.25: clang-13: warning: -Wl,--growable-table: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.25: clang-13: warning: -lwasi-emulated-signal: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.25: clang-13: warning: -lm: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.28: /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//bin/clang --sysroot /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//share/wasi-sysroot -Wl,--export-all -Wl,--global-base=100000 -Wl,-z,stack-size=1048576 -Wl,--growable-table -D_WASI_EMULATED_SIGNAL -lwasi-emulated-signal -lm -c -o dslash_fn2.o -DSPEC_CPU -DNDEBUG -I. -DFN -DFAST -DCONGRAD_TMP_VECTORS -DDSLASH_TMP_LINKS   -O2       -DSPEC_CPU_LP64         dslash_fn2.c
+1665756484.28: clang-13: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.28: clang-13: warning: -Wl,--global-base=100000: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.28: clang-13: warning: -Wl,-z,stack-size=1048576: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.28: clang-13: warning: -Wl,--growable-table: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.28: clang-13: warning: -lwasi-emulated-signal: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.28: clang-13: warning: -lm: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.43: /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//bin/clang --sysroot /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//share/wasi-sysroot -Wl,--export-all -Wl,--global-base=100000 -Wl,-z,stack-size=1048576 -Wl,--growable-table -D_WASI_EMULATED_SIGNAL -lwasi-emulated-signal -lm -c -o d_congrad5_fn.o -DSPEC_CPU -DNDEBUG -I. -DFN -DFAST -DCONGRAD_TMP_VECTORS -DDSLASH_TMP_LINKS   -O2       -DSPEC_CPU_LP64         d_congrad5_fn.c
+1665756484.44: clang-13: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.44: clang-13: warning: -Wl,--global-base=100000: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.44: clang-13: warning: -Wl,-z,stack-size=1048576: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.44: clang-13: warning: -Wl,--growable-table: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.44: clang-13: warning: -lwasi-emulated-signal: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.44: clang-13: warning: -lm: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.59: /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//bin/clang --sysroot /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//share/wasi-sysroot -Wl,--export-all -Wl,--global-base=100000 -Wl,-z,stack-size=1048576 -Wl,--growable-table -D_WASI_EMULATED_SIGNAL -lwasi-emulated-signal -lm -c -o com_vanilla.o -DSPEC_CPU -DNDEBUG -I. -DFN -DFAST -DCONGRAD_TMP_VECTORS -DDSLASH_TMP_LINKS   -O2       -DSPEC_CPU_LP64         com_vanilla.c
+1665756484.59: clang-13: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.59: clang-13: warning: -Wl,--global-base=100000: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.59: clang-13: warning: -Wl,-z,stack-size=1048576: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.59: clang-13: warning: -Wl,--growable-table: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.59: clang-13: warning: -lwasi-emulated-signal: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.59: clang-13: warning: -lm: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.71: /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//bin/clang --sysroot /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//share/wasi-sysroot -Wl,--export-all -Wl,--global-base=100000 -Wl,-z,stack-size=1048576 -Wl,--growable-table -D_WASI_EMULATED_SIGNAL -lwasi-emulated-signal -lm -c -o io_nonansi.o -DSPEC_CPU -DNDEBUG -I. -DFN -DFAST -DCONGRAD_TMP_VECTORS -DDSLASH_TMP_LINKS   -O2       -DSPEC_CPU_LP64         io_nonansi.c
+1665756484.72: clang-13: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.72: clang-13: warning: -Wl,--global-base=100000: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.72: clang-13: warning: -Wl,-z,stack-size=1048576: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.72: clang-13: warning: -Wl,--growable-table: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.72: clang-13: warning: -lwasi-emulated-signal: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.72: clang-13: warning: -lm: 'linker' input unused [-Wunused-command-line-argument]
+1665756484.76: /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//bin/clang --sysroot /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//share/wasi-sysroot -Wl,--export-all -Wl,--global-base=100000 -Wl,-z,stack-size=1048576 -Wl,--growable-table -D_WASI_EMULATED_SIGNAL -lwasi-emulated-signal -lm   -O2  -DSPEC_CPU_LP64        control.o f_meas.o gauge_info.o setup.o update.o update_h.o update_u.o layout_hyper.o check_unitarity.o d_plaq4.o gaugefix2.o io_helpers.o io_lat4.o make_lattice.o path_product.o ploop3.o ranmom.o ranstuff.o reunitarize2.o gauge_stuff.o grsource_imp.o mat_invert.o quark_stuff.o rephase.o cmplx.o addmat.o addvec.o clear_mat.o clearvec.o m_amatvec.o m_mat_an.o m_mat_na.o m_mat_nn.o m_matvec.o make_ahmat.o rand_ahmat.o realtr.o s_m_a_mat.o s_m_a_vec.o s_m_s_mat.o s_m_vec.o s_m_mat.o su3_adjoint.o su3_dot.o su3_rdot.o su3_proj.o su3mat_copy.o submat.o subvec.o trace_su3.o uncmp_ahmat.o msq_su3vec.o sub4vecs.o m_amv_4dir.o m_amv_4vec.o m_mv_s_4dir.o m_su2_mat_vec_n.o l_su2_hit_n.o r_su2_hit_a.o m_su2_mat_vec_a.o gaussrand.o byterevn.o m_mat_hwvec.o m_amat_hwvec.o dslash_fn2.o d_congrad5_fn.o com_vanilla.o io_nonansi.o             -lm        -o milc
+1665756484.78: file milc
+1665756484.78: milc: WebAssembly (wasm) binary module version 0x1 (MVP)
+1665756484.78: XXX >>>>> milc <<<<<<
+1665756484.78: XXX saving wasi-clang final wasm as milc.wasm
+1665756484.78: cp milc milc.wasm
+1665756484.78: /home/shr/Code/HardwareIsolation/hfi_spec/../hfi_wasm2c_sandbox_compiler/build_release_guardpages/wasm2c milc.wasm -o milc.wasm.c
+1665756484.86: gcc -O3 -DWASM_USE_GUARD_PAGES -o milc milc.wasm.c /home/shr/Code/HardwareIsolation/hfi_spec/../hfi_wasm2c_sandbox_compiler/wasm2c/wasm-rt-impl.c /home/shr/Code/HardwareIsolation/hfi_spec/../hfi_wasm2c_sandbox_compiler/wasm2c/wasm-rt-os-unix.c /home/shr/Code/HardwareIsolation/hfi_spec/../hfi_wasm2c_sandbox_compiler/wasm2c/uvwasi-rt.c /home/shr/Code/HardwareIsolation/hfi_spec/../hfi_wasm2c_sandbox_compiler/wasm2c/wasm-rt-runner-static.c -I/home/shr/Code/HardwareIsolation/hfi_spec/../hfi_wasm2c_sandbox_compiler/wasm2c -I/home/shr/Code/HardwareIsolation/hfi_spec/../hfi_wasm2c_sandbox_compiler/third_party/uvwasi/include -I/home/shr/Code/HardwareIsolation/hfi_spec/../hw_isol_gem5/tests/test-progs/hfi/ -L/home/shr/Code/HardwareIsolation/hfi_spec/../hfi_wasm2c_sandbox_compiler/build_release_guardpages/_deps/libuv-build -L/home/shr/Code/HardwareIsolation/hfi_spec/../hfi_wasm2c_sandbox_compiler/build_release_guardpages/third_party/uvwasi -luvwasi_a -luv -lpthread
+1665756492.31: /usr/bin/ld: /tmp/ccdWHczl.o: in function `w2c_check_su3':
+1665756492.31: milc.wasm.c:(.text+0x5e19): undefined reference to `sqrt'
+1665756492.31: /usr/bin/ld: milc.wasm.c:(.text+0x5e8d): undefined reference to `sqrt'
+1665756492.31: /usr/bin/ld: milc.wasm.c:(.text+0x5ef4): undefined reference to `sqrt'
+1665756492.31: /usr/bin/ld: milc.wasm.c:(.text+0x5f7e): undefined reference to `sqrt'
+1665756492.31: /usr/bin/ld: milc.wasm.c:(.text+0x6032): undefined reference to `sqrt'
+1665756492.31: /usr/bin/ld: /tmp/ccdWHczl.o:milc.wasm.c:(.text+0x610e): more undefined references to `sqrt' follow
+1665756492.31: collect2: error: ld returned 1 exit status
+1665756492.31: specmake[1]: *** [build] Error 1
+1665756492.31: specmake[1]: Leaving directory `/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/433.milc/build/build_base_hfi_wasm2c_guardpages.0000'
+1665756492.31: Tee child 1922252 exited with code 512 (exit code=2, signal=0)
+1665756492.31: Stop make command: Fri Oct 14 10:08:12 2022 (1665756492)
+1665756492.31: Elapsed time for make command: 00:00:11 (11)
+1665756492.31: Error with make 'specmake build': check file '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/433.milc/build/build_base_hfi_wasm2c_guardpages.0000/make.err'
+1665756492.31:   Command returned exit code 2
+1665756492.31:   Error with make!
+1665756492.32:   Compile for '433.milc' ended at: Fri Oct 14 10:08:12 2022 (1665756492)
+1665756492.32:   Elapsed compile for '433.milc': 00:00:11 (11)
+1665756492.32: *** Error building 433.milc
+
+1665756492.32: Build errors: 433.milc(base; CE)
+
+1665756492.32: Build Complete
+
+1665756492.32: The log for this run is in /home/shr/Code/HardwareIsolation/hfi_spec/result/CPU2006.091.log
+1665756492.32: The debug log for this run is in /home/shr/Code/HardwareIsolation/hfi_spec/result/CPU2006.091.log.debug
+
+1665756492.32: runspec finished at Fri Oct 14 10:08:12 2022; 13 total seconds elapsed

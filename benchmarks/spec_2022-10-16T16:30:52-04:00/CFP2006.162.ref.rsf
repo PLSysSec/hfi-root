@@ -1,0 +1,256 @@
+spec.cpu2006.hw_avail: Dec-9999
+spec.cpu2006.hw_cpu_char: 
+spec.cpu2006.hw_cpu_mhz: 3000
+spec.cpu2006.hw_cpu_name: AMD Opteron 256
+spec.cpu2006.hw_disk: SATA
+spec.cpu2006.hw_fpu: Integrated
+spec.cpu2006.hw_memory: 2 GB (2 x 1GB DDR333 CL2.5)
+spec.cpu2006.hw_model: Tyan Thunder KKQS Pro (S4882)
+spec.cpu2006.hw_nchips: 1
+spec.cpu2006.hw_ncores: 1
+spec.cpu2006.hw_ncoresperchip: 1
+spec.cpu2006.hw_ncpuorder: 1 chip
+spec.cpu2006.hw_nthreadspercore: 1
+spec.cpu2006.hw_ocache: None
+spec.cpu2006.hw_other: --
+spec.cpu2006.hw_pcache: 64 KB I + 64 KB D on chip per chip
+spec.cpu2006.hw_scache: 1 MB I+D on chip per chip
+spec.cpu2006.hw_tcache: None
+spec.cpu2006.hw_vendor: Tyan
+spec.cpu2006.license_num: 0
+spec.cpu2006.prepared_by: 
+spec.cpu2006.sw_avail: Dec-9999
+spec.cpu2006.sw_base_ptrsize: 64-bit
+spec.cpu2006.sw_compiler: clang , clang++ & gfortran 4.1.0 (for AMD64)
+spec.cpu2006.sw_file: ext3
+spec.cpu2006.sw_os: SUSE SLES9 (for AMD64)
+spec.cpu2006.sw_other: None
+spec.cpu2006.sw_parallel_other: --
+spec.cpu2006.sw_peak_ptrsize: Not Applicable
+spec.cpu2006.sw_state: runlevel 3
+spec.cpu2006.test_date: Oct-2022
+spec.cpu2006.test_sponsor: Turbo Computers
+spec.cpu2006.tester: Turbo Computers
+spec.cpu2006.notes_000:  PORTABILITY=-DSPEC_CPU_LP64 is applied to all benchmarks in base.
+spec.cpu2006.notes_005:  C base flags: -O2
+spec.cpu2006.notes_010:  C++ base flags: -O2
+spec.cpu2006.notes_015:  Fortran base flags: -O2
+# =============== do not edit below this point ===================
+spec.cpu2006.rawhash: c8dc32fab528c428f887f2a71a6cbd2c
+spec.cpu2006.base_copies: 1
+spec.cpu2006.basemean: --
+spec.cpu2006.basepeak: 0
+spec.cpu2006.cfidx000: @eNpFkEESgyAMRS/kAq0I5DIMxXRwqsAAttOevgRru3svCfCDe2rzMMsKo+zcU9u4a+tMAtGfurk3
+spec.cpu2006.cfidx001: iOE0bzYEwUjnJd9BjoS3uIO4EG24hfQCeUiYcYVJEXvrlphBjIeEhFX4XyImmgAxHbW4hzRjDdJy
+spec.cpu2006.cfidx002: +eISmrlN1WkQgqrBGusQZEsXDxHttfzttKDlK22lB/o5JJC8WxeLPqP2+waj6nwomDVjDPp++hmH
+spec.cpu2006.cfidx003: nonT+tpj8mfUU11MGE3CWV9fwPsunx+qBuKrqS/EkvLyRlAjlWzY4rLW1VSbvlUGqQhDBikbFEf9
+spec.cpu2006.cfidx004: C3FEc//fwKmUiymVWVdzFJ1j8LmuxA+vB/nwAWbapIs=
+spec.cpu2006.errors000: 'reportable' flag not set during run
+spec.cpu2006.errors001: 465.tonto (base) did not have enough runs!
+spec.cpu2006.errors002: 453.povray (base) did not have enough runs!
+spec.cpu2006.errors003: 444.namd (base) did not have enough runs!
+spec.cpu2006.errors004: 416.gamess (base) did not have enough runs!
+spec.cpu2006.errors005: 436.cactusADM (base) did not have enough runs!
+spec.cpu2006.errors006: 459.GemsFDTD (base) did not have enough runs!
+spec.cpu2006.errors007: 450.soplex (base) did not have enough runs!
+spec.cpu2006.errors008: 437.leslie3d (base) did not have enough runs!
+spec.cpu2006.errors009: 447.dealII (base) did not have enough runs!
+spec.cpu2006.errors010: 481.wrf (base) did not have enough runs!
+spec.cpu2006.errors011: 433.milc (base) did not have enough runs!
+spec.cpu2006.errors012: 410.bwaves (base) did not have enough runs!
+spec.cpu2006.errors013: 435.gromacs (base) did not have enough runs!
+spec.cpu2006.errors014: 482.sphinx3 (base) did not have enough runs!
+spec.cpu2006.errors015: 434.zeusmp (base) did not have enough runs!
+spec.cpu2006.errors016: 470.lbm (base) did not have enough runs!
+spec.cpu2006.errors017: 454.calculix (base) did not have enough runs!
+spec.cpu2006.errors018: 444.namd (base) had invalid runs!
+spec.cpu2006.errors019: 470.lbm (base) had invalid runs!
+spec.cpu2006.errors020: Run of 444.namd (base) was not valid; status is VE
+spec.cpu2006.errors021: Run of 470.lbm (base) was not valid; status is VE
+spec.cpu2006.ext: hfi_wasm2c_masking
+spec.cpu2006.invalid: 1
+spec.cpu2006.lognum: 162
+spec.cpu2006.mach: default
+spec.cpu2006.mean_anyway: 0
+spec.cpu2006.metric: CFP2006
+spec.cpu2006.name: fp
+spec.cpu2006.origconfig000: @eNqtWG1v28gR/nz8FQPk0NqwSL3ZPp8LfVAkORHixOpJRnINDgRFLaWFSS67S1pWfn2f2aVkKY6D
+spec.cpu2006.origconfig001: tpAQwOTsvO28PDPMGxrnjyqOSqlyilWWRfmCUpmLa+8NNVcqE02z0s2BWojm+0gv1pEWY6NSK9Bc
+spec.cpu2006.origconfig002: JTI0hYibc5k3dZXzM/l+rPJELnvryGQhs/BDJw6zyDzIfBnEyRJMUcwqepDCy0IksAkHtDC9Ngiy
+spec.cpu2006.origconfig003: FNracK85Dgqly2ieCrwa+U30tEiINcu8hK+qKouqDLVSJVMpx9/KiAUlSlO5koZgyXtzxB+Mzlgv
+spec.cpu2006.origconfig004: /kVkoqxI+QJ8c0okntnwYHLfabUuAxo7r0phSvi0luUKAYYG+xuorICEpjxCvB+FNrj4tTujr8s4
+spec.cpu2006.origconfig005: bizPzhpLKCx1lNN50A46pEUqIiPor62Wu8KGLF+S2cBKRvuKvk5vR1Nqt2g6aVvP+h+Hl+c72W1q
+spec.cpu2006.origconfig006: t0YPfl/vCmRD5X9Zj8cJbVSlqUANQFHGUTa0kEkitMjLrVXTeKZBalUbIJhW1lEIyRyRe5bMUGR0
+spec.cpu2006.origconfig007: Ap3gF082oA3qdnx6NAFdnvtz6XhOG0goRDjyeKBCGSPnMpUbCJarqHT5drmoXBm5lGTRxhbGWukH
+spec.cpu2006.origconfig008: iowvTWDv9EmVwklKYyp4xgnidkBanLhZqSpd0FzAXy1iJJFtKWs/3qbvUeQLpZHsnAPjBKM5KhNR
+spec.cpu2006.origconfig009: Hw2Q/HiVxzJKIWqqguuZYuRzzrVSoe8QD9bHfNvzhYqrjIPjziA5VLGpnVB6Q6pOx1zk8SqLcC+Z
+spec.cpu2006.origconfig010: mzJKnd/uev3UKL632IvOy6qtI8W1Chmci6fC3pTvaSPmWkmQyB8l6mHr13ol4xWL7Nf4P/hVuj5c
+spec.cpu2006.origconfig011: VhHqthSsas8Bm63DnrHHa5mmVGj1KBfCcsyhkVA0Nqp5LAIPonvt0Pne27mTS6SGIPpnlyLIxVFh
+spec.cpu2006.origconfig012: UQSBc1TuGEY94ENun2Edh6yA05YU3MHP8a1Lpm/2q8x5j1cOERu0PdrYi0GcRjKrA1DHiq9p42qr
+spec.cpu2006.origconfig013: jc3+zCZNcT+ZyBiMm0Ydl/octcelDQytI3x+eRGUKi8V5JJIpoajUgeBUGoQOIQTG9LnNkBJUSaX
+spec.cpu2006.origconfig014: q9LpjNB36DfUHKf8O5CD4CEg2OvUjckJAaZXaYl644uv1+uAx0Sg9LIZFxVf1DsSHFtMoxMHFad0
+spec.cpu2006.origconfig015: M735u3nOxr7fHE5X+4MfI/ZxJoXnySWPrlBorbShHm2E8coKo27369EcMO6Jp5L2iS/nplePOIct
+spec.cpu2006.origconfig016: YIlM7O2NRSvW9tBmjDg7RdaiEKjuLdnRVuswekRp4HUoYv93/LxUIsFGhHmVgdzyuJUx4IHmiEyP
+spec.cpu2006.origconfig017: ZpWeKzutKgwE4xWwDkxfhPMN9Swz6sqZ8EypZYx5jGKTOsRQkMnG6vQw6yPUQ++Vv9dHCj0XxG6w
+spec.cpu2006.origconfig018: GgxLu28w+SjqP/en43A6/BBO+rP3vV9PuG1Pm0HQRNKkbxYPTcdyc9t/N+WIYGvZGLue/HpyIHyK
+spec.cpu2006.origconfig019: DQtRrAVrHv9z2vB9YBqy6zM0OMIyVfMo9blieu0W/9zBtwYwP35wi1G7dX518dvlVkSrNdeHXy9P
+spec.cpu2006.origconfig020: w9BaH328v+3PRsNwOn73qX9Lfmrti6xCG4sFNC1zTKrB4KAqX/rOmx+wDbhZH9kLn3qDL1/+S8Gz
+spec.cpu2006.origconfig021: s0NR8pNc4eqxKOwC6N0c+tCsjLbSWwTzbu8Ho1k4+3Myeq11kHR6/7lGAC593iPSWuFsAxScrRws
+spec.cpu2006.origconfig022: fvjwzylNtKKT6fnVVeeUmQFTIa9mzAyMoXofos7F5fY4Rgq57OvXbPXNqu4iQ0xLimrn/xiTcMkL
+spec.cpu2006.origconfig023: 0IJPgOCyML9w59o33oAP3zD4mGdLK1daRAtLZUzesRaV0nwBEIj5mVrEUbyqkQHI+OEtjemsfhoS
+spec.cpu2006.origconfig024: b/xg5Mm6kzB7Em36CIGzHzOWe4yfVC6Ypn5AywRGxwY36tC7t3TSoSdq42E4/KPb7dLgthNc2Bgv
+spec.cpu2006.origconfig025: pHkgAt+0P+szwS1Tv7j02AROdwk0sGWeK2J6Px0RL7i/2/XRzYFT5rKwXnMBYbtMQ6eUoqYBnlLx
+spec.cpu2006.origconfig026: iEqwJ7tFDieuphu0LdG/HQ7M1veWXmAp+8hr6jYWeOe2DYtSc5fajPCc4oNCRA97B5jD1C8KoDG3
+spec.cpu2006.origconfig027: rHcsQOS6lZn8FjkgPM6AQ17e8mcI1pxUrbHblzuAtyj1At0Hd5PZ+OP4X6M6Bf5dh8HimepIN/ts
+spec.cpu2006.origconfig028: juTxCmtawL0eDezUpCSNlubantaHbT5Evl457uD4ps7j9yxHi3O300SP8efKxA5n7Jjlhm7YEvm8
+spec.cpu2006.origconfig029: 6B0r+D+PtL1y56JHk7s/Zv2349vx7M+eP+RJFWLNCW8n8JK/A7jU3OLMk+Z56+TlnlUH3p4GTsah
+spec.cpu2006.origconfig030: juMF7kW4jhWo81YrAHql9m4/2TxoIuMH4J3YfgG4/5gwCAqqu0H1B5BtbBff7oUr0AML1wchGn+6
+spec.cpu2006.origconfig031: /xJ+QZwGr4dxx+OdX7QCo7CaPr3uJ/plP6fkm3LRi8/O2m3IX3aCVM7/XeGLq8pe12G9v0Q7HAq8
+spec.cpu2006.origconfig032: dP3AbUzyF+fe+W/dIAKs6v/T46tu8BQBZ+N59vA/qHjpx1U7WOvkdRU4DBdRGYUrjFChwxpvr36S
+spec.cpu2006.origconfig033: mUF/OrKLyQ/sef8B7iSXvw==
+spec.cpu2006.peakmean: Not Run
+spec.cpu2006.rate: 0
+spec.cpu2006.rawconfig000: @eNqtWG1v28gR/nz8FQPk0NqwSL3ZPp8LfVAkORHixOpJRnINDsSKWkoLk1yWS1pWfn2f2aVkKY6D
+spec.cpu2006.rawconfig001: tpAQwOTsvO28PDPMGxpnjzoSpdIZRTpNRbagRGXy2ntDzZVOZdOsiuZAL2TzvSgWa1HIsdGJFWiu
+spec.cpu2006.rawconfig002: YhWaXEbNucqaRZXxM/l+pLNYLXtrYdKQWfihE4WpMA8qWwZRvASTiFhFD1J4WcgYNuFAIU2vDYIq
+spec.cpu2006.rawconfig003: ZWFtuNcMB7kuSjFPJF6N+iZ7hYyJNaushK+6KvOqDAutS6ZShr+VkQuKdUHlShmCJe/NEX8wOmO9
+spec.cpu2006.rawconfig004: +CfIiDRP+AJ8c4oVntnwYHLfabUuAxo7r0ppSvi0VuUKAYYG+xvoNIdEQZlAvB9lYXDxa3dGX5dR
+spec.cpu2006.rawconfig005: 1FienTWWUFgWIqPzoB10qJCJFEbSX1std7kNWbYks4GVlPYVfZ3ejqbUbtF00rae9T8OL893stvU
+spec.cpu2006.rawconfig006: bo0e/L7e5ciGzv6yHo9j2uiqoBw1AEUpR9nQQsWxLGRWbq2axjMNUqvaAMG0to5CSGWI3LNkiiKj
+spec.cpu2006.rawconfig007: E+gEv3yyAW1Qt+PTowno8tyfK8dz2kBCIcKRxwPl2hg1V4naQLBcidLl2+WicmXkUpKKjS2MtS4e
+spec.cpu2006.rawconfig008: SBhfmcDe6ZMupZNUxlTwjBPE7YC0OHGz0lWyoLmEv4WMkES2pa39aJu+R5ktdIFkZxwYJyjmqExE
+spec.cpu2006.rawconfig009: fTRA8qNVFimRQNRUOdczRcjnnGulQt8hHqyP+bbnCx1VKQfHnUFyqCNTO6GLDek6HXOZRatU4F4q
+spec.cpu2006.rawconfig010: M6VInN/uev3EaL633IvOy6qtI8W1Chmcy6fc3pTvaSPmWkmSzB4V6mHr13qlohWL7Nf4P/hVuT5c
+spec.cpu2006.rawconfig011: VgJ1W0pWteeAzdZhz9jjtUoSygv9qBbScsyhkVA0NqpZJAMPonvt0Pne27mTi1UBQfTPLkWQi0Ru
+spec.cpu2006.rawconfig012: UQSBc1TuGEY94ENmn2Edh6yA0xbn3MHP8a1Lpm/2q8x5j1cOERu0PdrYi0GUCJXWAahjxde0cbXV
+spec.cpu2006.rawconfig013: xmZ/ZpOmuJ+KVQTGTaOOS32O2uPSBobWET6/vAhKnZUacrFQieGo1EEglBoEDuHEhvS5DVBSlKrl
+spec.cpu2006.rawconfig014: qnQ6BfoO/Yaa45R/B3IQPAQEe526MTkhwPQqKVFvfPH1eh3wmAh0sWxGecUX9Y4ExxbT6MRBxSnd
+spec.cpu2006.rawconfig015: TG/+bp6zse83h9PV/uDHiH2cSeF5asmjK5RFoQtDPdpI45UVRt3u16M5YNyTTyXtE1/OTa8ecQ5b
+spec.cpu2006.rawconfig016: wCJM5O2NRSvW9tBmjDg7RdailKjuLdnRVutQPKI08DqUkf87fl6ikGAjw6xKQW553MoY8EBzRKZH
+spec.cpu2006.rawconfig017: s6qYazutKgwE4+WwDkxfhPMN9Swz6sqZ8ExZqAjzGMWmihBDQcUbq9PDrBeoh94rf6+PFHouiN1g
+spec.cpu2006.rawconfig018: NRiWdt9g8lHUf+5Px+F0+CGc9Gfve7+ecNueNoOgiaQp3ywemo7l5rb/bsoRwdayMXY9+fXkQPgU
+spec.cpu2006.rawconfig019: GxaiWAvWPP7npOH7wDRk12docIRlouci8blieu0W/9zBtwYwP3pwi1G7dX518dvlVqTQa64Pv16e
+spec.cpu2006.rawconfig020: hqG1Pvp4f9ufjYbhdPzuU/+W/MTal2mFNpYLaFpmmFSDwUFVvvSdNz9gG3CzPrIXPvUGX778l4Jn
+spec.cpu2006.rawconfig021: Z4ei5MeZxtUjmdsF0Ls59KFZmcJKbxHMu70fjGbh7M/J6LXWQdLp/ecaAbj0eY9IaoWzDVBwtnKw
+spec.cpu2006.rawconfig022: +OHDP6c0KTSdTM+vrjqnzAyYCnk1Y2ZgDNX7EHUuLrfHEVLIZV+/pqtvVnUXGWJanFc7/8eYhEte
+spec.cpu2006.rawconfig023: gBZ8AgRXufmFO9e+8QZ8+IbBxzxbWrkqpFhYKmPyjjWvdMEXAIGYn6l5JKJVjQxAxg9vaUxn9dOQ
+spec.cpu2006.rawconfig024: eOMHI0/WnYTZk2jTRwic/Zix3GP8pDPJNP0DWioxOja4UYfevaWTDj1RGw/D4R/dbpcGt53gwsZ4
+spec.cpu2006.rawconfig025: ocwDEfim/VmfCW6Z+sWlxyZwukuggS3zXBHT++mIeMH93a6Pbg6cMpeF9ZoLCNtlGjqllDUN8JTI
+spec.cpu2006.rawconfig026: R1SCPdktcjhxNd2gbYn+7XBgtr639AJL2UdeU7exwDu3bZiXBXepzQjPKT7IpXjYO8Acpn6eA425
+spec.cpu2006.rawconfig027: Zb1jASLXrUrVN+GA8DgDDnl5y58hWHMSvcZuX+4A3qLUC3Qf3E1m44/jf43qFPh3HQaLZ6oj3eyz
+spec.cpu2006.rawconfig028: OZLHK6wJW62LHg3s1KQ4EUtzbU/rw3YLh8jXa8eQvanz+D3L0eLc7TTRY/y5MrHDGTtmuaEbtkQ+
+spec.cpu2006.rawconfig029: L3rHCv7PI70NFyIyuftj1n87vh3P/uz5Q55VIRad8HYCP/lLgIvNrc48a573Tl7vWXng7WngdBzq
+spec.cpu2006.rawconfig030: OF7oXgTsWKE6b7UC4Fdi7/aT3YMmKnoA4sntN4D7rwmDoKC+G1R/AtnWdhHuXrgSPbBwfRCi8af7
+spec.cpu2006.rawconfig031: L+EXxGnwehh3PN75RSswGsvp0+t+omP2c0q+KRe96Oys3Yb8ZSdI1PzfFb65qvR1Hdb7S1THocBL
+spec.cpu2006.rawconfig032: 1w/cxix/ce6d/9YNBIC1+D89vuoGTwJIG83Th/9BxUs/rtrBuohfV4HDcCFKEa4wRGUR1oh79ZPM
+spec.cpu2006.rawconfig033: DPrTkV1NfmDP+w+GkJja
+spec.cpu2006.runspecver: 6152
+spec.cpu2006.size: ref
+spec.cpu2006.submit: 0
+spec.cpu2006.suitever: 1.1
+spec.cpu2006.table: 1
+spec.cpu2006.time: 1665929056
+spec.cpu2006.toolset: linux-suse101-AMD64
+spec.cpu2006.toolvers000: @eNplkMkOgyAURX+IGK2K0m2Trt10bShBSwo+wtD+fkGMU3fvnjffW/e4SzrajhrLTabVtW7aCj35
+spec.cpu2006.toolvers001: xF6KmnckuChJIpa7BeAV9AyUginTMvEgNTU86nkUg2kQY0pX7SJ3TXPREG7wTkj7T/alhORoAKOo
+spec.cpu2006.toolvers002: Wy+VwrpBSD4DQgokgVG3rZew7C6bGJ8Xh1g4MLNucY1guwDsuRi80971hn7Xb3X0Lak6R8ZPVnMW
+spec.cpu2006.toolvers003: xQUFb7xOKYxR/GU1IYqDbxVBnzDpwOrqB7LfiQs=
+spec.cpu2006.tunelist000: base
+spec.cpu2006.units: SPECfp
+spec.cpu2006.valid: X
+spec.cpu2006.results.433_milc.base.000.basepeak: 0
+spec.cpu2006.results.433_milc.base.000.benchmark: 433.milc
+spec.cpu2006.results.433_milc.base.000.clcopies: 1
+spec.cpu2006.results.433_milc.base.000.copytime000: 514.712735
+spec.cpu2006.results.433_milc.base.000.dp: 6
+spec.cpu2006.results.433_milc.base.000.ext: hfi_wasm2c_masking
+spec.cpu2006.results.433_milc.base.000.iteration: 0
+spec.cpu2006.results.433_milc.base.000.mach: default
+spec.cpu2006.results.433_milc.base.000.rate: 0
+spec.cpu2006.results.433_milc.base.000.ratio: 17.835189
+spec.cpu2006.results.433_milc.base.000.rc: 0
+spec.cpu2006.results.433_milc.base.000.reference: 9180
+spec.cpu2006.results.433_milc.base.000.reported_nsec: 712793000
+spec.cpu2006.results.433_milc.base.000.reported_sec: 514
+spec.cpu2006.results.433_milc.base.000.reported_time: 514.712793
+spec.cpu2006.results.433_milc.base.000.selected: 1
+spec.cpu2006.results.433_milc.base.000.submit: 0
+spec.cpu2006.results.433_milc.base.000.valid: S
+spec.cpu2006.compopts000.433_milc.base: @eNrtVllv4zYQfq5/BaF9aBeILK/jTYtgHdSxvYlb2zJip4teYCmJshhTpEJSThzsj9+hzmyDDYq8
+spec.cpu2006.compopts001.433_milc.base: 9CUSIH1zcIYzw2OWUrgp2dGYcYpkZpgU+rSjjWKhwSoXEVN4TxWLD0On53R0RkOr/ue7v0/RVBiQ
+spec.cpu2006.compopts002.433_milc.base: iC0CJRoaqQ7oHy+RKfV0oryxjKh3SVR0RxSdacmJNe4lMcPWihdQESYFGq+u+73eiTc4Pu6mjIMo
+spec.cpu2006.compopts003.433_milc.base: ZzwqvzggmmI76I7otB/ilOgd+Oz24Pm+M/YXq1P03512ux7YYa6Odp4XMOGFnEAArqsPWklpXmpK
+spec.cpu2006.compopts004.433_milc.base: J6BU0ZUl9xM/cl16n0llXMJ5xdhyGRDu2rCG72wQvVLwcKQNCXeuZg9WMPjp/Y8n9RAl70jAqWvs
+spec.cpu2006.compopts005.433_milc.base: F7kT/Gm0nuHp4no+2kwneD27WI7myOWFf5rmMFUagaWtIOA2RK6sS9uVMHy9mo4xJB3gcjI9v75A
+spec.cpu2006.compopts006.433_milc.base: 7qwLxMel/YzWG/iN/eXF1WiCN4sV/m063vhXa+BO1vPR+rJgzmfLX9cIIdfvo/JpDeP56mSA6ueD
+spec.cpu2006.compopts007.433_milc.base: lrkK6VlnfIrG46HzWq1vV8spkuSf/+KvNkPnq9I5HVjpkNyP89HFGmRPy1honE+X40tcK72wrk7H
+spec.cpu2006.compopts008.433_milc.base: t9NYbWaL2R9TsOP3C+Mr/2ozOp/NZ5vfH8+gqLfTsUNfN+Ozm7HaL9/YKh9kcAMHqT6zejyt2e0a
+spec.cpu2006.compopts009.433_milc.base: sKtjPnndQs9voZes3Tc/0zCRyBna5wzZawhZiFAohVGSd0MU45QSDWBL8i3FTMQSCE1NnsE/zyKY
+spec.cpu2006.compopts010.433_milc.base: RQNw0sIcICcHmRucHDKqgAwTGu5wLpghipkDcCKccXI7qM3H7L4PmEmcUA5jdElApFbF3sEWGxZa
+spec.cpu2006.compopts011.433_milc.base: lxkxCc6UjPLQWJJLmR0DUESkMi2BNnkcW0grrw+038RSC7eqPKwxS7PCjYEw4f63Vm9zona4NZMl
+spec.cpu2006.compopts012.433_milc.base: UFIbSprxe/iTKAL9EuxpaCWcEoVLZoFLdooJ8GpsfRDRQEFa2HArXRs0SUp7EFHUEpRwY9OqMRiv
+spec.cpu2006.compopts013.433_milc.base: PJa4HGqxfsRvuRUvP8YkupFM1FQka6RaCCm+KaGdXyizQ0EFtZGgtGsUgRSCll0CAvLTTDTVt5Zf
+spec.cpu2006.compopts014.433_milc.base: uc+DASBdpWSPB9BItUSToD1MvRHpvF8kB6TY5ocXnISZglINRZ5ok7LaWtvUAQ4O0L7RfZv65O5x
+spec.cpu2006.compopts015.433_milc.base: fRoy0pzoBMeiX6xS2A9bRaL3wLBllZBMIhjnpFygQgpYa6xbbJ/Xy+C5y8Am6Gln+6+zqDiO/nKA
+spec.cpu2006.compopts016.433_milc.base: y2J6i354OuDIBm0Ufdt5810z8nP1okpYmqDQz8f2ElmMNpdw1Z/bHoGnTnmv+Ne253jUcHzV7c8p
+spec.cpu2006.compopts017.433_milc.base: 2f+/zf4XZUw7eA==
+spec.cpu2006.results.444_namd.base.000.basepeak: 0
+spec.cpu2006.results.444_namd.base.000.benchmark: 444.namd
+spec.cpu2006.results.444_namd.base.000.clcopies: 1
+spec.cpu2006.results.444_namd.base.000.copytime000: 586.056469
+spec.cpu2006.results.444_namd.base.000.dp: 6
+spec.cpu2006.results.444_namd.base.000.errors000: Output miscompare
+spec.cpu2006.results.444_namd.base.000.ext: hfi_wasm2c_masking
+spec.cpu2006.results.444_namd.base.000.iteration: 0
+spec.cpu2006.results.444_namd.base.000.mach: default
+spec.cpu2006.results.444_namd.base.000.rate: 0
+spec.cpu2006.results.444_namd.base.000.ratio: 13.684685
+spec.cpu2006.results.444_namd.base.000.rc: 0
+spec.cpu2006.results.444_namd.base.000.reference: 8020
+spec.cpu2006.results.444_namd.base.000.reported_nsec: 56610000
+spec.cpu2006.results.444_namd.base.000.reported_sec: 586
+spec.cpu2006.results.444_namd.base.000.reported_time: 586.05661
+spec.cpu2006.results.444_namd.base.000.selected: 0
+spec.cpu2006.results.444_namd.base.000.submit: 0
+spec.cpu2006.results.444_namd.base.000.valid: VE
+spec.cpu2006.compopts000.444_namd.base: @eNrtVltv0zAUfia/wsoeAG1uuqoMVK0TXVpGRtpEa6uNm4KTnDSmTlxsZ2MTPx67TXdhPNC98NIT
+spec.cpu2006.compopts001.444_namd.base: yTn2udqfj+0RL3FB5pBRBogvFOWl7FhSCZqoSFRlSkV0CYJm1127aVtyAYlR/7z/tYMGpdKScoa0
+spec.cpu2006.compopts002.444_namd.base: EiSKi2v0zcl5AY7MhePyFJz3RKRXRIAnOSPGuZNnNDJenBjKJF9ybjhtNZsHTrvdbpSkSJ24oqxu
+spec.cpu2006.compopts003.444_namd.base: o5hIiIzRFZFFK4kKIuc6ZqOp6bnlBsOwg/49aKPhaD8Uy3TuODEtnYSRcra7izCW11Jwrp7qTOZa
+spec.cpu2006.compopts004.444_namd.base: qe7XnvA528MYfi64UJgwVg/MGI8Jw2Zi3X0zjeZKcLMnFUnmWNIbI2i/efX6YG0i+BWJGWBlWoT7
+spec.cpu2006.compopts005.444_namd.base: 0Xlv7EWD4dTvTQb9aOydjHo+wmwZH4pKpwqp9jQriQ6blVynkcAKXoQThPka7AbX7sbhwI00DJod
+spec.cpu2006.compopts006.444_namd.base: 9QfH0xOkCQct094KIz88aKMVHUpeiQSOLLeD3IuLrr2FYBMI7HrdguPTIJx07QeI2Jbe0nq93/m9
+spec.cpu2006.compopts007.444_namd.base: k7GWPUbHtoKVeTjxht6ngVYKWkuzMDib9I4935t8vG+5hM62fG/0YVstG1ZLXQh/rwN0yOPv+uyT
+spec.cpu2006.compopts008.444_namd.base: R+iO7qA0MPv9bXVsWh1P2947byHJObK7ho6QuUqQYRFyebGoFDTcNedTqe56I17GvEwhnSrK9LB/
+spec.cpu2006.compopts009.444_namd.base: OjHT0NyQM0iqJRsSleTrf21/BrJiagyGH9MiJIIUoC9FqfsgMt0aHCKTieZNKtudsFHxmSV7fPn/
+spec.cpu2006.compopts010.444_namd.base: AfUS7S+2HqUZ/EAvHhvsmUVQAl5aO89uLX/VH6qFKxegnzzZqm6DqTma753LD14/PpDL//v4+Q0g
+spec.cpu2006.compopts011.444_namd.base: KzZO
+spec.cpu2006.results.470_lbm.base.000.basepeak: 0
+spec.cpu2006.results.470_lbm.base.000.benchmark: 470.lbm
+spec.cpu2006.results.470_lbm.base.000.clcopies: 1
+spec.cpu2006.results.470_lbm.base.000.copytime000: 400.707475
+spec.cpu2006.results.470_lbm.base.000.dp: 6
+spec.cpu2006.results.470_lbm.base.000.errors000: Output miscompare
+spec.cpu2006.results.470_lbm.base.000.ext: hfi_wasm2c_masking
+spec.cpu2006.results.470_lbm.base.000.iteration: 0
+spec.cpu2006.results.470_lbm.base.000.mach: default
+spec.cpu2006.results.470_lbm.base.000.rate: 0
+spec.cpu2006.results.470_lbm.base.000.ratio: 34.289347
+spec.cpu2006.results.470_lbm.base.000.rc: 0
+spec.cpu2006.results.470_lbm.base.000.reference: 13740
+spec.cpu2006.results.470_lbm.base.000.reported_nsec: 707543000
+spec.cpu2006.results.470_lbm.base.000.reported_sec: 400
+spec.cpu2006.results.470_lbm.base.000.reported_time: 400.707543
+spec.cpu2006.results.470_lbm.base.000.selected: 0
+spec.cpu2006.results.470_lbm.base.000.submit: 0
+spec.cpu2006.results.470_lbm.base.000.valid: VE
+spec.cpu2006.compopts000.470_lbm.base: @eNrtVltv2jAUfl5+hZU+bJMwThGjEypoIWQ0WyDRCKp2U+YkhmQ4MbNDGdV+/OwQ1naoaOrLXjiR
+spec.cpu2006.compopts001.470_lbm.base: EufcbH/nYk9YAXO8JPOMEsBWZcYK0dVEybO4DPm6SDIe3hCezbc93dA1sSKxUv98/rUL7KKUkmIB
+spec.cpu2006.compopts002.470_lbm.base: pBKJS8a34BtKWU6QSDmyWELQFebJBnPiCEaxco7SeRYqLygiRZxWI8uftQyjg9oXRpNGOYrWGU12
+spec.cpu2006.compopts003.470_lbm.base: 7zDCgoTKZoNF3orDHIulnLJpSHquWd7Y74J/n7PZRNJPBkWyRCjKChRTLNcPodgKzlj5VFcilUr1
+spec.cpu2006.compopts004.470_lbm.base: f+0JXtMGhOTnivESYkprxoKyCFOottU7V5swdoLbhihxvIQiu1WC9utXF529CWcbHFECS/UGcBhe
+spec.cpu2006.compopts005.470_lbm.base: m1MntMcz1wzsYTh1RhPTBZBW85N8LZdKEulpUWA5bQwg20e2yaT51LetUGIuh5OhPZiNgCTotcCO
+spec.cpu2006.compopts006.470_lbm.base: 7hRC1++0wZ4uBVvzmPQ1qwssq6efUH8cdb0CyRu88/ygpz8Iga7JjJXgvnXN0VTKDsOha54y9gNn
+spec.cpu2006.compopts007.470_lbm.base: 7HyypYrXqox870NgDhzXCT7et6uipGuuM3l/KoWjpVBn+SMJfsmi77KLib7So/mefRc5FVN3eEr8
+spec.cpu2006.compopts008.470_lbm.base: 44n/lNw9e0PilAG9p6gP5BkA1AioUTMGOc4K+VGcE/ZH8lsBdHhU/gVvhfAXXXKzOfkBXhwaNNSm
+spec.cpu2006.compopts009.470_lbm.base: S05eamfP/lj+qh9QC3cuiLwfzFVdjM3gKnSdgepoNNd3peLNVPO71/ke3B5cgm/+6+XhN7UA7y8=

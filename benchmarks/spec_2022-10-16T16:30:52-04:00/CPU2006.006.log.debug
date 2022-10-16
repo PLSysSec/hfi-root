@@ -1,0 +1,287 @@
+==============================================================================
+Debug log for CPU2006.  This file contains very detailed debugging
+output from the CPU2006 tools (as if "--verbose 99" had been specified) and is
+typically useful only to developers of the CPU2006 toolset.   
+
+For a successful run, this debug log will be removed automatically, unless you
+specify "--keeptmp" on the command line, or "keeptmp=1" in your config file.
+
+If you file a support request with cpu2006support@spec.org, you may be
+asked to submit this file.
+------------------------------------------------------------------------------
+
+Environment variables that should have been set or changed by shrc:
+SPEC: /home/shr/Code/HardwareIsolation/hfi_spec
+PATH: /home/shr/Code/HardwareIsolation/hfi_spec/bin:/home/shr/.cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+SPECPERLLIB: /home/shr/Code/HardwareIsolation/hfi_spec/bin:/home/shr/Code/HardwareIsolation/hfi_spec/bin/lib
+LD_LIBRARY_PATH: 
+DYLD_LIBRARY_PATH: 
+LC_ALL: C
+LC_LANG: C
+SPECDB_PWD: /home/shr/Code/HardwareIsolation/hfi_spec/config
+------------------------------------------------------------------------------
+
+Runspec's verbose version output:
+                 This is the SPEC CPU2006 benchmark tools suite.
+
+Version summary:
+    CPU2006 version: 1.1
+ Benchmarks version: 110
+      Tools version: 111
+    runspec version: 6152 ($Id: runspec 6152 2008-05-07 05:25:30Z cloyce $)
+
+Tools information:
+ Tools package installed: linux-suse101-AMD64
+ File locking method: fcntl(2) (probably network-safe)
+Mode |  UID  |  GID  |   Size  |    Modified Date   | Name
+0755 | 1000  | 1000  |  197376 | 17-May-2007 10:05:18 | specmake
+0755 | 1000  | 1000  | 1269511 | 17-May-2007 10:05:18 | specperl
+0755 | 1000  | 1000  |   25160 | 17-May-2007 10:05:18 | specinvoke
+0755 | 1000  | 1000  |   28176 | 17-May-2007 10:05:18 | specinvoke_pm
+0755 | 1000  | 1000  |   87352 | 17-May-2007 10:05:18 | specbzip2
+0755 | 1000  | 1000  |   20056 | 17-May-2007 10:05:18 | specmd5sum
+0775 | 1000  | 1000  |    7637 | 14-Oct-2022 13:00:52 | specdiff
+0775 | 1000  | 1000  |   86545 | 14-Oct-2022 13:00:52 | specpp
+0755 | 1000  | 1000  |  264960 | 17-May-2007 10:05:18 | specrxp
+0775 | 1000  | 1000  |  121907 | 14-Oct-2022 13:00:52 | runspec
+
+Version info for specinvoke (specinvoke): Version: 5000
+Version info for specmake (specmake): GNU Make 3.81
+Version info for specbzip2 (/home/shr/Code/HardwareIsolation/hfi_spec/bin/specbzip2): bzip2 v1.0.3, 15-Feb-2005
+Version info for specpp (/home/shr/Code/HardwareIsolation/hfi_spec/bin/specperl): filepp version 1.7.1SPEC
+Version info for specperl (/home/shr/Code/HardwareIsolation/hfi_spec/bin/specperl): This is specperl, v5.8.8 built for x86_64-linux
+                           For more detail on specperl, say 'specperl -V'
+
+==============================================================================
+
+1665752453.27: runspec v6152 started at Fri Oct 14 09:00:52 2022 on "shr-Desktop"
+1665752453.27: runspec is: /home/shr/Code/HardwareIsolation/hfi_spec/bin/runspec
+1665752453.27: runspec: runspec --config=wasm_hfi_wasm2c_guardpages.cfg --action=build --define cores=1 --iterations=1 --noreportable --size=ref CINT2006wasm
+1665752453.27: toolset: linux-suse101-AMD64
+
+1665752453.27(0.02s): Locating benchmarks...Created default regexp '(?:^|(?<=\s))[-/]DSPEC_CPU(?:=\S*)?(?=\s|$)' for DSPEC_CPU in /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/flags-mandatory.xml
+1665752453.29: Created default regexp '(?:^|(?<=\s))[-/]USPEC_CPU(?:=\S*)?(?=\s|$)' for USPEC_CPU in /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/flags-mandatory.xml
+1665752453.29: Created default regexp '(?:^|(?<=\s))[-/]DNDEBUG(?:=\S*)?(?=\s|$)' for DNDEBUG in /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/flags-mandatory.xml
+1665752453.29: Created default regexp '(?:^|(?<=\s))[-/]UNDEBUG(?:=\S*)?(?=\s|$)' for UNDEBUG in /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/flags-mandatory.xml
+1665752453.29: Created default regexp '(?:^|(?<=\s))[-/]DSPEC_CPU_WINDOWS(?:=\S*)?(?=\s|$)' for DSPEC_CPU_WINDOWS in /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/flags-mandatory.xml
+1665752453.29: Created default regexp '(?:^|(?<=\s))[-/]DSPEC_CPU_ILP32(?:=\S*)?(?=\s|$)' for DSPEC_CPU_ILP32 in /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/flags-mandatory.xml
+1665752453.29: Created default regexp '(?:^|(?<=\s))[-/]DSPEC_CPU_P64(?:=\S*)?(?=\s|$)' for DSPEC_CPU_P64 in /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/flags-mandatory.xml
+1665752453.29: Created default regexp '(?:^|(?<=\s))[-/]DSPEC_CPU_LP64(?:=\S*)?(?=\s|$)' for DSPEC_CPU_LP64 in /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/flags-mandatory.xml
+1665752453.29: Created default regexp '(?:^|(?<=\s))[-/]DSPEC_CPU_ILP64(?:=\S*)?(?=\s|$)' for DSPEC_CPU_ILP64 in /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/flags-mandatory.xml
+1665752453.29: Reading suite directory for 'flags-mandatory.xml', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec'
+1665752453.29: Reading suite directory for 'Makefile.defaults', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec'
+1665752453.29: Reading suite directory for 'version.txt', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec'
+1665752453.29: Reading suite directory for 'CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec'
+1665752453.29:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', 'oakland.bset'
+1665752453.29:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '433.milc'
+1665752453.30:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/433.milc/Spec/object.pm in 0.000169039s
+1665752453.30:     Instantiated Spec::Benchmark::milc433 in 0.000164986s
+1665752453.30:     Finding src.alts took 0.000026941s
+1665752453.30:   Setting up milc took 0.000476122s
+
+1665752453.30:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '999.specrand'
+1665752453.30:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/999.specrand/Spec/object.pm in 0.000121832s
+1665752453.30:     Instantiated Spec::Benchmark::specrand999 in 0.000047922s
+1665752453.30:     Finding src.alts took 0.000017881s
+1665752453.30:   Setting up specrand took 0.000284195s
+
+1665752453.30:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', 'all_cpp.bset'
+1665752453.30:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', 'CINT2006.bset'
+1665752453.30:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '456.hmmer'
+1665752453.30:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/456.hmmer/Spec/object.pm in 0.000168800s
+1665752453.30:     Instantiated Spec::Benchmark::hmmer456 in 0.000048876s
+1665752453.30:     Finding src.alts took 0.000018120s
+1665752453.30:   Setting up hmmer took 0.000337839s
+
+1665752453.30:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', 'all_c.bset'
+1665752453.30:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '400.perlbench'
+1665752453.30:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/400.perlbench/Spec/object.pm in 0.000581980s
+1665752453.30:     Instantiated Spec::Benchmark::perlbench400 in 0.000061035s
+1665752453.30:     Finding src.alts took 0.000017881s
+1665752453.30:   Setting up perlbench took 0.000765085s
+
+1665752453.30:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '453.povray'
+1665752453.30:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/453.povray/Spec/object.pm in 0.000153065s
+1665752453.30:     Instantiated Spec::Benchmark::povray453 in 0.000056028s
+1665752453.30:     Finding src.alts took 0.000018835s
+1665752453.30:   Setting up povray took 0.000326157s
+
+1665752453.30:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '436.cactusADM'
+1665752453.30:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/436.cactusADM/Spec/object.pm in 0.000251055s
+1665752453.30:     Instantiated Spec::Benchmark::cactusADM436 in 0.000074863s
+1665752453.30:     Finding src.alts took 0.000019073s
+1665752453.30:   Setting up cactusADM took 0.000445843s
+
+1665752453.30:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', 'extra.bset'
+1665752453.30:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '473.astar'
+1665752453.30:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/473.astar/Spec/object.pm in 0.000172853s
+1665752453.30:     Instantiated Spec::Benchmark::astar473 in 0.000051022s
+1665752453.30:     Finding src.alts took 0.000020027s
+1665752453.30:   Setting up astar took 0.000344992s
+
+1665752453.30:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '437.leslie3d'
+1665752453.30:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/437.leslie3d/Spec/object.pm in 0.000108957s
+1665752453.30:     Instantiated Spec::Benchmark::leslie3d437 in 0.000051975s
+1665752453.30:     Finding src.alts took 0.000018120s
+1665752453.30:   Setting up leslie3d took 0.000288010s
+
+1665752453.30:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '403.gcc'
+1665752453.30:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/403.gcc/Spec/object.pm in 0.000154018s
+1665752453.30:     Instantiated Spec::Benchmark::gcc403 in 0.000054121s
+1665752453.30:     Finding src.alts took 0.000017881s
+1665752453.30:   Setting up gcc took 0.000326157s
+
+1665752453.30:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '481.wrf'
+1665752453.30:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/481.wrf/Spec/object.pm in 0.000848055s
+1665752453.30:     Instantiated Spec::Benchmark::wrf481 in 0.000093937s
+1665752453.30:     Finding src.alts took 0.000019073s
+1665752453.30:   Setting up wrf took 0.001066208s
+
+1665752453.30:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', 'all_mixed.bset'
+1665752453.30:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '454.calculix'
+1665752453.30:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/454.calculix/Spec/object.pm in 0.000247002s
+1665752453.30:     Instantiated Spec::Benchmark::calculix454 in 0.000072956s
+1665752453.30:     Finding src.alts took 0.000018835s
+1665752453.30:   Setting up calculix took 0.000438213s
+
+1665752453.30:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '471.omnetpp'
+1665752453.30:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/471.omnetpp/Spec/object.pm in 0.000122070s
+1665752453.30:     Instantiated Spec::Benchmark::omnetpp471 in 0.000052929s
+1665752453.30:     Finding src.alts took 0.000017881s
+1665752453.30:   Setting up omnetpp took 0.000289202s
+
+1665752453.30:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '434.zeusmp'
+1665752453.30:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/434.zeusmp/Spec/object.pm in 0.000123978s
+1665752453.30:     Instantiated Spec::Benchmark::zeusmp434 in 0.000055075s
+1665752453.30:     Finding src.alts took 0.000017881s
+1665752453.30:   Setting up zeusmp took 0.000310898s
+
+1665752453.30:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', 'CINT2006wasm.bset'
+1665752453.30:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '462.libquantum'
+1665752453.30:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/462.libquantum/Spec/object.pm in 0.000108957s
+1665752453.30:     Instantiated Spec::Benchmark::libquantum462 in 0.000046968s
+1665752453.30:     Finding src.alts took 0.000019073s
+1665752453.30:   Setting up libquantum took 0.000284910s
+
+1665752453.30:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '464.h264ref'
+1665752453.30:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/464.h264ref/Spec/object.pm in 0.000163078s
+1665752453.30:     Instantiated Spec::Benchmark::h264ref464 in 0.000048876s
+1665752453.30:     Finding src.alts took 0.000019073s
+1665752453.30:   Setting up h264ref took 0.000328064s
+
+1665752453.30:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '444.namd'
+1665752453.30:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/444.namd/Spec/object.pm in 0.000149965s
+1665752453.30:     Instantiated Spec::Benchmark::namd444 in 0.000085115s
+1665752453.30:     Finding src.alts took 0.000020027s
+1665752453.30:   Setting up namd took 0.000372171s
+
+1665752453.30:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '482.sphinx3'
+1665752453.30:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/482.sphinx3/Spec/object.pm in 0.000332117s
+1665752453.30:     Instantiated Spec::Benchmark::sphinx3482 in 0.000061989s
+1665752453.30:     Finding src.alts took 0.000020027s
+1665752453.30:   Setting up sphinx3 took 0.000533104s
+
+1665752453.30:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '483.xalancbmk'
+1665752453.30:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/483.xalancbmk/Spec/object.pm in 0.000701904s
+1665752453.30:     Instantiated Spec::Benchmark::xalancbmk483 in 0.000091076s
+1665752453.30:     Finding src.alts took 0.000020027s
+1665752453.30:   Setting up xalancbmk took 0.000915051s
+
+1665752453.30:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '401.bzip2'
+1665752453.30:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/401.bzip2/Spec/object.pm in 0.000105143s
+1665752453.30:     Instantiated Spec::Benchmark::bzip2401 in 0.000043154s
+1665752453.30:     Finding src.alts took 0.000018120s
+1665752453.30:   Setting up bzip2 took 0.000260115s
+
+1665752453.31:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '429.mcf'
+1665752453.31:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/429.mcf/Spec/object.pm in 0.000112057s
+1665752453.31:     Instantiated Spec::Benchmark::mcf429 in 0.000044823s
+1665752453.31:     Finding src.alts took 0.000018120s
+1665752453.31:   Setting up mcf took 0.000269890s
+
+1665752453.31:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '410.bwaves'
+1665752453.31:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/410.bwaves/Spec/object.pm in 0.000095844s
+1665752453.31:     Instantiated Spec::Benchmark::bwaves410 in 0.000051975s
+1665752453.31:     Finding src.alts took 0.000018120s
+1665752453.31:   Setting up bwaves took 0.000262976s
+
+1665752453.31:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '459.GemsFDTD'
+1665752453.31:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/459.GemsFDTD/Spec/object.pm in 0.000172853s
+1665752453.31:     Instantiated Spec::Benchmark::GemsFDTD459 in 0.000046015s
+1665752453.31:     Finding src.alts took 0.000032187s
+1665752453.31:   Setting up GemsFDTD took 0.000353098s
+
+1665752453.31:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '416.gamess'
+1665752453.31:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/416.gamess/Spec/object.pm in 0.000166893s
+1665752453.31:     Instantiated Spec::Benchmark::gamess416 in 0.000066996s
+1665752453.31:     Finding src.alts took 0.000018120s
+1665752453.31:   Setting up gamess took 0.000349998s
+
+1665752453.31:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '450.soplex'
+1665752453.31:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/450.soplex/Spec/object.pm in 0.000182867s
+1665752453.31:     Instantiated Spec::Benchmark::soplex450 in 0.000043154s
+1665752453.31:     Finding src.alts took 0.000018120s
+1665752453.31:   Setting up soplex took 0.000341892s
+
+1665752453.31:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '445.gobmk'
+1665752453.31:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/445.gobmk/Spec/object.pm in 0.000135183s
+1665752453.31:     Instantiated Spec::Benchmark::gobmk445 in 0.000049114s
+1665752453.31:     Finding src.alts took 0.000018120s
+1665752453.31:   Setting up gobmk took 0.000297070s
+
+1665752453.31:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', 'CFP2006.bset'
+1665752453.31:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '470.lbm'
+1665752453.31:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/470.lbm/Spec/object.pm in 0.000097990s
+1665752453.31:     Instantiated Spec::Benchmark::lbm470 in 0.000046968s
+1665752453.31:     Finding src.alts took 0.000017881s
+1665752453.31:   Setting up lbm took 0.000254869s
+
+1665752453.31:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '465.tonto'
+1665752453.31:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/465.tonto/Spec/object.pm in 0.000746012s
+1665752453.31:     Instantiated Spec::Benchmark::tonto465 in 0.000068903s
+1665752453.31:     Finding src.alts took 0.000019073s
+1665752453.31:   Setting up tonto took 0.000933886s
+
+1665752453.31:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '435.gromacs'
+1665752453.31:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/435.gromacs/Spec/object.pm in 0.000157118s
+1665752453.31:     Instantiated Spec::Benchmark::gromacs435 in 0.000058889s
+1665752453.31:     Finding src.alts took 0.000019073s
+1665752453.31:   Setting up gromacs took 0.000334024s
+
+1665752453.31:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '447.dealII'
+1665752453.31:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/447.dealII/Spec/object.pm in 0.000341177s
+1665752453.31:     Instantiated Spec::Benchmark::dealII447 in 0.000065088s
+1665752453.31:     Finding src.alts took 0.000019073s
+1665752453.31:   Setting up dealII took 0.000526905s
+
+1665752453.31:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', 'all_fortran.bset'
+1665752453.31:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '998.specrand'
+1665752453.31:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/998.specrand/Spec/object.pm in 0.000108004s
+1665752453.31:     Instantiated Spec::Benchmark::specrand998 in 0.000043154s
+1665752453.31:     Finding src.alts took 0.000019073s
+1665752453.31:   Setting up specrand took 0.000267029s
+
+1665752453.31:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '458.sjeng'
+1665752453.31:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/458.sjeng/Spec/object.pm in 0.000117064s
+1665752453.31:     Instantiated Spec::Benchmark::sjeng458 in 0.000069141s
+1665752453.31:     Finding src.alts took 0.000032187s
+1665752453.31:   Setting up sjeng took 0.000360966s
+
+1665752453.31: Setting up suite took 0.015836000s
+1665752453.31: found 31 benchmarks in 9 benchsets.
+1665752453.31: Reading config file '/home/shr/Code/HardwareIsolation/hfi_spec/config/wasm_hfi_wasm2c_guardpages.cfg'
+
+1665752453.33: Can't find benchmark 'CINT2006wasm'
+1665752453.33: Can't parse 'CINT2006wasm' into a benchmark
+
+1665752453.33: No benchmarks specified!
+
+1665752453.33: The log for this run is in /home/shr/Code/HardwareIsolation/hfi_spec/result/CPU2006.006.log
+1665752453.33: The debug log for this run is in /home/shr/Code/HardwareIsolation/hfi_spec/result/CPU2006.006.log.debug
+
+1665752453.33: *
+1665752453.33: * Temporary files were NOT deleted; keeping temporaries such as
+1665752453.33: * /home/shr/Code/HardwareIsolation/hfi_spec/result/CPU2006.006.log.debug
+1665752453.33: * (These may be large!)
+1665752453.33: *
+1665752453.33: runspec finished at Fri Oct 14 09:00:53 2022; 1 total seconds elapsed

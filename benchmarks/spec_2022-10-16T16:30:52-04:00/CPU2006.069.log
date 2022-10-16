@@ -1,0 +1,24 @@
+runspec v6152 started at Fri Oct 14 09:56:26 2022 on "shr-Desktop"
+runspec is: /home/shr/Code/HardwareIsolation/hfi_spec/bin/runspec
+runspec: runspec --config=wasm_hfi_wasm2c_hfiemulate.cfg --action=clobber --define cores=1 --iterations=1 --noreportable --size=ref tmpwasmint 2
+toolset: linux-suse101-AMD64
+
+Locating benchmarks...found 31 benchmarks in 10 benchsets.
+Reading config file '/home/shr/Code/HardwareIsolation/hfi_spec/config/wasm_hfi_wasm2c_hfiemulate.cfg'
+
+Can't find benchmark '2'
+Can't parse '2' into a benchmark
+Verbosity = 5
+Action    = clobber
+Tune      = base
+Ext       = hfi_wasm2c_hfiemulate
+Size      = ref
+Machine   = default
+benchmarks= 401.bzip2
+outputs   = asc
+username  = shr
+Benchmarks selected: 401.bzip2
+
+The log for this run is in /home/shr/Code/HardwareIsolation/hfi_spec/result/CPU2006.069.log
+
+runspec finished at Fri Oct 14 09:56:27 2022; 1 total seconds elapsed
