@@ -10,8 +10,9 @@ CURR_USER=${USER}
 CURR_PATH=${PATH}
 CURR_TIME=$(shell date --iso=seconds)
 PARALLEL_COUNT=$(shell nproc)
+REPO_PATH=$(shell realpath .)
 
-DIRS=hw_isol_gem5 hfi_wasm2c_sandbox_compiler hfi_misc hfi_firefox
+DIRS=hw_isol_gem5 hfi_wasm2c_sandbox_compiler hfi_misc hfi_firefox hfi-sightglass
 
 hw_isol_gem5:
 	git clone --recursive git@github.com:PLSysSec/hw_isol_gem5.git
@@ -24,6 +25,9 @@ hfi_misc:
 
 hfi_firefox:
 	git clone --recursive git@github.com:PLSysSec/hfi_firefox.git
+
+hfi-sightglass:
+	git clone --recursive git@github.com:PLSysSec/hfi-sightglass
 
 wasi-sdk-14.0-linux.tar.gz:
 	wget https://github.com/WebAssembly/wasi-sdk/releases/download/wasi-sdk-14/wasi-sdk-14.0-linux.tar.gz
@@ -39,9 +43,30 @@ bootstrap: get_source
 		build-essential git m4 scons zlib1g zlib1g-dev \
 		libprotobuf-dev protobuf-compiler libprotoc-dev libgoogle-perftools-dev \
 		python3-dev python-is-python3 python3-pip libboost-all-dev pkg-config \
-		cpuset cpufrequtils xvfb gnuplot
+		cpuset cpufrequtils xvfb gnuplot \
+		ca-certificates curl gnupg lsb-release libssl-dev
 	cd hfi_firefox/mybuild && make bootstrap
 	pip3 install simplejson matplotlib
+	pip3 install --upgrade requests
+
+# Only needed if you need to rebuild sightglass wasm files
+install_docker:
+	sudo mkdir -p /etc/apt/keyrings
+ 	curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+	echo \
+	"deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+		$(shell lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+	sudo apt-get update
+	sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+	sudo service docker start
+	sudo usermod -a -G docker ${CURR_USER}
+	@echo "--------------------------------------------------------------------------"
+	@echo "Attention!!!!!!:"
+	@echo ""
+	@echo "Installed new packages, docker etc."
+	@echo "You need to reboot before proceeding."
+	@echo ""
+	@echo "--------------------------------------------------------------------------"
 
 autopull_%:
 	cd $* && git pull --rebase --autostash
@@ -58,10 +83,14 @@ build_gem5:
 build_wasm2c:
 	cd hfi_wasm2c_sandbox_compiler/mybuild && make build
 
+build_sightglass:
+	cd hfi-sightglass/mybuild && make -j$(PARALLEL_COUNT) build
+
 build_firefox:
 	cd hfi_firefox/mybuild && make build
 
-build: build_gem5 build_wasm2c build_firefox
+build: build_gem5 build_wasm2c build_sightglass build_firefox
+
 
 test-gem5:
 	cd hw_isol_gem5/mybuild && make test
@@ -111,6 +140,21 @@ testmode_benchmark_jpeg:
 benchmark_jpeg: benchmark_env_setup
 	export DISPLAY=:99 && make testmode_benchmark_jpeg
 
+SIGHTGLASS_OUTPUTFOLDER="$(REPO_PATH)/benchmarks/sightglass_emulated_$(CURR_TIME)/"
+
+testmode_benchmark_sightglass_emulated:
+	mkdir -p "$(SIGHTGLASS_OUTPUTFOLDER)" && \
+		export SIGHTGLASS_OUTPUTFOLDER="$(SIGHTGLASS_OUTPUTFOLDER)" && \
+		export SIGHTGLASS_WRITEOUTPUT=1 && \
+		cd hfi-sightglass/mybuild && \
+		make run_guardpage && \
+		make run_guardpage_asmmove && \
+		make run_hfiemulate && \
+		make run_hfiemulate2
+
+benchmark_benchmark_sightglass_emulated: benchmark_env_setup
+	make testmode_benchmark_benchmark_sightglass_emulated
+
 #### Keep Spec stuff separate so we can easily release other artifacts
 SPEC_BUILDS=wasm_hfi_wasm2c_guardpages wasm_hfi_wasm2c_boundschecks wasm_hfi_wasm2c_masking wasm_hfi_wasm2c_hfiemulate wasm_hfi_wasm2c_hfiemulate2
 
@@ -139,7 +183,7 @@ testmode_benchmark_spec:
 		runspec --config=$$spec_build.cfg --action=run --define cores=1 --iterations=1 --noreportable --size=ref wasmint; \
 	done
 	python3 spec_stats.py -i hfi_spec/result --filter  \
-		"hfi_spec/result/spec_results=wasm_hfi_wasm2c_guardpages:GuardPages,wasm_hfi_wasm2c_boundschecks:BoundsChecks,wasm_hfi_wasm2c_masking:Masking,wasm_hfi_wasm2c_hfiemulate:HfiEmulateLB,wasm_hfi_wasm2c_hfiemulate2:HfiEmulateUB" -n 5 --usePercent
+		"hfi_spec/result/spec_results=wasm_hfi_wasm2c_guardpages:GuardPages,wasm_hfi_wasm2c_boundschecks:BoundsChecks,wasm_hfi_wasm2c_masking:Masking,wasm_hfi_wasm2c_hfiemulate:HfiEmulateLB,wasm_hfi_wasm2c_hfiemulate2:HfiEmulateUB" -n $(words $(SPEC_BUILDS)) --usePercent
 	mv hfi_spec/result/ benchmarks/spec_$(CURR_TIME)
 
 benchmark_spec: benchmark_env_setup
