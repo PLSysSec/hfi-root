@@ -12,7 +12,7 @@ CURR_TIME=$(shell date --iso=seconds)
 PARALLEL_COUNT=$(shell nproc)
 REPO_PATH=$(shell realpath .)
 
-DIRS=hw_isol_gem5 hfi_wasm2c_sandbox_compiler hfi_misc hfi_firefox hfi-sightglass  lucet-spectre hfi_spectre_webserver
+DIRS=hw_isol_gem5 hfi_wasm2c_sandbox_compiler hfi_misc hfi_firefox hfi-sightglass rust_libloading_aslr btbflush-module lucet-spectre hfi_spectre_webserver
 
 hw_isol_gem5:
 	git clone --recursive git@github.com:PLSysSec/hw_isol_gem5.git
@@ -29,6 +29,12 @@ hfi_firefox:
 hfi-sightglass:
 	git clone --recursive git@github.com:PLSysSec/hfi-sightglass
 
+rust_libloading_aslr:
+	git clone git@github.com:PLSysSec/rust_libloading_aslr.git
+
+btbflush-module:
+	git clone git@github.com:PLSysSec/btbflush-module.git
+
 lucet-spectre:
 	git clone --recursive git@github.com:PLSysSec/lucet-spectre
 
@@ -42,18 +48,25 @@ wasi-sdk: wasi-sdk-14.0-linux.tar.gz
 	mkdir -p $@
 	tar -zxf $< -C $@ --strip-components 1
 
-get_source: $(DIRS) wasi-sdk
+node_modules:
+	npm install autocannon
+
+wrk:
+	git clone https://github.com/wg/wrk
+
+get_source: $(DIRS) wasi-sdk node_modules wrk
 
 bootstrap: get_source
 	sudo apt install -y make gcc g++ clang cmake python3 libpng-dev libuv1-dev \
 		build-essential git m4 scons zlib1g zlib1g-dev \
 		libprotobuf-dev protobuf-compiler libprotoc-dev libgoogle-perftools-dev \
 		python3-dev python-is-python3 python3-pip libboost-all-dev pkg-config \
-		cpuset cpufrequtils xvfb gnuplot \
+		cpuset cpufrequtils xvfb gnuplot npm \
 		ca-certificates curl gnupg lsb-release libssl-dev
 	cd hfi_firefox/mybuild && make bootstrap
 	pip3 install simplejson matplotlib
 	pip3 install --upgrade requests
+	npm install autocannon
 
 # Only needed if you need to rebuild sightglass wasm files
 install_docker:
@@ -92,16 +105,16 @@ build_wasm2c:
 build_sightglass:
 	cd hfi-sightglass/mybuild && make -j$(PARALLEL_COUNT) build
 
-build_lucet_spectre:
+build_faas:
+	cd wrk && $(MAKE) -j$(PARALLEL_COUNT)
 	cd lucet-spectre && cargo build --release
-
-build_hfi_spectre_webserver:
-	cd ./hfi_spectre_webserver && cargo build --release
+	cd hfi_spectre_webserver && cargo build --release
+	cd hfi_spectre_webserver/modules && make clean && make -j$(PARALLEL_COUNT)
 
 build_firefox:
 	cd hfi_firefox/mybuild && make build
 
-build: build_gem5 build_wasm2c build_sightglass build_lucet_spectre build_hfi_spectre_webserver build_firefox
+build: build_gem5 build_wasm2c build_sightglass build_faas build_firefox
 
 test-gem5:
 	cd hw_isol_gem5/mybuild && make test
@@ -169,6 +182,23 @@ testmode_benchmark_sightglass_emulated:
 
 benchmark_benchmark_sightglass_emulated: benchmark_env_setup
 	make testmode_benchmark_benchmark_sightglass_emulated
+
+install_btbflush: btbflush-module
+	# make -C does not work below
+	if [ -z "$(FOUND_BTBMODULE)" ]; then  \
+		echo "Installing BTB flush module" && \
+		cd ./btbflush-module/module && make clean && make && make insert; \
+	fi
+
+testmode_benchmark_faas: install_btbflush
+	rm -rf ./hfi_spectre_webserver/wrk_scripts/results
+	cd ./hfi_spectre_webserver/wrk_scripts && ./runall.sh
+	cd ./hfi_spectre_webserver/wrk_scripts && ./runall_tflite.sh
+	python3 ./hfi_spectre_webserver/wrk_analysis.py -folders ./hfi_spectre_webserver/wrk_scripts/results -sofolder ./hfi_spectre_webserver/modules -o1 ./hfi_spectre_webserver/wrk_scripts/results/wrk_table_1.tex -o2 ./hfi_spectre_webserver/wrk_scripts/results/wrk_table_2.tex
+	mv ./hfi_spectre_webserver/wrk_scripts/results ./benchmarks/faas_$(CURR_TIME)
+
+benchmark_benchmark_faas: benchmark_env_setup
+	make testmode_benchmark_benchmark_faas
 
 #### Keep Spec stuff separate so we can easily release other artifacts
 # SPEC_BUILDS=wasm_hfi_wasm2c_hfiemulate2 wasm_hfi_wasm2c_hfiemulate

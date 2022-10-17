@@ -4,3 +4,4 @@ hw_isol_gem5_new/*
 old_*/*
 wasi-sdk/
 wasi-sdk*.tar.gz
+node_modules/
