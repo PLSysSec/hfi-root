@@ -124,16 +124,20 @@ disable_hyperthreading:
 restore_hyperthreading:
 	sudo bash -c "echo on > /sys/devices/system/cpu/smt/control"
 
-benchmark_env_setup: disable_hyperthreading
+disable_cpufreq:
+	sudo cpufreq-set -c 1 -g performance
+	sudo cpufreq-set -c 1 --min 2200MHz --max 2200MHz
+
+restore_cpufreq:
+	POLICYINFO=($$(cpufreq-info -c 0 -p)) && \
+	sudo cpufreq-set -c 1 -g $${POLICYINFO[2]} && \
+	sudo cpufreq-set -c 1 --min $${POLICYINFO[0]}MHz --max $${POLICYINFO[1]}MHz
+
+benchmark_env_setup: disable_hyperthreading disable_cpufreq
 	sudo cset shield -c 1 -k on
 	(taskset -c 1 echo "testing shield..." > /dev/null 2>&1 && echo "Shielded shell running!") || (echo "Shielded shell not running. Run make shielding_on first!" && sudo cset shield --reset && exit 1)
-	if [ -x "$(shell command -v cpupower)" ]; then \
-		sudo cpupower -c 1 frequency-set -g performance && sudo cpupower -c 1 frequency-set --min 2200MHz --max 2200MHz; \
-	else \
-		sudo cpufreq-set -c 1 -g performance && sudo cpufreq-set -c 1 --min 2200MHz --max 2200MHz; \
-	fi
 
-benchmark_env_close: restore_hyperthreading shielding_off
+benchmark_env_close: restore_hyperthreading shielding_off restore_cpufreq
 
 testmode_benchmark_graphite:
 	cd hfi_firefox && ./testsRunBenchmark "../benchmarks/graphite_test_$(CURR_TIME)" "graphite_perf_test"
