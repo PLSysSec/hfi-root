@@ -111,7 +111,7 @@ run_xvfb:
 		Xvfb :99 & \
 	fi
 
-shielding_on: run_xvfb
+shielded_shell: run_xvfb
 	sudo cset shield -c 1 -k on
 	sudo cset shield -e sudo -- -u ${CURR_USER} env "PATH=${CURR_PATH}" bash
 
@@ -135,7 +135,7 @@ restore_cpufreq:
 
 benchmark_env_setup: disable_hyperthreading disable_cpufreq
 	sudo cset shield -c 1 -k on
-	(taskset -c 1 echo "testing shield..." > /dev/null 2>&1 && echo "Shielded shell running!") || (echo "Shielded shell not running. Run make shielding_on first!" && sudo cset shield --reset && exit 1)
+	(taskset -c 1 echo "testing shielded shell..." > /dev/null 2>&1 && echo "Shielded shell running!") || (echo "Not running in shielded shell. Run make shielded_shell first!" && sudo cset shield --reset && exit 1)
 
 benchmark_env_close: restore_hyperthreading shielding_off restore_cpufreq
 
@@ -171,7 +171,8 @@ benchmark_benchmark_sightglass_emulated: benchmark_env_setup
 	make testmode_benchmark_benchmark_sightglass_emulated
 
 #### Keep Spec stuff separate so we can easily release other artifacts
-SPEC_BUILDS=wasm_hfi_wasm2c_guardpages wasm_hfi_wasm2c_boundschecks wasm_hfi_wasm2c_masking wasm_hfi_wasm2c_hfiemulate2 wasm_hfi_wasm2c_hfiemulate
+SPEC_BUILDS=wasm_hfi_wasm2c_hfiemulate2 wasm_hfi_wasm2c_hfiemulate
+# SPEC_BUILDS=wasm_hfi_wasm2c_guardpages wasm_hfi_wasm2c_boundschecks wasm_hfi_wasm2c_masking wasm_hfi_wasm2c_hfiemulate2 wasm_hfi_wasm2c_hfiemulate
 
 hfi_spec:
 	git clone --recursive git@github.com:PLSysSec/hfi_spec.git
