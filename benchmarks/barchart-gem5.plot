@@ -1,4 +1,4 @@
-set terminal pdf enhanced size 5,2 
+set terminal pdf enhanced size 3.5,2
 
 set key outside
 set key above
@@ -11,10 +11,10 @@ set style data histogram
 set style histogram cluster gap 1
 set style fill solid 1.00 border lc "#000000"
 
-set boxwidth 0.8
+set boxwidth 0.5
 
 set xtics format ""
-set xtics rotate by 45 right
+set xtics rotate by 60 right
 
 set xtics font "Times New Roman,9"
 set xtics scale 0
