@@ -1,1 +1,2 @@
 /hfi-root/benchmarks/sightglass_hfiemulate2_Oct17-04:49
+/home/jrudek/hfi-root/benchmarks/sightglass_hfi_Oct16-11:35
