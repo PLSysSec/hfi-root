@@ -73,7 +73,7 @@ bootstrap: get_source
 		python3-dev python-is-python3 python3-pip libboost-all-dev pkg-config \
 		cpuset cpufrequtils xvfb gnuplot npm \
 		ca-certificates curl gnupg lsb-release libssl-dev \
-		apache2-utils jq
+		apache2-utils jq libseccomp-dev
 	cd hfi_firefox/mybuild && make bootstrap
 	wget https://github.com/sharkdp/hyperfine/releases/download/v1.15.0/hyperfine_1.15.0_amd64.deb
 	sudo dpkg -i hyperfine_1.15.0_amd64.deb
@@ -140,10 +140,10 @@ build_wasmtime_%:
 build_wasmtime: build_wasmtime_hfi-baseline build_wasmtime_hfi-grow-without-mprotect-lfence build_wasmtime_hfi-grow-without-mprotect build_wasmtime_hfi-grow-without-mprotect-baseline build_wasmtime_hfi-baseline-instantiation build_wasmtime_hfi-reg-pressure build_wasmtime_hfi-reg-pressure2
 	cd sightglass && cargo build --release
 
-build_misc_micros:
-	cd hfi-misc && make -j$(PARALLEL_COUNT) build
+build_misc:
+	cd hfi_misc && make -j$(PARALLEL_COUNT) build
 
-build: build_gem5 build_wasm2c build_sightglass build_faas build_nginx build_firefox build_wasmtime build_misc_micros
+build: build_gem5 build_wasm2c build_sightglass build_faas build_nginx build_firefox build_wasmtime build_misc
 
 test-gem5:
 	cd hw_isol_gem5/mybuild && make test
@@ -245,6 +245,13 @@ benchmark_mprotect:
 	mkdir -p "$(MPROTECT_OUTPUTFOLDER)" && \
 		export BENCH_OUTPUTFOLDER="$(MPROTECT_OUTPUTFOLDER)" && \
 		cd hfi_misc && make benchmark_mprotect
+
+SYSCALL_OUTPUTFOLDER="$(REPO_PATH)/benchmarks/syscall_$(CURR_TIME)/"
+
+benchmark_syscall:
+	mkdir -p "$(SYSCALL_OUTPUTFOLDER)" && \
+		export BENCH_OUTPUTFOLDER="$(SYSCALL_OUTPUTFOLDER)" && \
+		cd hfi_misc && make benchmark_syscall
 
 #### Keep Spec stuff separate so we can easily release other artifacts
 SPEC_BUILDS=wasm_hfi_wasm2c_hfiemulate2 wasm_hfi_wasm2c_guardpages wasm_hfi_wasm2c_boundschecks wasm_hfi_wasm2c_masking
