@@ -12,7 +12,7 @@ CURR_TIME=$(shell date --iso=seconds)
 PARALLEL_COUNT=$(shell nproc)
 REPO_PATH=$(shell realpath .)
 
-DIRS=hw_isol_gem5 hfi_wasm2c_sandbox_compiler hfi_misc hfi_firefox hfi-sightglass rust_libloading_aslr btbflush-module lucet-spectre hfi_spectre_webserver hfi_erim
+DIRS=hw_isol_gem5 hfi_wasm2c_sandbox_compiler hfi_misc hfi_firefox hfi-sightglass rust_libloading_aslr btbflush-module lucet-spectre hfi_spectre_webserver hfi-erim
 
 hw_isol_gem5:
 	git clone --recursive git@github.com:PLSysSec/hw_isol_gem5.git
@@ -41,7 +41,7 @@ lucet-spectre:
 hfi_spectre_webserver:
 	git clone --recursive git@github.com:PLSysSec/hfi_spectre_webserver.git
 
-hfi_erim:
+hfi-erim:
 	git clone --recursive git@github.com:PLSysSec/hfi-erim.git
 
 wasi-sdk-14.0-linux.tar.gz:
@@ -212,8 +212,8 @@ benchmark_faas: benchmark_env_setup
 	make testmode_benchmark_faas
 
 testmode_benchmark_nginx:
-	cd hfi-erim/bench/webserver/ && ./simple_bench.sh 1
-	cd hfi-erim/bench/webserver/ && /draw.py
+	cd hfi-erim/bench/webserver/ && ./simple_bench.sh 60
+	cd hfi-erim/bench/webserver/ && ./draw.py
 	mkdir -p ./benchmarks/nginx_$(CURR_TIME)
 	mv hfi-erim/bench/webserver/*.log ./benchmarks/nginx_$(CURR_TIME)/
 	mv hfi-erim/bench/webserver/nginx.png ./benchmarks/nginx_$(CURR_TIME)/nginx.png
