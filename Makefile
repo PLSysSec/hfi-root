@@ -242,7 +242,7 @@ testmode_benchmark_wasmtime:
 		--engine $(REPO_PATH)/wasmtime-builds/hfi-baseline/target/release/libwasmtime_bench_api.so \
 		--engine $(REPO_PATH)/wasmtime-builds/hfi-reg-pressure/target/release/libwasmtime_bench_api.so \
 		--engine $(REPO_PATH)/wasmtime-builds/hfi-reg-pressure2/target/release/libwasmtime_bench_api.so \
-		-- benchmarks/spidermonkey/benchmark.wasm | tee ./benchmarks/wasmtime_$(CURRTIME)
+		-- benchmarks/spidermonkey/benchmark.wasm | tee $(REPO_PATH)/benchmarks/wasmtime_$(CURR_TIME).txt
 
 #### Keep Spec stuff separate so we can easily release other artifacts
 # SPEC_BUILDS=wasm_hfi_wasm2c_hfiemulate2 wasm_hfi_wasm2c_hfiemulate
