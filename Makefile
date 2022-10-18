@@ -252,7 +252,7 @@ benchmark_wasmtime_regpressure: benchmark_env_setup
 testmode_benchmark_wasmtime_mprotect:
 	cd sightglass && cargo run --release -- benchmark \
 		--engine $(REPO_PATH)/wasmtime-builds/hfi-grow-without-mprotect-baseline/target/release/libwasmtime_bench_api.so \
-		--engine $(REPO_PATH)/wasmtime-builds/hfi-grow-without-mprotect-lfence/target/release/libwasmtime_bench_api.so \
+		--engine $(REPO_PATH)/wasmtime-builds/hfi-grow-without-mprotect/target/release/libwasmtime_bench_api.so \
 		-- benchmarks/spidermonkey/benchmark.wasm | tee $(REPO_PATH)/benchmarks/wasmtime_mprotect_$(CURR_TIME).txt
 
 benchmark_benchmark_wasmtime_mprotect: benchmark_env_setup
