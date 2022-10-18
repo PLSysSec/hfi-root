@@ -12,7 +12,7 @@ CURR_TIME=$(shell date --iso=seconds)
 PARALLEL_COUNT=$(shell nproc)
 REPO_PATH=$(shell realpath .)
 
-DIRS=hw_isol_gem5 hfi_wasm2c_sandbox_compiler hfi_misc hfi_firefox hfi-sightglass rust_libloading_aslr btbflush-module lucet-spectre hfi_spectre_webserver hfi-nginx
+DIRS=hw_isol_gem5 hfi_wasm2c_sandbox_compiler hfi_misc rlbox_hfi_wasm2c_sandbox hfi_firefox hfi-sightglass rust_libloading_aslr btbflush-module lucet-spectre hfi_spectre_webserver hfi-nginx
 
 hw_isol_gem5:
 	git clone --recursive git@github.com:PLSysSec/hw_isol_gem5.git
@@ -22,6 +22,9 @@ hfi_wasm2c_sandbox_compiler:
 
 hfi_misc:
 	git clone --recursive git@github.com:PLSysSec/hfi_misc.git
+
+rlbox_hfi_wasm2c_sandbox:
+	git clone --recursive git@github.com:PLSysSec/rlbox_hfi_wasm2c_sandbox
 
 hfi_firefox:
 	git clone --recursive git@github.com:PLSysSec/hfi_firefox.git
