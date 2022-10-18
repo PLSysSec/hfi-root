@@ -1,0 +1,44 @@
+\footnotesize
+\begin{tabular}{p{1.8cm}
+  |p{0.55cm}p{0.55cm}p{0.55cm}p{0.55cm}
+  |p{0.55cm}p{0.55cm}p{0.55cm}p{0.55cm}
+  |p{0.55cm}p{0.55cm}p{0.55cm}p{0.55cm}
+  |p{0.55cm}p{0.55cm}p{0.55cm}p{0.55cm}
+}
+
+\multirow{2}{1cm}{\textbf{\pbox{\textwidth}{\sys Protection}}}
+ & \multicolumn{4}{c|}{\cdnXMLtoJSON}
+ & \multicolumn{4}{c|}{\cdnML}
+ & \multicolumn{4}{c|}{\cdnHash}
+ & \multicolumn{4}{c}{\cdnTemplatedHTML}
+\\\cline{2-17}
+
+ & Avg Lat	 & Tail Lat	 & Thru-put	 & Bin size	
+ & Avg Lat	 & Tail Lat	 & Thru-put	 & Bin size	
+ & Avg Lat	 & Tail Lat	 & Thru-put	 & Bin size	
+ & Avg Lat	 & Tail Lat	 & Thru-put	 & Bin size	
+\\\hline
+
+Stock --- unsafe
+ & 421ms        & 466ms        & 231          & 3.5MB       
+ & 12.2s        & 14.7s        & 1.62         & 34.3MB      
+ & 589ms        & 667ms        & 161          & 3.9MB       
+ & 45.6ms       & 61.8ms       & 2.19k        & 3.6MB       
+\\\hline
+
+Swivel-SFI
+ & 559ms        & 616ms        & 174          & 4.1MB       
+ & 11.5s        & 12.8s        & 1.72         & 34.5MB      
+ & 645ms        & 709ms        & 150          & 4.6MB       
+ & 78.9ms       & 97.9ms       & 1.26k        & 4.2MB       
+\\\hline
+
+HFI
+ & 431ms        & 480ms        & 227          & 3.5MB       
+ & 12.2s        & 14.7s        & 1.62         & 34.3MB      
+ & 589ms        & 647ms        & 165          & 3.9MB       
+ & 602ms        & 647ms        & 165          & 3.9MB       
+ & 45.7ms       & 61.2ms       & 2.18k        & 3.6MB       
+\\\hline
+
+\end{tabular}

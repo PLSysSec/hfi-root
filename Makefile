@@ -12,7 +12,7 @@ CURR_TIME=$(shell date --iso=seconds)
 PARALLEL_COUNT=$(shell nproc)
 REPO_PATH=$(shell realpath .)
 
-DIRS=hw_isol_gem5 hfi_wasm2c_sandbox_compiler hfi_misc hfi_firefox hfi-sightglass rust_libloading_aslr btbflush-module lucet-spectre hfi_spectre_webserver
+DIRS=hw_isol_gem5 hfi_wasm2c_sandbox_compiler hfi_misc hfi_firefox hfi-sightglass rust_libloading_aslr btbflush-module lucet-spectre hfi_spectre_webserver hfi-nginx
 
 hw_isol_gem5:
 	git clone --recursive git@github.com:PLSysSec/hw_isol_gem5.git
@@ -25,6 +25,10 @@ hfi_misc:
 
 hfi_firefox:
 	git clone --recursive git@github.com:PLSysSec/hfi_firefox.git
+
+sightglass:
+	git clone https://github.com/bytecodealliance/sightglass
+	git checkout -b working 1ab26cdaca913a38c53d8db5808fc5bf0fdb23f5
 
 hfi-sightglass:
 	git clone --recursive git@github.com:PLSysSec/hfi-sightglass
@@ -41,6 +45,9 @@ lucet-spectre:
 hfi_spectre_webserver:
 	git clone --recursive git@github.com:PLSysSec/hfi_spectre_webserver.git
 
+hfi-nginx:
+	git clone --recursive git@github.com:PLSysSec/hfi-nginx.git
+
 wasi-sdk-14.0-linux.tar.gz:
 	wget https://github.com/WebAssembly/wasi-sdk/releases/download/wasi-sdk-14/wasi-sdk-14.0-linux.tar.gz
 
@@ -54,7 +61,7 @@ node_modules:
 wrk:
 	git clone https://github.com/wg/wrk
 
-get_source: $(DIRS) wasi-sdk node_modules wrk
+get_source: $(DIRS) sightglass wasi-sdk node_modules wrk
 
 bootstrap: get_source
 	sudo apt install -y make gcc g++ clang cmake python3 libpng-dev libuv1-dev \
@@ -62,7 +69,8 @@ bootstrap: get_source
 		libprotobuf-dev protobuf-compiler libprotoc-dev libgoogle-perftools-dev \
 		python3-dev python-is-python3 python3-pip libboost-all-dev pkg-config \
 		cpuset cpufrequtils xvfb gnuplot npm \
-		ca-certificates curl gnupg lsb-release libssl-dev
+		ca-certificates curl gnupg lsb-release libssl-dev \
+		apache2-utils
 	cd hfi_firefox/mybuild && make bootstrap
 	pip3 install simplejson matplotlib
 	pip3 install --upgrade requests
@@ -111,10 +119,22 @@ build_faas:
 	cd hfi_spectre_webserver && cargo build --release
 	cd hfi_spectre_webserver/modules && make clean && make -j$(PARALLEL_COUNT)
 
+build_nginx:
+	cd hfi-nginx/bench/webserver && ./build.sh
+
 build_firefox:
 	cd hfi_firefox/mybuild && make build
 
-build: build_gem5 build_wasm2c build_sightglass build_faas build_firefox
+build_wasmtime_%:
+	export REPOSITORY="git@github.com:PLSysSec/hfi-wasmtime.git" && \
+		export REVISION="$*" && \
+		export BUILD_DIR="$(REPO_PATH)/wasmtime-builds/$*" && \
+		mkdir -p $$BUILD_DIR && \
+		cd sightglass/engines/wasmtime && rustc build.rs && ./build
+
+build_wasmtime: build_wasmtime_hfi-baseline build_wasmtime_hfi-grow-without-mprotect-lfence build_wasmtime_hfi-grow-without-mprotect build_wasmtime_hfi-grow-without-mprotect-baseline build_wasmtime_hfi-baseline-instantiation build_wasmtime_hfi-reg-pressure build_wasmtime_hfi-reg-pressure2
+
+build: build_gem5 build_wasm2c build_sightglass build_faas build_nginx build_firefox build_wasmtime
 
 test-gem5:
 	cd hw_isol_gem5/mybuild && make test
@@ -185,7 +205,7 @@ benchmark_benchmark_sightglass_emulated: benchmark_env_setup
 
 install_btbflush: btbflush-module
 	# make -C does not work below
-	if [ -z "$(FOUND_BTBMODULE)" ]; then  \
+	if [ -z "$(shell lsmod | grep "cool")" ]; then  \
 		echo "Installing BTB flush module" && \
 		cd ./btbflush-module/module && make clean && make && make insert; \
 	fi
@@ -193,12 +213,35 @@ install_btbflush: btbflush-module
 testmode_benchmark_faas: install_btbflush
 	rm -rf ./hfi_spectre_webserver/wrk_scripts/results
 	cd ./hfi_spectre_webserver/wrk_scripts && ./runall.sh
-	cd ./hfi_spectre_webserver/wrk_scripts && ./runall_tflite.sh
-	python3 ./hfi_spectre_webserver/wrk_analysis.py -folders ./hfi_spectre_webserver/wrk_scripts/results -sofolder ./hfi_spectre_webserver/modules -o1 ./hfi_spectre_webserver/wrk_scripts/results/wrk_table_1.tex -o2 ./hfi_spectre_webserver/wrk_scripts/results/wrk_table_2.tex
+
+testmode_benchmark_faas_finish:
+	python3 ./hfi_spectre_webserver/wrk_analysis.py -folders ./hfi_spectre_webserver/wrk_scripts/results -sofolder ./hfi_spectre_webserver/modules -o1 ./hfi_spectre_webserver/wrk_scripts/results/wrk_table_1.tex -o2 ./hfi_spectre_webserver/wrk_scripts/results/wrk_table_2.tex -o3 ./hfi_spectre_webserver/wrk_scripts/results/metrics.txt
 	mv ./hfi_spectre_webserver/wrk_scripts/results ./benchmarks/faas_$(CURR_TIME)
 
-benchmark_benchmark_faas: benchmark_env_setup
-	make testmode_benchmark_benchmark_faas
+benchmark_faas_finish:
+	make testmode_benchmark_faas_finish
+
+benchmark_faas: benchmark_env_setup
+	make testmode_benchmark_faas
+
+testmode_benchmark_nginx:
+	cd hfi-nginx/bench/webserver/ && ./simple_bench.sh 60
+	cd hfi-nginx/bench/webserver/ && ./draw.py
+	mkdir -p ./benchmarks/nginx_$(CURR_TIME)
+	mv hfi-nginx/bench/webserver/*.log ./benchmarks/nginx_$(CURR_TIME)/
+	mv hfi-nginx/bench/webserver/nginx.png ./benchmarks/nginx_$(CURR_TIME)/nginx.png
+
+benchmark_nginx: benchmark_env_setup
+	make testmode_benchmark_nginx
+
+testmode_benchmark_wasmtime:
+	# cp wasmtime-builds/hfi-baseline/target/release/libwasmtime_bench_api.so hfi-sightglass/engines/wasmtime/libengine.so
+	# cp wasmtime-builds/hfi-baseline/.build-info hfi-sightglass/engines/wasmtime/.build-info
+	cd hfi-sightglass && cargo run -- benchmark \
+		--engine $(REPO_PATH)/wasmtime-builds/hfi-baseline/target/release/libwasmtime_bench_api.so \
+		--engine $(REPO_PATH)/wasmtime-builds/hfi-reg-pressure/target/release/libwasmtime_bench_api.so \
+		--engine $(REPO_PATH)/wasmtime-builds/hfi-reg-pressure2/target/release/libwasmtime_bench_api.so \
+		-- benchmarks/spidermonkey/benchmark.wasm | tee ./benchmarks/wasmtime_$(CURRTIME)
 
 #### Keep Spec stuff separate so we can easily release other artifacts
 # SPEC_BUILDS=wasm_hfi_wasm2c_hfiemulate2 wasm_hfi_wasm2c_hfiemulate

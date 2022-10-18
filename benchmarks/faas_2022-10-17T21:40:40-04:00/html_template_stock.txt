@@ -1,0 +1,8 @@
+Machine readable:
+45557.4
+61800
+2185.69
+
+Avg latency: 45.5574 ms
+99% latency: 61.8 ms
+Throughput: 2185.69 req/s
