@@ -140,7 +140,10 @@ build_wasmtime_%:
 build_wasmtime: build_wasmtime_hfi-baseline build_wasmtime_hfi-grow-without-mprotect-lfence build_wasmtime_hfi-grow-without-mprotect build_wasmtime_hfi-grow-without-mprotect-baseline build_wasmtime_hfi-baseline-instantiation build_wasmtime_hfi-reg-pressure build_wasmtime_hfi-reg-pressure2
 	cd sightglass && cargo build --release
 
-build: build_gem5 build_wasm2c build_sightglass build_faas build_nginx build_firefox build_wasmtime
+build_misc_micros:
+	cd hfi-misc && make -j$(PARALLEL_COUNT) build
+
+build: build_gem5 build_wasm2c build_sightglass build_faas build_nginx build_firefox build_wasmtime build_misc_micros
 
 test-gem5:
 	cd hw_isol_gem5/mybuild && make test
