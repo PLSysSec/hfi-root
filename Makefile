@@ -73,7 +73,7 @@ bootstrap: get_source
 		python3-dev python-is-python3 python3-pip libboost-all-dev pkg-config \
 		cpuset cpufrequtils xvfb gnuplot npm \
 		ca-certificates curl gnupg lsb-release libssl-dev \
-		apache2-utils jq libseccomp-dev
+		apache2-utils jq libseccomp-dev gawk
 	cd hfi_firefox/mybuild && make bootstrap
 	wget https://github.com/sharkdp/hyperfine/releases/download/v1.15.0/hyperfine_1.15.0_amd64.deb
 	sudo dpkg -i hyperfine_1.15.0_amd64.deb
@@ -201,6 +201,7 @@ benchmark_sightglass_emulated:
 		make run_boundschecks && \
 		make run_masking && \
 		make run_hfiemulate2
+	./benchmarks/plot_run.sh $(SIGHTGLASS_OUTPUTFOLDER)
 
 install_btbflush: btbflush-module
 	# make -C does not work below
