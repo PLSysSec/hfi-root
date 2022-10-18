@@ -178,25 +178,19 @@ benchmark_env_setup: disable_hyperthreading disable_cpufreq
 
 benchmark_env_close: restore_hyperthreading shielding_off restore_cpufreq
 
-testmode_benchmark_graphite:
-	cd hfi_firefox && ./testsRunBenchmark "../benchmarks/graphite_test_$(CURR_TIME)" "graphite_perf_test"
-
-benchmark_graphite: benchmark_env_setup
-	export DISPLAY=:99 && make testmode_benchmark_graphite
+benchmark_graphite:
+	export DISPLAY=:99 && cd hfi_firefox && ./testsRunBenchmark "../benchmarks/graphite_test_$(CURR_TIME)" "graphite_perf_test"
 
 # cd hfi_firefox && ./testsRunBenchmark "../benchmarks/jpeg_black_width_test_$(CURR_TIME)" "jpeg_black_width_perf"
 
-testmode_benchmark_jpeg:
-	cd hfi_firefox && ./testsRunBenchmark "../benchmarks/jpeg_test_$(CURR_TIME)" "jpeg_perf"
+benchmark_jpeg:
+	export DISPLAY=:99 && cd hfi_firefox && ./testsRunBenchmark "../benchmarks/jpeg_test_$(CURR_TIME)" "jpeg_perf"
 	./hfi_firefox/testsProduceImagePlotData.py ./benchmarks/jpeg_test_$(CURR_TIME)/compare_stock_terminal_analysis.json.dat ./benchmarks/jpeg_test_$(CURR_TIME)/jpeg_perf.plotdat
 	gnuplot -e "inputfilename='./benchmarks/jpeg_test_$(CURR_TIME)/jpeg_perf.plotdat';outputfilename='./benchmarks/jpeg_test_$(CURR_TIME)/jpeg_perf.pdf'" ./hfi_firefox/testsProduceImagePlot.gnu
 
-benchmark_jpeg: benchmark_env_setup
-	export DISPLAY=:99 && make testmode_benchmark_jpeg
-
 SIGHTGLASS_OUTPUTFOLDER="$(REPO_PATH)/benchmarks/sightglass_emulated_$(CURR_TIME)/"
 
-testmode_benchmark_sightglass_emulated:
+benchmark_sightglass_emulated:
 	mkdir -p "$(SIGHTGLASS_OUTPUTFOLDER)" && \
 		export SIGHTGLASS_OUTPUTFOLDER="$(SIGHTGLASS_OUTPUTFOLDER)" && \
 		cd hfi-sightglass/mybuild && \
@@ -205,9 +199,6 @@ testmode_benchmark_sightglass_emulated:
 		make run_masking && \
 		make run_hfiemulate2
 
-benchmark_benchmark_sightglass_emulated: benchmark_env_setup
-	make testmode_benchmark_benchmark_sightglass_emulated
-
 install_btbflush: btbflush-module
 	# make -C does not work below
 	if [ -z "$(shell lsmod | grep "cool")" ]; then  \
@@ -215,31 +206,22 @@ install_btbflush: btbflush-module
 		cd ./btbflush-module/module && make clean && make && make insert; \
 	fi
 
-testmode_benchmark_faas: install_btbflush
+benchmark_faas: install_btbflush
 	rm -rf ./hfi_spectre_webserver/wrk_scripts/results
 	cd ./hfi_spectre_webserver/wrk_scripts && ./runall.sh
 
-testmode_benchmark_faas_finish:
+benchmark_faas_finish:
 	python3 ./hfi_spectre_webserver/wrk_analysis.py -folders ./hfi_spectre_webserver/wrk_scripts/results -sofolder ./hfi_spectre_webserver/modules -o1 ./hfi_spectre_webserver/wrk_scripts/results/wrk_table_1.tex -o2 ./hfi_spectre_webserver/wrk_scripts/results/wrk_table_2.tex -o3 ./hfi_spectre_webserver/wrk_scripts/results/metrics.txt
 	mv ./hfi_spectre_webserver/wrk_scripts/results ./benchmarks/faas_$(CURR_TIME)
 
-benchmark_faas_finish:
-	make testmode_benchmark_faas_finish
-
-benchmark_faas: benchmark_env_setup
-	make testmode_benchmark_faas
-
-testmode_benchmark_nginx:
+benchmark_nginx:
 	cd hfi-nginx/bench/webserver/ && ./simple_bench.sh 60
 	cd hfi-nginx/bench/webserver/ && ./draw.py
 	mkdir -p ./benchmarks/nginx_$(CURR_TIME)
 	mv hfi-nginx/bench/webserver/*.log ./benchmarks/nginx_$(CURR_TIME)/
 	mv hfi-nginx/bench/webserver/nginx.png ./benchmarks/nginx_$(CURR_TIME)/nginx.png
 
-benchmark_nginx: benchmark_env_setup
-	make testmode_benchmark_nginx
-
-testmode_benchmark_wasmtime_regpressure:
+benchmark_wasmtime_regpressure:
 	# cp wasmtime-builds/hfi-baseline/target/release/libwasmtime_bench_api.so hfi-sightglass/engines/wasmtime/libengine.so
 	# cp wasmtime-builds/hfi-baseline/.build-info hfi-sightglass/engines/wasmtime/.build-info
 	cd sightglass && cargo run --release -- benchmark \
@@ -248,17 +230,11 @@ testmode_benchmark_wasmtime_regpressure:
 		--engine $(REPO_PATH)/wasmtime-builds/hfi-reg-pressure2/target/release/libwasmtime_bench_api.so \
 		-- benchmarks/spidermonkey/benchmark.wasm | tee $(REPO_PATH)/benchmarks/wasmtime_regpressure_$(CURR_TIME).txt
 
-benchmark_wasmtime_regpressure: benchmark_env_setup
-	make testmode_benchmark_wasmtime_regpressure
-
-testmode_benchmark_wasmtime_mprotect:
+benchmark_wasmtime_mprotect:
 	cd sightglass && cargo run --release -- benchmark \
 		--engine $(REPO_PATH)/wasmtime-builds/hfi-grow-without-mprotect-baseline/target/release/libwasmtime_bench_api.so \
 		--engine $(REPO_PATH)/wasmtime-builds/hfi-grow-without-mprotect/target/release/libwasmtime_bench_api.so \
 		-- benchmarks/spidermonkey/benchmark.wasm | tee $(REPO_PATH)/benchmarks/wasmtime_mprotect_$(CURR_TIME).txt
-
-benchmark_benchmark_wasmtime_mprotect: benchmark_env_setup
-	make testmode_benchmark_benchmark_wasmtime_mprotect
 
 #### Keep Spec stuff separate so we can easily release other artifacts
 SPEC_BUILDS=wasm_hfi_wasm2c_hfiemulate2 wasm_hfi_wasm2c_guardpages wasm_hfi_wasm2c_boundschecks wasm_hfi_wasm2c_masking
@@ -282,7 +258,7 @@ build_spec: hfi_spec autopull_hfi_spec build_wasm2c_dependency
 		runspec --config=$$spec_build.cfg --action=build --define cores=1 --iterations=1 --noreportable --size=ref wasmint | grep "Build "; \
 	done
 
-testmode_benchmark_spec:
+benchmark_spec:
 	cd hfi_spec && source shrc && cd config && \
 	for spec_build in $(SPEC_BUILDS); do \
 		runspec --config=$$spec_build.cfg --action=run --define cores=1 --iterations=1 --noreportable --size=ref wasmint; \
@@ -290,9 +266,6 @@ testmode_benchmark_spec:
 	python3 spec_stats.py -i hfi_spec/result --filter  \
 		"hfi_spec/result/spec_results=hfi_wasm2c_boundschecks:BoundsChecks,hfi_wasm2c_masking:Masking,hfi_wasm2c_hfiemulate2:HfiEmulation" -n $(words $(SPEC_BUILDS)) --usePercent
 	mv hfi_spec/result/ benchmarks/spec_$(CURR_TIME)
-
-benchmark_spec: benchmark_env_setup
-	make testmode_benchmark_spec
 
 clean:
 	cd hw_isol_gem5/mybuild && make clean
