@@ -236,6 +236,13 @@ benchmark_wasmtime_mprotect:
 		--engine $(REPO_PATH)/wasmtime-builds/hfi-grow-without-mprotect/target/release/libwasmtime_bench_api.so \
 		-- benchmarks/spidermonkey/benchmark.wasm | tee $(REPO_PATH)/benchmarks/wasmtime_mprotect_$(CURR_TIME).txt
 
+MPROTECT_OUTPUTFOLDER="$(REPO_PATH)/benchmarks/mprotect_$(CURR_TIME)/"
+
+benchmark_mprotect:
+	mkdir -p "$(MPROTECT_OUTPUTFOLDER)" && \
+		export BENCH_OUTPUTFOLDER="$(MPROTECT_OUTPUTFOLDER)" && \
+		cd hfi_misc && make benchmark_mprotect
+
 #### Keep Spec stuff separate so we can easily release other artifacts
 SPEC_BUILDS=wasm_hfi_wasm2c_hfiemulate2 wasm_hfi_wasm2c_guardpages wasm_hfi_wasm2c_boundschecks wasm_hfi_wasm2c_masking
 
