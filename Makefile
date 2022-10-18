@@ -26,6 +26,10 @@ hfi_misc:
 hfi_firefox:
 	git clone --recursive git@github.com:PLSysSec/hfi_firefox.git
 
+sightglass:
+	git clone https://github.com/bytecodealliance/sightglass
+	git checkout -b working 1ab26cdaca913a38c53d8db5808fc5bf0fdb23f5
+
 hfi-sightglass:
 	git clone --recursive git@github.com:PLSysSec/hfi-sightglass
 
@@ -57,7 +61,7 @@ node_modules:
 wrk:
 	git clone https://github.com/wg/wrk
 
-get_source: $(DIRS) wasi-sdk node_modules wrk
+get_source: $(DIRS) sightglass wasi-sdk node_modules wrk
 
 bootstrap: get_source
 	sudo apt install -y make gcc g++ clang cmake python3 libpng-dev libuv1-dev \
@@ -126,7 +130,7 @@ build_wasmtime_%:
 		export REVISION="$*" && \
 		export BUILD_DIR="$(REPO_PATH)/wasmtime-builds/$*" && \
 		mkdir -p $$BUILD_DIR && \
-		cd hfi-sightglass/engines/wasmtime && rustc build.rs && ./build
+		cd sightglass/engines/wasmtime && rustc build.rs && ./build
 
 build_wasmtime: build_wasmtime_hfi-baseline build_wasmtime_hfi-grow-without-mprotect-lfence build_wasmtime_hfi-grow-without-mprotect build_wasmtime_hfi-grow-without-mprotect-baseline build_wasmtime_hfi-baseline-instantiation build_wasmtime_hfi-reg-pressure build_wasmtime_hfi-reg-pressure2
 
@@ -237,7 +241,7 @@ testmode_benchmark_wasmtime:
 		--engine $(REPO_PATH)/wasmtime-builds/hfi-baseline/target/release/libwasmtime_bench_api.so \
 		--engine $(REPO_PATH)/wasmtime-builds/hfi-reg-pressure/target/release/libwasmtime_bench_api.so \
 		--engine $(REPO_PATH)/wasmtime-builds/hfi-reg-pressure2/target/release/libwasmtime_bench_api.so \
-		-- benchmarks/*/benchmark.wasm
+		-- benchmarks/spidermonkey/benchmark.wasm | tee ./benchmarks/wasmtime_$(CURRTIME)
 
 #### Keep Spec stuff separate so we can easily release other artifacts
 # SPEC_BUILDS=wasm_hfi_wasm2c_hfiemulate2 wasm_hfi_wasm2c_hfiemulate
