@@ -199,11 +199,10 @@ SIGHTGLASS_OUTPUTFOLDER="$(REPO_PATH)/benchmarks/sightglass_emulated_$(CURR_TIME
 testmode_benchmark_sightglass_emulated:
 	mkdir -p "$(SIGHTGLASS_OUTPUTFOLDER)" && \
 		export SIGHTGLASS_OUTPUTFOLDER="$(SIGHTGLASS_OUTPUTFOLDER)" && \
-		export SIGHTGLASS_WRITEOUTPUT=1 && \
 		cd hfi-sightglass/mybuild && \
-		make run_guardpage && \
 		make run_guardpage_asmmove && \
-		make run_hfiemulate && \
+		make run_boundschecks && \
+		make run_masking && \
 		make run_hfiemulate2
 
 benchmark_benchmark_sightglass_emulated: benchmark_env_setup
