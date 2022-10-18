@@ -12,7 +12,7 @@ CURR_TIME=$(shell date --iso=seconds)
 PARALLEL_COUNT=$(shell nproc)
 REPO_PATH=$(shell realpath .)
 
-DIRS=hw_isol_gem5 hfi_wasm2c_sandbox_compiler hfi_misc hfi_firefox hfi-sightglass rust_libloading_aslr btbflush-module lucet-spectre hfi_spectre_webserver hfi-erim
+DIRS=hw_isol_gem5 hfi_wasm2c_sandbox_compiler hfi_misc hfi_firefox hfi-sightglass rust_libloading_aslr btbflush-module lucet-spectre hfi_spectre_webserver hfi-nginx
 
 hw_isol_gem5:
 	git clone --recursive git@github.com:PLSysSec/hw_isol_gem5.git
@@ -41,8 +41,8 @@ lucet-spectre:
 hfi_spectre_webserver:
 	git clone --recursive git@github.com:PLSysSec/hfi_spectre_webserver.git
 
-hfi-erim:
-	git clone --recursive git@github.com:PLSysSec/hfi-erim.git
+hfi-nginx:
+	git clone --recursive git@github.com:PLSysSec/hfi-nginx.git
 
 wasi-sdk-14.0-linux.tar.gz:
 	wget https://github.com/WebAssembly/wasi-sdk/releases/download/wasi-sdk-14/wasi-sdk-14.0-linux.tar.gz
@@ -116,7 +116,7 @@ build_faas:
 	cd hfi_spectre_webserver/modules && make clean && make -j$(PARALLEL_COUNT)
 
 build_nginx:
-	cd hfi-erim/bench/webserver && ./build.sh
+	cd hfi-nginx/bench/webserver && ./build.sh
 
 build_firefox:
 	cd hfi_firefox/mybuild && make build
@@ -130,6 +130,7 @@ build_wasmtime_%:
 
 build_wasmtime: build_wasmtime_hfi-baseline build_wasmtime_hfi-grow-without-mprotect-lfence build_wasmtime_hfi-grow-without-mprotect build_wasmtime_hfi-grow-without-mprotect-baseline build_wasmtime_hfi-baseline-instantiation build_wasmtime_hfi-reg-pressure build_wasmtime_hfi-reg-pressure2
 
+build: build_gem5 build_wasm2c build_sightglass build_faas build_nginx build_firefox build_wasmtime
 
 test-gem5:
 	cd hw_isol_gem5/mybuild && make test
@@ -220,11 +221,11 @@ benchmark_faas: benchmark_env_setup
 	make testmode_benchmark_faas
 
 testmode_benchmark_nginx:
-	cd hfi-erim/bench/webserver/ && ./simple_bench.sh 60
-	cd hfi-erim/bench/webserver/ && ./draw.py
+	cd hfi-nginx/bench/webserver/ && ./simple_bench.sh 60
+	cd hfi-nginx/bench/webserver/ && ./draw.py
 	mkdir -p ./benchmarks/nginx_$(CURR_TIME)
-	mv hfi-erim/bench/webserver/*.log ./benchmarks/nginx_$(CURR_TIME)/
-	mv hfi-erim/bench/webserver/nginx.png ./benchmarks/nginx_$(CURR_TIME)/nginx.png
+	mv hfi-nginx/bench/webserver/*.log ./benchmarks/nginx_$(CURR_TIME)/
+	mv hfi-nginx/bench/webserver/nginx.png ./benchmarks/nginx_$(CURR_TIME)/nginx.png
 
 benchmark_nginx: benchmark_env_setup
 	make testmode_benchmark_nginx
