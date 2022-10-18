@@ -12,7 +12,7 @@ CURR_TIME=$(shell date --iso=seconds)
 PARALLEL_COUNT=$(shell nproc)
 REPO_PATH=$(shell realpath .)
 
-DIRS=hw_isol_gem5 hfi_wasm2c_sandbox_compiler hfi_misc hfi_firefox hfi-sightglass rust_libloading_aslr btbflush-module lucet-spectre hfi_spectre_webserver
+DIRS=hw_isol_gem5 hfi_wasm2c_sandbox_compiler hfi_misc hfi_firefox hfi-sightglass rust_libloading_aslr btbflush-module lucet-spectre hfi_spectre_webserver hfi_erim
 
 hw_isol_gem5:
 	git clone --recursive git@github.com:PLSysSec/hw_isol_gem5.git
@@ -41,6 +41,9 @@ lucet-spectre:
 hfi_spectre_webserver:
 	git clone --recursive git@github.com:PLSysSec/hfi_spectre_webserver.git
 
+hfi_erim:
+	git clone --recursive git@github.com:PLSysSec/hfi-erim.git
+
 wasi-sdk-14.0-linux.tar.gz:
 	wget https://github.com/WebAssembly/wasi-sdk/releases/download/wasi-sdk-14/wasi-sdk-14.0-linux.tar.gz
 
@@ -62,7 +65,8 @@ bootstrap: get_source
 		libprotobuf-dev protobuf-compiler libprotoc-dev libgoogle-perftools-dev \
 		python3-dev python-is-python3 python3-pip libboost-all-dev pkg-config \
 		cpuset cpufrequtils xvfb gnuplot npm \
-		ca-certificates curl gnupg lsb-release libssl-dev
+		ca-certificates curl gnupg lsb-release libssl-dev \
+		apache2-utils
 	cd hfi_firefox/mybuild && make bootstrap
 	pip3 install simplejson matplotlib
 	pip3 install --upgrade requests
@@ -110,6 +114,9 @@ build_faas:
 	cd lucet-spectre && cargo build --release
 	cd hfi_spectre_webserver && cargo build --release
 	cd hfi_spectre_webserver/modules && make clean && make -j$(PARALLEL_COUNT)
+
+build_nginx:
+	cd hfi-erim/bench/webserver && ./build.sh
 
 build_firefox:
 	cd hfi_firefox/mybuild && make build
@@ -198,8 +205,21 @@ testmode_benchmark_faas_finish:
 	python3 ./hfi_spectre_webserver/wrk_analysis.py -folders ./hfi_spectre_webserver/wrk_scripts/results -sofolder ./hfi_spectre_webserver/modules -o1 ./hfi_spectre_webserver/wrk_scripts/results/wrk_table_1.tex -o2 ./hfi_spectre_webserver/wrk_scripts/results/wrk_table_2.tex -o3 ./hfi_spectre_webserver/wrk_scripts/results/metrics.txt
 	mv ./hfi_spectre_webserver/wrk_scripts/results ./benchmarks/faas_$(CURR_TIME)
 
-benchmark_benchmark_faas: benchmark_env_setup
-	make testmode_benchmark_benchmark_faas
+benchmark_faas_finish:
+	make testmode_benchmark_faas_finish
+
+benchmark_faas: benchmark_env_setup
+	make testmode_benchmark_faas
+
+testmode_benchmark_nginx:
+	cd hfi-erim/bench/webserver/ && ./simple_bench.sh 1
+	cd hfi-erim/bench/webserver/ && /draw.py
+	mkdir -p ./benchmarks/nginx_$(CURR_TIME)
+	mv hfi-erim/bench/webserver/*.log ./benchmarks/nginx_$(CURR_TIME)/
+	mv hfi-erim/bench/webserver/nginx.png ./benchmarks/nginx_$(CURR_TIME)/nginx.png
+
+benchmark_nginx: benchmark_env_setup
+	make testmode_benchmark_nginx
 
 #### Keep Spec stuff separate so we can easily release other artifacts
 # SPEC_BUILDS=wasm_hfi_wasm2c_hfiemulate2 wasm_hfi_wasm2c_hfiemulate
