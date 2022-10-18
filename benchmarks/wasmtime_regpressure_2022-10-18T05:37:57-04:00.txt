@@ -1,0 +1,18 @@
+compilation
+  benchmarks/spidermonkey/benchmark.wasm
+    cycles
+      [37555044443 70422301238.08 71163432046] /home/shr/Code/HardwareIsolation/wasmtime-builds/hfi-baseline/target/release/libwasmtime_bench_api.so
+      [38445226097 70861482050.29 72069920277] /home/shr/Code/HardwareIsolation/wasmtime-builds/hfi-reg-pressure/target/release/libwasmtime_bench_api.so
+      [72785619371 73049289419.92 73380630099] /home/shr/Code/HardwareIsolation/wasmtime-builds/hfi-reg-pressure2/target/release/libwasmtime_bench_api.so
+instantiation
+  benchmarks/spidermonkey/benchmark.wasm
+    cycles
+      [723937 1298004.49 1590921] /home/shr/Code/HardwareIsolation/wasmtime-builds/hfi-baseline/target/release/libwasmtime_bench_api.so
+      [727804 1284383.73 1568798] /home/shr/Code/HardwareIsolation/wasmtime-builds/hfi-reg-pressure/target/release/libwasmtime_bench_api.so
+      [1272182 1311557.98 2667974] /home/shr/Code/HardwareIsolation/wasmtime-builds/hfi-reg-pressure2/target/release/libwasmtime_bench_api.so
+execution
+  benchmarks/spidermonkey/benchmark.wasm
+    cycles
+      [25567980097 48781979522.70 50025756603] /home/shr/Code/HardwareIsolation/wasmtime-builds/hfi-baseline/target/release/libwasmtime_bench_api.so
+      [26427826353 49879842390.47 50974528745] /home/shr/Code/HardwareIsolation/wasmtime-builds/hfi-reg-pressure/target/release/libwasmtime_bench_api.so
+      [49616965232 49952071487.50 50565517110] /home/shr/Code/HardwareIsolation/wasmtime-builds/hfi-reg-pressure2/target/release/libwasmtime_bench_api.so
