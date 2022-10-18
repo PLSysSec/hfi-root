@@ -121,7 +121,15 @@ build_nginx:
 build_firefox:
 	cd hfi_firefox/mybuild && make build
 
-build: build_gem5 build_wasm2c build_sightglass build_faas build_firefox
+build_wasmtime_%:
+	export REPOSITORY="git@github.com:PLSysSec/hfi-wasmtime.git" && \
+		export REVISION="$*" && \
+		export BUILD_DIR="$(REPO_PATH)/wasmtime-builds/$*" && \
+		mkdir -p $$BUILD_DIR && \
+		cd hfi-sightglass/engines/wasmtime && rustc build.rs && ./build
+
+build_wasmtime: build_wasmtime_hfi-baseline build_wasmtime_hfi-grow-without-mprotect-lfence build_wasmtime_hfi-grow-without-mprotect build_wasmtime_hfi-grow-without-mprotect-baseline build_wasmtime_hfi-baseline-instantiation build_wasmtime_hfi-reg-pressure build_wasmtime_hfi-reg-pressure2
+
 
 test-gem5:
 	cd hw_isol_gem5/mybuild && make test
@@ -220,6 +228,15 @@ testmode_benchmark_nginx:
 
 benchmark_nginx: benchmark_env_setup
 	make testmode_benchmark_nginx
+
+testmode_benchmark_wasmtime:
+	# cp wasmtime-builds/hfi-baseline/target/release/libwasmtime_bench_api.so hfi-sightglass/engines/wasmtime/libengine.so
+	# cp wasmtime-builds/hfi-baseline/.build-info hfi-sightglass/engines/wasmtime/.build-info
+	cd hfi-sightglass && cargo run -- benchmark \
+		--engine $(REPO_PATH)/wasmtime-builds/hfi-baseline/target/release/libwasmtime_bench_api.so \
+		--engine $(REPO_PATH)/wasmtime-builds/hfi-reg-pressure/target/release/libwasmtime_bench_api.so \
+		--engine $(REPO_PATH)/wasmtime-builds/hfi-reg-pressure2/target/release/libwasmtime_bench_api.so \
+		-- benchmarks/*/benchmark.wasm
 
 #### Keep Spec stuff separate so we can easily release other artifacts
 # SPEC_BUILDS=wasm_hfi_wasm2c_hfiemulate2 wasm_hfi_wasm2c_hfiemulate
