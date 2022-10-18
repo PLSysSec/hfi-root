@@ -133,6 +133,7 @@ build_wasmtime_%:
 		cd sightglass/engines/wasmtime && rustc build.rs && ./build
 
 build_wasmtime: build_wasmtime_hfi-baseline build_wasmtime_hfi-grow-without-mprotect-lfence build_wasmtime_hfi-grow-without-mprotect build_wasmtime_hfi-grow-without-mprotect-baseline build_wasmtime_hfi-baseline-instantiation build_wasmtime_hfi-reg-pressure build_wasmtime_hfi-reg-pressure2
+	cd sightglass && cargo build --release
 
 build: build_gem5 build_wasm2c build_sightglass build_faas build_nginx build_firefox build_wasmtime
 
@@ -237,7 +238,7 @@ benchmark_nginx: benchmark_env_setup
 testmode_benchmark_wasmtime:
 	# cp wasmtime-builds/hfi-baseline/target/release/libwasmtime_bench_api.so hfi-sightglass/engines/wasmtime/libengine.so
 	# cp wasmtime-builds/hfi-baseline/.build-info hfi-sightglass/engines/wasmtime/.build-info
-	cd hfi-sightglass && cargo run -- benchmark \
+	cd sightglass && cargo run --release -- benchmark \
 		--engine $(REPO_PATH)/wasmtime-builds/hfi-baseline/target/release/libwasmtime_bench_api.so \
 		--engine $(REPO_PATH)/wasmtime-builds/hfi-reg-pressure/target/release/libwasmtime_bench_api.so \
 		--engine $(REPO_PATH)/wasmtime-builds/hfi-reg-pressure2/target/release/libwasmtime_bench_api.so \
