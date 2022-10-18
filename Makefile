@@ -185,7 +185,7 @@ benchmark_benchmark_sightglass_emulated: benchmark_env_setup
 
 install_btbflush: btbflush-module
 	# make -C does not work below
-	if [ -z "$(FOUND_BTBMODULE)" ]; then  \
+	if [ -z "$(shell lsmod | grep "cool")" ]; then  \
 		echo "Installing BTB flush module" && \
 		cd ./btbflush-module/module && make clean && make && make insert; \
 	fi
@@ -193,8 +193,9 @@ install_btbflush: btbflush-module
 testmode_benchmark_faas: install_btbflush
 	rm -rf ./hfi_spectre_webserver/wrk_scripts/results
 	cd ./hfi_spectre_webserver/wrk_scripts && ./runall.sh
-	cd ./hfi_spectre_webserver/wrk_scripts && ./runall_tflite.sh
-	python3 ./hfi_spectre_webserver/wrk_analysis.py -folders ./hfi_spectre_webserver/wrk_scripts/results -sofolder ./hfi_spectre_webserver/modules -o1 ./hfi_spectre_webserver/wrk_scripts/results/wrk_table_1.tex -o2 ./hfi_spectre_webserver/wrk_scripts/results/wrk_table_2.tex
+
+testmode_benchmark_faas_finish:
+	python3 ./hfi_spectre_webserver/wrk_analysis.py -folders ./hfi_spectre_webserver/wrk_scripts/results -sofolder ./hfi_spectre_webserver/modules -o1 ./hfi_spectre_webserver/wrk_scripts/results/wrk_table_1.tex -o2 ./hfi_spectre_webserver/wrk_scripts/results/wrk_table_2.tex -o3 ./hfi_spectre_webserver/wrk_scripts/results/metrics.txt
 	mv ./hfi_spectre_webserver/wrk_scripts/results ./benchmarks/faas_$(CURR_TIME)
 
 benchmark_benchmark_faas: benchmark_env_setup
