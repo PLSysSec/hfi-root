@@ -235,14 +235,26 @@ testmode_benchmark_nginx:
 benchmark_nginx: benchmark_env_setup
 	make testmode_benchmark_nginx
 
-testmode_benchmark_wasmtime:
+testmode_benchmark_wasmtime_regpressure:
 	# cp wasmtime-builds/hfi-baseline/target/release/libwasmtime_bench_api.so hfi-sightglass/engines/wasmtime/libengine.so
 	# cp wasmtime-builds/hfi-baseline/.build-info hfi-sightglass/engines/wasmtime/.build-info
 	cd sightglass && cargo run --release -- benchmark \
 		--engine $(REPO_PATH)/wasmtime-builds/hfi-baseline/target/release/libwasmtime_bench_api.so \
 		--engine $(REPO_PATH)/wasmtime-builds/hfi-reg-pressure/target/release/libwasmtime_bench_api.so \
 		--engine $(REPO_PATH)/wasmtime-builds/hfi-reg-pressure2/target/release/libwasmtime_bench_api.so \
-		-- benchmarks/spidermonkey/benchmark.wasm | tee $(REPO_PATH)/benchmarks/wasmtime_$(CURR_TIME).txt
+		-- benchmarks/spidermonkey/benchmark.wasm | tee $(REPO_PATH)/benchmarks/wasmtime_regpressure_$(CURR_TIME).txt
+
+benchmark_wasmtime_regpressure: benchmark_env_setup
+	make testmode_benchmark_wasmtime_regpressure
+
+testmode_benchmark_wasmtime_mprotect:
+	cd sightglass && cargo run --release -- benchmark \
+		--engine $(REPO_PATH)/wasmtime-builds/hfi-grow-without-mprotect-baseline/target/release/libwasmtime_bench_api.so \
+		--engine $(REPO_PATH)/wasmtime-builds/hfi-grow-without-mprotect-lfence/target/release/libwasmtime_bench_api.so \
+		-- benchmarks/spidermonkey/benchmark.wasm | tee $(REPO_PATH)/benchmarks/wasmtime_mprotect_$(CURR_TIME).txt
+
+benchmark_benchmark_wasmtime_mprotect: benchmark_env_setup
+	make testmode_benchmark_benchmark_wasmtime_mprotect
 
 #### Keep Spec stuff separate so we can easily release other artifacts
 # SPEC_BUILDS=wasm_hfi_wasm2c_hfiemulate2 wasm_hfi_wasm2c_hfiemulate
