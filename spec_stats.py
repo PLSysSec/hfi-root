@@ -107,8 +107,8 @@ def make_graph(all_times, output_path, use_percent=False):
     print(labels)
     print(vals)
 
-    # https://personal.sron.nl/~pault/data/colourschemes.pdf Section 2 figure 3
-    colors = ['#BBBBBB','#0077BB','#EE7733','#EE3377','#009988']
+    # https://colorbrewer2.org/#type=diverging&scheme=Spectral&n=5
+    colors = ['#D7191C', '#FDAE61', '#2B83BA', '#ABDDA4', '#FFFFBF']
 
     rects = []
     for idx,val in enumerate(vals):
@@ -131,7 +131,7 @@ def make_graph(all_times, output_path, use_percent=False):
         lbl.set_transform(lbl.get_transform() + Affine2D().translate(-2, 0))
 
     plt.axhline(y=1.0, color='black', linestyle='dashed')
-    plt.ylim(ymin=.5)
+    plt.ylim(ymin=.9)
     if not use_percent:
         plt.ylim(ymin=0)
 
@@ -144,9 +144,9 @@ def make_graph(all_times, output_path, use_percent=False):
 
     ax.set_xticklabels(labels)
     if use_percent:
-        ax.legend( tuple(rects), all_times.keys(), ncol=2, loc=(.455, .59))
+        ax.legend( tuple(rects), all_times.keys(), frameon=True, ncol=2, loc=(.455, .79))
     else:
-        ax.legend( tuple(rects), all_times.keys(), ncol=1, loc=(0.04, 0.59))
+        ax.legend( tuple(rects), all_times.keys(), frameon=True, ncol=1, loc=(0.04, 0.59))
     #fig.subplots_adjust(bottom=0.25)
     plt.subplots_adjust(top = 1, bottom = 0, right = 1, left = 0,
             hspace = 0, wspace = 0)

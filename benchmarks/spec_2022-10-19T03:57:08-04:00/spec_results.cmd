@@ -1,0 +1,1 @@
+Command: ['/home/shr/Code/HardwareIsolation/spec_stats.py', '-i', './', '--filter', './spec_results=hfi_wasm2c_boundschecks:BoundsChecks,hfi_wasm2c_masking:Masking,hfi_wasm2c_hfiemulate2:HfiEmulation', '-n', '4', '--usePercent']
