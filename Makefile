@@ -256,7 +256,7 @@ benchmark_syscall:
 		cd hfi_misc && make benchmark_syscall
 
 #### Keep Spec stuff separate so we can easily release other artifacts
-SPEC_BUILDS=wasm_hfi_wasm2c_hfiemulate2 wasm_hfi_wasm2c_guardpages wasm_hfi_wasm2c_boundschecks wasm_hfi_wasm2c_masking
+SPEC_BUILDS=wasm_hfi_wasm2c_hfiemulate2 wasm_hfi_wasm2c_guardpages wasm_hfi_wasm2c_boundschecks # wasm_hfi_wasm2c_masking
 
 hfi_spec:
 	git clone --recursive git@github.com:PLSysSec/hfi_spec.git
@@ -283,7 +283,7 @@ benchmark_spec:
 		runspec --config=$$spec_build.cfg --action=run --define cores=1 --iterations=1 --noreportable --size=ref wasmint; \
 	done
 	python3 spec_stats.py -i hfi_spec/result --filter  \
-		"hfi_spec/result/spec_results=hfi_wasm2c_boundschecks:BoundsChecks,hfi_wasm2c_masking:Masking,hfi_wasm2c_hfiemulate2:HfiEmulation" -n $(words $(SPEC_BUILDS)) --usePercent
+		"hfi_spec/result/spec_results=hfi_wasm2c_boundschecks:BoundsChecks,hfi_wasm2c_hfiemulate2:HfiEmulation" -n $(words $(SPEC_BUILDS)) --usePercent
 	mv hfi_spec/result/ benchmarks/spec_$(CURR_TIME)
 
 clean:

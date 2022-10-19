@@ -108,7 +108,7 @@ def make_graph(all_times, output_path, use_percent=False):
     print(vals)
 
     # https://colorbrewer2.org/#type=diverging&scheme=Spectral&n=5
-    colors = ['#D7191C', '#FDAE61', '#2B83BA', '#ABDDA4', '#FFFFBF']
+    colors = ['#D7191C', '#2B83BA', '#FDAE61', '#ABDDA4', '#FFFFBF']
 
     rects = []
     for idx,val in enumerate(vals):
@@ -144,7 +144,7 @@ def make_graph(all_times, output_path, use_percent=False):
 
     ax.set_xticklabels(labels)
     if use_percent:
-        ax.legend( tuple(rects), all_times.keys(), frameon=True, ncol=2, loc=(.455, .79))
+        ax.legend( tuple(rects), all_times.keys(), frameon=True, ncol=1, loc=(0.75, .79))
     else:
         ax.legend( tuple(rects), all_times.keys(), frameon=True, ncol=1, loc=(0.04, 0.59))
     #fig.subplots_adjust(bottom=0.25)
