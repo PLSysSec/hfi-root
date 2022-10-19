@@ -31,7 +31,8 @@ hfi_firefox:
 
 sightglass:
 	git clone https://github.com/bytecodealliance/sightglass
-	git checkout -b working 1ab26cdaca913a38c53d8db5808fc5bf0fdb23f5
+	cd sightglass && git checkout -b working 1ab26cdaca913a38c53d8db5808fc5bf0fdb23f5
+
 
 hfi-sightglass:
 	git clone --recursive git@github.com:PLSysSec/hfi-sightglass
