@@ -1,0 +1,58 @@
+{
+  "results": [
+    {
+      "command": "cd /home/shr/Code/HardwareIsolation/wasmtime-builds/hfi-grow-without-mprotect-baseline/growth_bench && ../target/release/growth_bench",
+      "mean": 10.92628953336,
+      "stddev": 0.015762930632949642,
+      "median": 10.91804610676,
+      "user": 4.011706080000001,
+      "system": 6.7879701,
+      "min": 10.90966778876,
+      "max": 10.94429014476,
+      "times": [
+        10.917432379760001,
+        10.90966778876,
+        10.94201124676,
+        10.94429014476,
+        10.91804610676
+      ],
+      "exit_codes": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "command": "cd /home/shr/Code/HardwareIsolation/wasmtime-builds/hfi-grow-without-mprotect/growth_bench && ../target/release/growth_bench",
+      "mean": 0.36676478513500005,
+      "stddev": 0.0005226479743788136,
+      "median": 0.36687501676,
+      "user": 0.35322487999999996,
+      "system": 0.009276650000000001,
+      "min": 0.36583441076,
+      "max": 0.36743688076000003,
+      "times": [
+        0.36743688076000003,
+        0.36618561676,
+        0.36719741276,
+        0.36673983176,
+        0.36683330676000003,
+        0.36697409476000004,
+        0.36583441076,
+        0.36691672676000003
+      ],
+      "exit_codes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  ]
+}
