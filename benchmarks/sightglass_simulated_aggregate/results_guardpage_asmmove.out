@@ -1,13 +1,10 @@
 blake3-scalar	1588225
-bz2	279870854
 shootout-ackermann	932758
 shootout-base64	1074241306
 shootout-ctype	1401546658
 shootout-fib2	7162990740
 shootout-gimli	11926070
-shootout-heapsort	4397135890
 shootout-keccak	38139480
-shootout-matrix	1105088840
 shootout-memmove	2499436712
 shootout-minicsv	3618932100
 shootout-nestedloop	888598
