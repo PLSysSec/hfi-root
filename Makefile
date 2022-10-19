@@ -239,9 +239,14 @@ benchmark_wasmtime_regpressure:
 		--engine $(REPO_PATH)/wasmtime-builds/hfi-reg-pressure2/target/release/libwasmtime_bench_api.so \
 		-- benchmarks/spidermonkey/benchmark.wasm | tee $(REPO_PATH)/benchmarks/wasmtime_regpressure_$(CURR_TIME).txt
 
+WASMTIME_MPROTECT_OUTPUTFOLDER="$(REPO_PATH)/benchmarks/wasmtime_mprotect_$(CURR_TIME)/"
+
 benchmark_wasmtime_mprotect:
-	cd wasmtime-builds/hfi-grow-without-mprotect-baseline/growth_bench && ../target/release/growth_bench
-	cd wasmtime-builds/hfi-grow-without-mprotect/target/growth_bench && ../target/release/growth_bench
+	mkdir -p $(WASMTIME_MPROTECT_OUTPUTFOLDER)
+	hyperfine --warmup 1 -m 5 --export-json "$(WASMTIME_MPROTECT_OUTPUTFOLDER)/mprotect.json" \
+		"cd $(REPO_PATH)/wasmtime-builds/hfi-grow-without-mprotect-baseline/growth_bench && ../target/release/growth_bench" \
+		"cd $(REPO_PATH)/wasmtime-builds/hfi-grow-without-mprotect/growth_bench && ../target/release/growth_bench"
+
 	# ~/Code/HardwareIsolation/wasmtime-builds/hfi-grow-without-mprotect/growth_bench$ ../target/release/growth_bench
 	# cd sightglass && cargo run --release -- benchmark \
 	# 	--engine $(REPO_PATH)/wasmtime-builds/hfi-grow-without-mprotect-baseline/target/release/libwasmtime_bench_api.so \
