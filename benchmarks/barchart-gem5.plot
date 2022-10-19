@@ -20,9 +20,9 @@ set xtics font "Times New Roman,9"
 set xtics scale 0
 
 set ytics font "Times New Roman,6"
-set ytics -5,5,20
+set ytics -4,2,20
 set ytics format "%g%%"
-set yrange[-5:10]
+set yrange[-4:8]
 
 set ylabel "Normalized emul. overhead"
 set ylabel font "Times New Roman,9"
