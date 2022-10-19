@@ -112,11 +112,11 @@ def make_graph(all_times, output_path, use_percent=False):
 
     rects = []
     for idx,val in enumerate(vals):
-      # if use_percent:
-      val = [v - 1 for v in val]
-      bottom=1
-      # else:
-      #  bottom=0
+      if use_percent:
+        val = [v - 1 for v in val]
+        bottom=1
+      else:
+        bottom=0
       rects.append(ax.bar(ind + width*idx, val, width, bottom=bottom, color=colors[idx]))
 
 
@@ -136,17 +136,17 @@ def make_graph(all_times, output_path, use_percent=False):
         plt.ylim(ymin=0)
 
     if use_percent:
-        ax.yaxis.set_major_formatter(FuncFormatter(lambda y, _: '{:.0%}'.format(y-1.0)))
-        ax.yaxis.set_major_locator(FixedLocator(np.arange(-.5,10,.5)))
+        ax.yaxis.set_major_formatter(FuncFormatter(lambda y, _: '{:.0%}'.format(y)))
+        # ax.yaxis.set_major_locator(FixedLocator(np.arange(-.5,10,.5)))
     else:
-        ax.yaxis.set_major_formatter(FuncFormatter(lambda y, _: '{:.0f}×'.format(y)))
-        ax.yaxis.set_major_locator(FixedLocator([1] + list(range(5,25,5))))
+        ax.yaxis.set_major_formatter(FuncFormatter(lambda y, _: '{:.2f}×'.format(y)))
+        ax.yaxis.set_major_locator(FixedLocator(list([0, 0.25, 0.50, 0.75, 1, 1.25, 1.5])))
 
     ax.set_xticklabels(labels)
     if use_percent:
         ax.legend( tuple(rects), all_times.keys(), frameon=True, ncol=1, loc=(0.75, .79))
     else:
-        ax.legend( tuple(rects), all_times.keys(), frameon=True, ncol=1, loc=(0.04, 0.59))
+        ax.legend( tuple(rects), all_times.keys(), frameon=False, ncol=1, loc=(0.7, .79))
     #fig.subplots_adjust(bottom=0.25)
     plt.subplots_adjust(top = 1, bottom = 0, right = 1, left = 0,
             hspace = 0, wspace = 0)
