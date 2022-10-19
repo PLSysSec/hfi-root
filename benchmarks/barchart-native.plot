@@ -32,5 +32,4 @@ set arrow 50 from graph 0,0.36 to graph 1,0.36 nohead lc "#aa000000" back
 
 plot \
      '< paste results_guardpage_asmmove.out results_boundschecks.out' using (100*$4/$2-100):xtic(1) title 'Bounds-checking' linecolor rgb "#D7191C" fill pattern 3, \
-     '< paste results_guardpage_asmmove.out results_masking.out' using (100*$4/$2-100):xtic(1) title 'Masking' linecolor rgb "#FDAE61" fill pattern 3, \
      '< paste results_guardpage_asmmove.out results_hfiemulate2.out' using (100*$4/$2-100):xtic(1) title 'HFI emulation' linecolor rgb "#2B83BA" fill pattern 3

@@ -1,0 +1,17 @@
+blake3-scalar	2.0601355718270584
+pulldown-cmark	7.161433910628014
+shootout-ackermann	1.7782029883649733
+shootout-base64	224.00509072000003
+shootout-ctype	646.43932772
+shootout-fib2	3023.33803636
+shootout-gimli	4.610669892603853
+shootout-keccak	11.027684375
+shootout-memmove	710.0869028000001
+shootout-minicsv	883.32470964
+shootout-nestedloop	1.729070243350313
+shootout-random	261.87519004000006
+shootout-ratelimit	48.32679496721313
+shootout-sieve	608.3797318000001
+shootout-switch	86.39799932352943
+shootout-xblabla20	3.922224571212123
+shootout-xchacha20	4.986430253239109
