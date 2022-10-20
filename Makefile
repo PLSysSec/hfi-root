@@ -268,7 +268,8 @@ benchmark_syscall:
 		cd hfi_misc && make benchmark_syscall
 
 benchmark_wasmtime_instantiation:
-	RAYON_NUM_THREADS=1 cargo bench --bench instantiation | tee "$(REPO_PATH)/benchmarks/wasmtime_instantiation.txt"
+	cd ./wasmtime-builds/hfi-baseline-instantiation/ && \
+	RAYON_NUM_THREADS=1 cargo bench --bench instantiation | tee "$(REPO_PATH)/benchmarks/wasmtime_instantiation_$(CURR_TIME).txt"
 
 #### Keep Spec stuff separate so we can easily release other artifacts
 SPEC_BUILDS=wasm_hfi_wasm2c_hfiemulate2 wasm_hfi_wasm2c_guardpages wasm_hfi_wasm2c_boundschecks # wasm_hfi_wasm2c_masking
