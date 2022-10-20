@@ -1,2 +1,3 @@
 Max % overhead: 7.28787449007704
 Avg % overhead: 1.6480621261684147
+Geomean % overhead: 1.6192903107697054

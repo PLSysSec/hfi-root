@@ -1,6 +1,6 @@
 # calculate the mean squared error of hfiemulate wrt hfi
 import os
-from statistics import mean
+from statistics import mean, geometric_mean
 
 sim_folder = os.path.dirname(os.path.realpath(__file__))
 os.chdir(sim_folder)
@@ -16,6 +16,8 @@ for datafile in sorted(os.listdir()):
         elif 'hfi' in datafile:
             hfi_res.append(int(f.read()))
 
-print("Max % overhead:",100*(max([emu_res[i]/hfi_res[i] for i in range(len(emu_res))])- 1))
-print("Avg % overhead:",100*(mean([emu_res[i]/hfi_res[i] for i in range(len(emu_res))])- 1))
+n = len(emu_res)
+print("Max % overhead:",100*(max([emu_res[i]/hfi_res[i] for i in range(n)])- 1))
+print("Avg % overhead:",100*(mean([emu_res[i]/hfi_res[i] for i in range(n)])- 1))
+print("Geomean % overhead:",100*(geometric_mean([emu_res[i]/hfi_res[i] for i in range(n)])-1))
 
