@@ -24,7 +24,7 @@ set ytics 96,2,120
 set ytics format "%g%%"
 set yrange[96:108]
 
-set ylabel "Normalized emul. overhead"
+set ylabel "Normalized emul. runtime"
 set ylabel font "Times New Roman,9"
 
 set grid ytics lt 1 lw 0 lc rgb "#bbbbbb"
