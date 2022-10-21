@@ -294,7 +294,7 @@ build_spec: hfi_spec autopull_hfi_spec build_wasm2c_dependency
 	done
 
 run_spec_graph:
-	cd /home/shr/Code/HardwareIsolation/benchmarks/spec_2022-10-19T03:57:08-04:00 && \
+	cd $(REPO_PATH)/benchmarks/spec_2022-10-19T03:57:08-04:00 && \
 	python3 $(REPO_PATH)/spec_stats.py -i ./ --filter  \
 		"./spec_results=hfi_wasm2c_guardpages:Guard pages,hfi_wasm2c_boundschecks:Bounds checks,hfi_wasm2c_hfiemulate2:HFI emulation" -n 4 --usePercent
 
