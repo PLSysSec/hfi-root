@@ -108,21 +108,16 @@ def make_graph(all_times, output_path, use_percent=False):
     print(vals)
 
     # https://colorbrewer2.org/#type=diverging&scheme=Spectral&n=5
-    colors = ['#D7191C', '#2B83BA', '#FDAE61', '#ABDDA4', '#FFFFBF']
+    colors = ['#FFFFBF', '#D7191C', '#2B83BA', '#FDAE61', '#ABDDA4', ]
 
     rects = []
     for idx,val in enumerate(vals):
-      if use_percent:
-        val = [v - 1 for v in val]
-        bottom=1
-      else:
-        bottom=0
-      rects.append(ax.bar(ind + width*idx, val, width, bottom=bottom, color=colors[idx]))
+      rects.append(ax.bar(ind + width*idx, val, width, bottom=0, color=colors[idx], edgecolor="black"))
 
 
     #ax.set_xlabel('Spec2006 Benchmarks')
     if use_percent:
-         ax.set_ylabel('Execution overhead')
+        ax.set_ylabel('Execution overhead')
     else:
         ax.set_ylabel('Relative execution time')
     ax.set_xticks(ind+width)
@@ -131,9 +126,9 @@ def make_graph(all_times, output_path, use_percent=False):
         lbl.set_transform(lbl.get_transform() + Affine2D().translate(-2, 0))
 
     plt.axhline(y=1.0, color='black', linestyle='dashed')
-    plt.ylim(ymin=.9)
-    if not use_percent:
-        plt.ylim(ymin=0)
+    # plt.ylim(ymin=.9)
+    # if not use_percent:
+    plt.ylim(ymin=0)
 
     if use_percent:
         ax.yaxis.set_major_formatter(FuncFormatter(lambda y, _: '{:.0%}'.format(y)))

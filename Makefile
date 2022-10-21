@@ -293,6 +293,11 @@ build_spec: hfi_spec autopull_hfi_spec build_wasm2c_dependency
 		runspec --config=$$spec_build.cfg --action=build --define cores=1 --iterations=1 --noreportable --size=ref wasmint | grep "Build "; \
 	done
 
+run_spec_graph:
+	cd ${SPEC_GRAPH_FOLDER} && \
+	python3 $(REPO_PATH)/spec_stats.py -i ./ --filter  \
+		"./spec_results=hfi_wasm2c_guardpages:Guard pages,hfi_wasm2c_boundschecks:Bounds checks,hfi_wasm2c_hfiemulate2:HFI emulation" -n 4 --usePercent
+
 benchmark_spec:
 	cd hfi_spec && source shrc && cd config && \
 	for spec_build in $(SPEC_BUILDS); do \

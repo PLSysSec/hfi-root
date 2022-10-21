@@ -1,2 +1,3 @@
-BoundsChecks geomean = 1.3466904447868298 BoundsChecks median = 1.34669044478683 min = 1.1873891588350463 max = 1.4833635491840549
-HfiEmulation geomean = 0.9685376364423102 HfiEmulation median = 0.9588124477444872 min = 0.9250592868836891 max = 1.07453461182828
+Guard pages geomean = 1.0 Guard pages median = 1.0 min = 1.0 max = 1.0
+Bounds checks geomean = 1.3466904447868298 Bounds checks median = 1.34669044478683 min = 1.1873891588350463 max = 1.4833635491840549
+HFI emulation geomean = 0.9685376364423102 HFI emulation median = 0.9588124477444872 min = 0.9250592868836891 max = 1.07453461182828
