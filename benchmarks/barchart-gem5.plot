@@ -31,5 +31,5 @@ set grid ytics lt 1 lw 0 lc rgb "#bbbbbb"
 #set arrow 50 from graph 0,0.33333 to graph 1,0.33333 nohead lc "#aa000000" back
 
 plot \
-     '< paste results_hfi.out results_hfi.out' using (100):xtic(1) title 'HFI' linecolor rgb '#FF0000' fill pattern 3, \
+     '< paste results_hfi.out results_hfi.out' using (100):xtic(1) title 'HFI' linecolor rgb '#ABDDA4' fill pattern 3, \
      '< paste results_hfi.out results_hfiemulate2.out' using (100*$4/$2):xtic(1) title 'HFI emulation' linecolor rgb "#2B83BA" fill pattern 3
