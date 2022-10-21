@@ -1,0 +1,50 @@
+WARNING: HTML report generation will become a non-default optional feature in Criterion.rs 0.4.0.
+This feature is being moved to cargo-criterion (https://github.com/bheisler/cargo-criterion) and will be optional in a future version of Criterion.rs. To silence this warning, either switch to cargo-criterion or enable the 'html_reports' feature in your Cargo.toml.
+
+heaps: allocation_size = 12002 GiB
+Benchmarking deferred_cleanup: 2000 instances, batching: false, slot_size: 4096 MiB/pooling/benches/instantiation...
+Benchmarking deferred_cleanup: 2000 instances, batching: false, slot_size: 4096 MiB/pooling/benches/instantiation...: Warming up for 3.0000 s
+
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 5.2s, or reduce sample count to 90.
+Benchmarking deferred_cleanup: 2000 instances, batching: false, slot_size: 4096 MiB/pooling/benches/instantiation...: Collecting 100 samples in estimated 5.2362 s (100 iterations)
+Benchmarking deferred_cleanup: 2000 instances, batching: false, slot_size: 4096 MiB/pooling/benches/instantiation...: Analyzing
+deferred_cleanup: 2000 instances, batching: false, slot_size: 4096 MiB/pooling/benches/instantiation...
+                        time:   [50.786 ms 51.444 ms 51.987 ms]
+                        change: [+114.25% +116.77% +119.11%] (p = 0.00 < 0.05)
+                        Performance has regressed.
+Found 15 outliers among 100 measurements (15.00%)
+  6 (6.00%) low severe
+  5 (5.00%) high mild
+  4 (4.00%) high severe
+
+heaps: allocation_size = 1 GiB
+Benchmarking deferred_cleanup: 2000 instances, batching: true, slot_size: 1 MiB/pooling/benches/instantiation/big...
+Benchmarking deferred_cleanup: 2000 instances, batching: true, slot_size: 1 MiB/pooling/benches/instantiation/big...: Warming up for 3.0000 s
+Benchmarking deferred_cleanup: 2000 instances, batching: true, slot_size: 1 MiB/pooling/benches/instantiation/big...: Collecting 100 samples in estimated 9.2906 s (200 iterations)
+Benchmarking deferred_cleanup: 2000 instances, batching: true, slot_size: 1 MiB/pooling/benches/instantiation/big...: Analyzing
+deferred_cleanup: 2000 instances, batching: true, slot_size: 1 MiB/pooling/benches/instantiation/big...
+                        time:   [46.086 ms 46.287 ms 46.433 ms]
+                        change: [+118.91% +119.93% +120.78%] (p = 0.00 < 0.05)
+                        Performance has regressed.
+Found 9 outliers among 100 measurements (9.00%)
+  3 (3.00%) low severe
+  4 (4.00%) high mild
+  2 (2.00%) high severe
+
+heaps: allocation_size = 12002 GiB
+Benchmarking deferred_cleanup: 2000 instances, batching: true, slot_size: 4096 MiB/pooling/benches/instantiation/...
+Benchmarking deferred_cleanup: 2000 instances, batching: true, slot_size: 4096 MiB/pooling/benches/instantiation/...: Warming up for 3.0000 s
+
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 6.4s, or reduce sample count to 70.
+Benchmarking deferred_cleanup: 2000 instances, batching: true, slot_size: 4096 MiB/pooling/benches/instantiation/...: Collecting 100 samples in estimated 6.3987 s (100 iterations)
+Benchmarking deferred_cleanup: 2000 instances, batching: true, slot_size: 4096 MiB/pooling/benches/instantiation/...: Analyzing
+deferred_cleanup: 2000 instances, batching: true, slot_size: 4096 MiB/pooling/benches/instantiation/...
+                        time:   [61.010 ms 62.214 ms 63.232 ms]
+                        change: [+102.60% +105.87% +109.02%] (p = 0.00 < 0.05)
+                        Performance has regressed.
+Found 21 outliers among 100 measurements (21.00%)
+  9 (9.00%) low severe
+  1 (1.00%) low mild
+  9 (9.00%) high mild
+  2 (2.00%) high severe
+
