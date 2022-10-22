@@ -139,7 +139,7 @@ def make_graph(all_times, output_path, use_percent=False):
 
     ax.set_xticklabels(labels)
     if use_percent:
-        ax.legend( tuple(rects), all_times.keys(), frameon=True, ncol=3, loc='upper center', prop={'size':9}, bbox_to_anchor=(0.5,1.05))
+        ax.legend( tuple(rects), all_times.keys(), frameon=True, ncol=3, loc='upper center', prop={'size':10.5}, bbox_to_anchor=(0.5,1.05))
     else:
         ax.legend( tuple(rects), all_times.keys(), frameon=False, ncol=1, loc=(0.7, .79))
     #fig.subplots_adjust(bottom=0.25)
