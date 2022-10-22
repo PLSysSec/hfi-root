@@ -1,1 +1,1 @@
-Command: ['/home/shr/Code/HardwareIsolation/spec_stats.py', '-i', './', '--filter', './spec_results=hfi_wasm2c_guardpages:Guard pages,hfi_wasm2c_boundschecks:Bounds checks,hfi_wasm2c_hfiemulate2:HFI emulation', '-n', '4', '--usePercent']
+Command: ['/home/jrdek/hfi-root/spec_stats.py', '-i', './', '--filter', './spec_results=hfi_wasm2c_guardpages:Guard pages,hfi_wasm2c_boundschecks:Bounds checks,hfi_wasm2c_hfiemulate2:HFI emulation', '-n', '4', '--usePercent']
