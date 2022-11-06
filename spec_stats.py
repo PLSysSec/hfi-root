@@ -150,13 +150,16 @@ def make_graph(all_times, output_path, use_percent=False):
     if os.path.exists(output_path + ".stats"):
         os.remove(output_path + ".stats")
 
+    with open(output_path + ".stats", "a+") as myfile:
+        myfile.write(f"Benchmarks: {labels}\n")
+
     for i in range(num_mitigations):
         result_geomean = geomean(vals[i])
         result_median = median(vals[i])
         result_min = min(vals[i])
         result_max = max(vals[i])
         with open(output_path + ".stats", "a+") as myfile:
-            myfile.write(f"{mitigations[i]} geomean = {result_geomean} {mitigations[i]} median = {result_median} min = {result_min} max = {result_max}\n")
+            myfile.write(f"{mitigations[i]} geomean = {result_geomean} {mitigations[i]} median = {result_median} min = {result_min} max = {result_max} raw_values = {[p*100 for p in vals[i]]}\n")
 
     plt.tight_layout()
     plt.ylim([0,1.80])
