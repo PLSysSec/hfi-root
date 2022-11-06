@@ -273,6 +273,7 @@ benchmark_wasmtime_instantiation:
 
 #### Keep Spec stuff separate so we can easily release other artifacts
 SPEC_BUILDS=wasm_hfi_wasm2c_hfiemulate2 wasm_hfi_wasm2c_guardpages wasm_hfi_wasm2c_boundschecks # wasm_hfi_wasm2c_masking
+# SPEC_BUILDS=wasm_hfi_wasm2c_guardpagespure wasm_hfi_wasm2c_fsgs
 
 hfi_spec:
 	git clone --recursive git@github.com:PLSysSec/hfi_spec.git
@@ -294,9 +295,9 @@ build_spec: hfi_spec autopull_hfi_spec build_wasm2c_dependency
 	done
 
 run_spec_graph:
-	cd $(REPO_PATH)/benchmarks/spec_2022-10-19T03:57:08-04:00 && \
+	cd $(REPO_PATH)/benchmarks/spec_2022-11-06T10:25:19-05:00 && \
 	python3 $(REPO_PATH)/spec_stats.py -i ./ --filter  \
-		"./spec_results=hfi_wasm2c_guardpages:Guard pages,hfi_wasm2c_boundschecks:Bounds checks,hfi_wasm2c_hfiemulate2:HFI emulation" -n 4 --usePercent
+		"./spec_results=hfi_wasm2c_guardpagespure:GuardPages,hfi_wasm2c_fsgs:FSGS" -n $(words $(SPEC_BUILDS)) --usePercent
 
 benchmark_spec:
 	cd hfi_spec && source shrc && cd config && \
