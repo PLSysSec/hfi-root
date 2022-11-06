@@ -203,6 +203,8 @@ def normalize_times(times):
         base_times = times["wasm_lucet"]
     elif "hfi_wasm2c_guardpages" in times:
         base_times = times["hfi_wasm2c_guardpages"]
+    elif "hfi_wasm2c_guardpagespure" in times:
+        base_times = times["hfi_wasm2c_guardpagespure"]
     else:
         raise Exception("Could not find baseline times to normalize against. Expected either 'Stock' or 'wasm_lucet'. Got " + str(times.keys()))
 
