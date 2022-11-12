@@ -1,0 +1,620 @@
+==============================================================================
+Debug log for CPU2006.  This file contains very detailed debugging
+output from the CPU2006 tools (as if "--verbose 99" had been specified) and is
+typically useful only to developers of the CPU2006 toolset.   
+
+For a successful run, this debug log will be removed automatically, unless you
+specify "--keeptmp" on the command line, or "keeptmp=1" in your config file.
+
+If you file a support request with cpu2006support@spec.org, you may be
+asked to submit this file.
+------------------------------------------------------------------------------
+
+Environment variables that should have been set or changed by shrc:
+SPEC: /home/shr/Code/HardwareIsolation/hfi_spec
+PATH: /home/shr/Code/HardwareIsolation/hfi_spec/bin:/home/shr/.mozbuild/git-cinnabar:/home/shr/.local/bin:/home/shr/.cargo/bin:/home/shr/.mozbuild/git-cinnabar:/home/shr/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+SPECPERLLIB: /home/shr/Code/HardwareIsolation/hfi_spec/bin:/home/shr/Code/HardwareIsolation/hfi_spec/bin/lib
+LD_LIBRARY_PATH: 
+DYLD_LIBRARY_PATH: 
+LC_ALL: C
+LC_LANG: C
+SPECDB_PWD: /home/shr/Code/HardwareIsolation/hfi_spec/config
+------------------------------------------------------------------------------
+
+Runspec's verbose version output:
+                 This is the SPEC CPU2006 benchmark tools suite.
+
+Version summary:
+    CPU2006 version: 1.1
+ Benchmarks version: 110
+      Tools version: 111
+    runspec version: 6152 ($Id: runspec 6152 2008-05-07 05:25:30Z cloyce $)
+
+Tools information:
+ Tools package installed: linux-suse101-AMD64
+ File locking method: fcntl(2) (probably network-safe)
+Mode |  UID  |  GID  |   Size  |    Modified Date   | Name
+0755 | 1000  | 1000  |  197376 | 17-May-2007 10:05:18 | specmake
+0755 | 1000  | 1000  | 1269511 | 17-May-2007 10:05:18 | specperl
+0755 | 1000  | 1000  |   25160 | 17-May-2007 10:05:18 | specinvoke
+0755 | 1000  | 1000  |   28176 | 17-May-2007 10:05:18 | specinvoke_pm
+0755 | 1000  | 1000  |   87352 | 17-May-2007 10:05:18 | specbzip2
+0755 | 1000  | 1000  |   20056 | 17-May-2007 10:05:18 | specmd5sum
+0775 | 1000  | 1000  |    7637 | 09-Nov-2022 05:46:12 | specdiff
+0775 | 1000  | 1000  |   86545 | 09-Nov-2022 05:46:12 | specpp
+0755 | 1000  | 1000  |  264960 | 17-May-2007 10:05:18 | specrxp
+0775 | 1000  | 1000  |  121907 | 09-Nov-2022 05:46:12 | runspec
+
+Version info for specinvoke (specinvoke): Version: 5000
+Version info for specmake (specmake): GNU Make 3.81
+Version info for specbzip2 (/home/shr/Code/HardwareIsolation/hfi_spec/bin/specbzip2): bzip2 v1.0.3, 15-Feb-2005
+Version info for specpp (/home/shr/Code/HardwareIsolation/hfi_spec/bin/specperl): filepp version 1.7.1SPEC
+Version info for specperl (/home/shr/Code/HardwareIsolation/hfi_spec/bin/specperl): This is specperl, v5.8.8 built for x86_64-linux
+                           For more detail on specperl, say 'specperl -V'
+
+==============================================================================
+
+1667972778.22: runspec v6152 started at Wed Nov  9 00:46:17 2022 on "shr-Desktop"
+1667972778.22: runspec is: /home/shr/Code/HardwareIsolation/hfi_spec/bin/runspec
+1667972778.22: runspec: runspec --config=wasm_hfi_wasm2c_hfiemulate2.cfg --action=build --define cores=1 --iterations=1 --noreportable --size=ref wasmint
+1667972778.22: toolset: linux-suse101-AMD64
+
+1667972778.22(0.05s): Locating benchmarks...Created default regexp '(?:^|(?<=\s))[-/]DSPEC_CPU(?:=\S*)?(?=\s|$)' for DSPEC_CPU in /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/flags-mandatory.xml
+1667972778.27: Created default regexp '(?:^|(?<=\s))[-/]USPEC_CPU(?:=\S*)?(?=\s|$)' for USPEC_CPU in /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/flags-mandatory.xml
+1667972778.27: Created default regexp '(?:^|(?<=\s))[-/]DNDEBUG(?:=\S*)?(?=\s|$)' for DNDEBUG in /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/flags-mandatory.xml
+1667972778.27: Created default regexp '(?:^|(?<=\s))[-/]UNDEBUG(?:=\S*)?(?=\s|$)' for UNDEBUG in /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/flags-mandatory.xml
+1667972778.27: Created default regexp '(?:^|(?<=\s))[-/]DSPEC_CPU_WINDOWS(?:=\S*)?(?=\s|$)' for DSPEC_CPU_WINDOWS in /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/flags-mandatory.xml
+1667972778.27: Created default regexp '(?:^|(?<=\s))[-/]DSPEC_CPU_ILP32(?:=\S*)?(?=\s|$)' for DSPEC_CPU_ILP32 in /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/flags-mandatory.xml
+1667972778.27: Created default regexp '(?:^|(?<=\s))[-/]DSPEC_CPU_P64(?:=\S*)?(?=\s|$)' for DSPEC_CPU_P64 in /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/flags-mandatory.xml
+1667972778.27: Created default regexp '(?:^|(?<=\s))[-/]DSPEC_CPU_LP64(?:=\S*)?(?=\s|$)' for DSPEC_CPU_LP64 in /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/flags-mandatory.xml
+1667972778.27: Created default regexp '(?:^|(?<=\s))[-/]DSPEC_CPU_ILP64(?:=\S*)?(?=\s|$)' for DSPEC_CPU_ILP64 in /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/flags-mandatory.xml
+1667972778.27: Reading suite directory for 'flags-mandatory.xml', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec'
+1667972778.27: Reading suite directory for 'Makefile.defaults', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec'
+1667972778.27: Reading suite directory for 'version.txt', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec'
+1667972778.27: Reading suite directory for 'CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec'
+1667972778.27:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', 'oakland.bset'
+1667972778.27:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '433.milc'
+1667972778.27:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/433.milc/Spec/object.pm in 0.000306129s
+1667972778.27:     Instantiated Spec::Benchmark::milc433 in 0.000245094s
+1667972778.27:     Finding src.alts took 0.000034094s
+1667972778.27:   Setting up milc took 0.000769138s
+
+1667972778.27:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '999.specrand'
+1667972778.27:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/999.specrand/Spec/object.pm in 0.000138044s
+1667972778.27:     Instantiated Spec::Benchmark::specrand999 in 0.000071049s
+1667972778.27:     Finding src.alts took 0.000021935s
+1667972778.27:   Setting up specrand took 0.000380993s
+
+1667972778.27:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', 'all_cpp.bset'
+1667972778.27:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', 'CINT2006.bset'
+1667972778.27:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '456.hmmer'
+1667972778.27:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/456.hmmer/Spec/object.pm in 0.000218153s
+1667972778.27:     Instantiated Spec::Benchmark::hmmer456 in 0.000065804s
+1667972778.27:     Finding src.alts took 0.000020981s
+1667972778.27:   Setting up hmmer took 0.000456095s
+
+1667972778.27:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', 'all_c.bset'
+1667972778.27:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '400.perlbench'
+1667972778.27:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/400.perlbench/Spec/object.pm in 0.000839949s
+1667972778.27:     Instantiated Spec::Benchmark::perlbench400 in 0.000082970s
+1667972778.27:     Finding src.alts took 0.000022888s
+1667972778.27:   Setting up perlbench took 0.001100063s
+
+1667972778.27:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '453.povray'
+1667972778.27:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/453.povray/Spec/object.pm in 0.000197887s
+1667972778.27:     Instantiated Spec::Benchmark::povray453 in 0.000077963s
+1667972778.27:     Finding src.alts took 0.000020981s
+1667972778.27:   Setting up povray took 0.000445843s
+
+1667972778.27:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '436.cactusADM'
+1667972778.27:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/436.cactusADM/Spec/object.pm in 0.000324011s
+1667972778.27:     Instantiated Spec::Benchmark::cactusADM436 in 0.000098944s
+1667972778.27:     Finding src.alts took 0.000020981s
+1667972778.27:   Setting up cactusADM took 0.000594139s
+
+1667972778.27:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', 'extra.bset'
+1667972778.27:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '473.astar'
+1667972778.27:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/473.astar/Spec/object.pm in 0.000199080s
+1667972778.27:     Instantiated Spec::Benchmark::astar473 in 0.000062943s
+1667972778.27:     Finding src.alts took 0.000020981s
+1667972778.27:   Setting up astar took 0.000448942s
+
+1667972778.27:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '437.leslie3d'
+1667972778.27:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/437.leslie3d/Spec/object.pm in 0.000128031s
+1667972778.27:     Instantiated Spec::Benchmark::leslie3d437 in 0.000061989s
+1667972778.27:     Finding src.alts took 0.000020981s
+1667972778.27:   Setting up leslie3d took 0.000357151s
+
+1667972778.27:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '403.gcc'
+1667972778.27:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/403.gcc/Spec/object.pm in 0.000196934s
+1667972778.27:     Instantiated Spec::Benchmark::gcc403 in 0.000077963s
+1667972778.27:     Finding src.alts took 0.000021935s
+1667972778.27:   Setting up gcc took 0.000443935s
+
+1667972778.27:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '481.wrf'
+1667972778.28:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/481.wrf/Spec/object.pm in 0.001361132s
+1667972778.28:     Instantiated Spec::Benchmark::wrf481 in 0.000128031s
+1667972778.28:     Finding src.alts took 0.000023127s
+1667972778.28:   Setting up wrf took 0.001666069s
+
+1667972778.28:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', 'all_mixed.bset'
+1667972778.28:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '454.calculix'
+1667972778.28:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/454.calculix/Spec/object.pm in 0.000346899s
+1667972778.28:     Instantiated Spec::Benchmark::calculix454 in 0.000105858s
+1667972778.28:     Finding src.alts took 0.000020981s
+1667972778.28:   Setting up calculix took 0.000627041s
+
+1667972778.28:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '471.omnetpp'
+1667972778.28:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/471.omnetpp/Spec/object.pm in 0.000149012s
+1667972778.28:     Instantiated Spec::Benchmark::omnetpp471 in 0.000069141s
+1667972778.28:     Finding src.alts took 0.000020981s
+1667972778.28:   Setting up omnetpp took 0.000393867s
+
+1667972778.28:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '434.zeusmp'
+1667972778.28:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/434.zeusmp/Spec/object.pm in 0.000135899s
+1667972778.28:     Instantiated Spec::Benchmark::zeusmp434 in 0.000067949s
+1667972778.28:     Finding src.alts took 0.000020027s
+1667972778.28:   Setting up zeusmp took 0.000368118s
+
+1667972778.28:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '462.libquantum'
+1667972778.28:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/462.libquantum/Spec/object.pm in 0.000128984s
+1667972778.28:     Instantiated Spec::Benchmark::libquantum462 in 0.000060081s
+1667972778.28:     Finding src.alts took 0.000020027s
+1667972778.28:   Setting up libquantum took 0.000355005s
+
+1667972778.28:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '464.h264ref'
+1667972778.28:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/464.h264ref/Spec/object.pm in 0.000247002s
+1667972778.28:     Instantiated Spec::Benchmark::h264ref464 in 0.000061035s
+1667972778.28:     Finding src.alts took 0.000022173s
+1667972778.28:   Setting up h264ref took 0.000480175s
+
+1667972778.28:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '444.namd'
+1667972778.28:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/444.namd/Spec/object.pm in 0.000161886s
+1667972778.28:     Instantiated Spec::Benchmark::namd444 in 0.000065088s
+1667972778.28:     Finding src.alts took 0.000020981s
+1667972778.28:   Setting up namd took 0.000396013s
+
+1667972778.28:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '482.sphinx3'
+1667972778.28:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/482.sphinx3/Spec/object.pm in 0.000394106s
+1667972778.28:     Instantiated Spec::Benchmark::sphinx3482 in 0.000076056s
+1667972778.28:     Finding src.alts took 0.000020981s
+1667972778.28:   Setting up sphinx3 took 0.000643015s
+
+1667972778.28:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '483.xalancbmk'
+1667972778.28:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/483.xalancbmk/Spec/object.pm in 0.000874043s
+1667972778.28:     Instantiated Spec::Benchmark::xalancbmk483 in 0.000141859s
+1667972778.28:     Finding src.alts took 0.000021935s
+1667972778.28:   Setting up xalancbmk took 0.001190901s
+
+1667972778.28:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '401.bzip2'
+1667972778.28:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/401.bzip2/Spec/object.pm in 0.000123024s
+1667972778.28:     Instantiated Spec::Benchmark::bzip2401 in 0.000056028s
+1667972778.28:     Finding src.alts took 0.000020027s
+1667972778.28:   Setting up bzip2 took 0.000344038s
+
+1667972778.28:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '429.mcf'
+1667972778.28:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/429.mcf/Spec/object.pm in 0.000123024s
+1667972778.28:     Instantiated Spec::Benchmark::mcf429 in 0.000073195s
+1667972778.28:     Finding src.alts took 0.000020027s
+1667972778.28:   Setting up mcf took 0.000361919s
+
+1667972778.28:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '410.bwaves'
+1667972778.28:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/410.bwaves/Spec/object.pm in 0.000174999s
+1667972778.28:     Instantiated Spec::Benchmark::bwaves410 in 0.000087976s
+1667972778.28:     Finding src.alts took 0.000027895s
+1667972778.28:   Setting up bwaves took 0.001549959s
+
+1667972778.28:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '459.GemsFDTD'
+1667972778.28:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/459.GemsFDTD/Spec/object.pm in 0.000253916s
+1667972778.28:     Instantiated Spec::Benchmark::GemsFDTD459 in 0.000067949s
+1667972778.28:     Finding src.alts took 0.000022888s
+1667972778.28:   Setting up GemsFDTD took 0.000496864s
+
+1667972778.28:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '416.gamess'
+1667972778.29:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/416.gamess/Spec/object.pm in 0.000317097s
+1667972778.29:     Instantiated Spec::Benchmark::gamess416 in 0.000080109s
+1667972778.29:     Finding src.alts took 0.000022173s
+1667972778.29:   Setting up gamess took 0.000575066s
+
+1667972778.29:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '450.soplex'
+1667972778.29:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/450.soplex/Spec/object.pm in 0.000248909s
+1667972778.29:     Instantiated Spec::Benchmark::soplex450 in 0.000060081s
+1667972778.29:     Finding src.alts took 0.000021935s
+1667972778.29:   Setting up soplex took 0.000481844s
+
+1667972778.29:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '445.gobmk'
+1667972778.29:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/445.gobmk/Spec/object.pm in 0.000170946s
+1667972778.29:     Instantiated Spec::Benchmark::gobmk445 in 0.000064850s
+1667972778.29:     Finding src.alts took 0.000024080s
+1667972778.29:   Setting up gobmk took 0.000534058s
+
+1667972778.29:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', 'CFP2006.bset'
+1667972778.29:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '470.lbm'
+1667972778.29:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/470.lbm/Spec/object.pm in 0.000118017s
+1667972778.29:     Instantiated Spec::Benchmark::lbm470 in 0.000060081s
+1667972778.29:     Finding src.alts took 0.000021935s
+1667972778.29:   Setting up lbm took 0.000349045s
+
+1667972778.29:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', 'wasmCINT2006.bset'
+1667972778.29:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '465.tonto'
+1667972778.29:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/465.tonto/Spec/object.pm in 0.001278877s
+1667972778.29:     Instantiated Spec::Benchmark::tonto465 in 0.000126123s
+1667972778.29:     Finding src.alts took 0.000025034s
+1667972778.29:   Setting up tonto took 0.001587868s
+
+1667972778.29:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '435.gromacs'
+1667972778.29:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/435.gromacs/Spec/object.pm in 0.000176907s
+1667972778.29:     Instantiated Spec::Benchmark::gromacs435 in 0.000078917s
+1667972778.29:     Finding src.alts took 0.000020027s
+1667972778.29:   Setting up gromacs took 0.000428200s
+
+1667972778.29:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '447.dealII'
+1667972778.29:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/447.dealII/Spec/object.pm in 0.000470877s
+1667972778.29:     Instantiated Spec::Benchmark::dealII447 in 0.000082016s
+1667972778.29:     Finding src.alts took 0.000021935s
+1667972778.29:   Setting up dealII took 0.000726938s
+
+1667972778.29:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', 'all_fortran.bset'
+1667972778.29:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', 'wasmtestCINT2006.bset'
+1667972778.29:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '998.specrand'
+1667972778.29:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/998.specrand/Spec/object.pm in 0.000124931s
+1667972778.29:     Instantiated Spec::Benchmark::specrand998 in 0.000056982s
+1667972778.29:     Finding src.alts took 0.000020981s
+1667972778.29:   Setting up specrand took 0.000351906s
+
+1667972778.29:   Reading benchmark directory for '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006', '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec', '458.sjeng'
+1667972778.29:     Evaluated /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/458.sjeng/Spec/object.pm in 0.000120878s
+1667972778.29:     Instantiated Spec::Benchmark::sjeng458 in 0.000061035s
+1667972778.29:     Finding src.alts took 0.000020027s
+1667972778.29:   Setting up sjeng took 0.000346899s
+
+1667972778.29: Setting up suite took 0.023972988s
+1667972778.29: found 31 benchmarks in 10 benchsets.
+1667972778.29: Reading config file '/home/shr/Code/HardwareIsolation/hfi_spec/config/wasm_hfi_wasm2c_hfiemulate2.cfg'
+
+1667972778.33:   '401.bzip2' added
+1667972778.33:   '429.mcf' added
+1667972778.33:   '433.milc' added
+1667972778.33:   '444.namd' added
+1667972778.33:   '445.gobmk' added
+1667972778.33:   '458.sjeng' added
+1667972778.33:   '462.libquantum' added
+1667972778.33:   '464.h264ref' added
+1667972778.33:   '470.lbm' added
+1667972778.33:   '473.astar' added
+1667972778.33: Verbosity = 5
+1667972778.33: Action    = build
+1667972778.33: Tune      = base
+1667972778.33: Ext       = hfi_wasm2c_hfiemulate2
+1667972778.33: Size      = ref
+1667972778.33: Machine   = default
+1667972778.33: benchmarks= 401.bzip2,429.mcf,433.milc,444.namd,445.gobmk,458.sjeng,462.libquantum,464.h264ref,470.lbm,473.astar
+1667972778.33: outputs   = asc
+1667972778.33: username  = shr
+1667972778.33: Benchmarks selected: 401.bzip2, 429.mcf, 433.milc, 444.namd, 445.gobmk, 458.sjeng, 462.libquantum, 464.h264ref, 470.lbm, 473.astar
+1667972778.36: Compiling Binaries
+
+1667972778.36: ------------------------------------------------------------------------
+1667972778.36: /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/401.bzip2/exe/bzip2_base.hfi_wasm2c_hfiemulate2 does not exist
+1667972778.36:   Building 401.bzip2 base hfi_wasm2c_hfiemulate2 default: (build_base_hfi_wasm2c_hfiemulate2.0000)
+1667972778.39: Wrote to makefile '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/401.bzip2/build/build_base_hfi_wasm2c_hfiemulate2.0000/Makefile.deps':
+
+1667972778.39: # These are the build dependencies
+
+1667972778.39: # End dependencies
+1667972778.39: Wrote to makefile '/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/401.bzip2/build/build_base_hfi_wasm2c_hfiemulate2.0000/Makefile.spec':
+1667972778.39: TUNE=base
+1667972778.39: EXT=hfi_wasm2c_hfiemulate2
+1667972778.39: NUMBER=401
+1667972778.39: NAME=bzip2
+1667972778.39: SOURCES= spec.c blocksort.c bzip2.c bzlib.c compress.c crctable.c \
+1667972778.39: 	 decompress.c huffman.c randtable.c
+1667972778.39: EXEBASE=bzip2
+1667972778.39: NEED_MATH=
+1667972778.39: BENCHLANG=C
+1667972778.39: ONESTEP=
+1667972778.39: CONESTEP=
+
+1667972778.39: CC               = $(WASI_SDK_PATH)/bin/clang $(WASI_FLAGS)
+1667972778.39: COPTIMIZE        = -O2
+1667972778.39: CXX              = $(WASI_SDK_PATH)/bin/clang++ $(WASI_FLAGS) -fno-exceptions
+1667972778.39: CXXOPTIMIZE      = -O2
+1667972778.39: FC               = /usr/bin/gfortran
+1667972778.39: FOPTIMIZE        = -O2
+1667972778.39: FPBASE           = yes
+1667972778.39: LUCET_TYPE       = hfi_wasm2c_hfiemulate2
+1667972778.39: OS               = unix
+1667972778.39: PORTABILITY      = -DSPEC_CPU_LP64
+1667972778.39: WASI_FLAGS       = --sysroot $(WASI_SDK_PATH)/share/wasi-sysroot -Wl,--export-all -Wl,--global-base=100000 -Wl,-z,stack-size=1048576 -Wl,--growable-table -D_WASI_EMULATED_SIGNAL -lwasi-emulated-signal
+1667972778.39: WASI_SDK_PATH    = $(SPEC)/../wasi-sdk/
+1667972778.39: absolutely_no_locking = 0
+1667972778.39: abstol           = 
+1667972778.39: action           = build
+1667972778.39: allow_extension_override = 0
+1667972778.39: backup_config    = 1
+1667972778.39: baseexe          = bzip2
+1667972778.39: basepeak         = 0
+1667972778.39: benchdir         = benchspec
+1667972778.39: benchmark        = 401.bzip2
+1667972778.39: binary           = 
+1667972778.39: bindir           = exe
+1667972778.39: build_in_build_dir = 1
+1667972778.39: builddir         = build
+1667972778.39: bundleaction     = 
+1667972778.39: bundlename       = 
+1667972778.39: calctol          = 0
+1667972778.39: changedmd5       = 0
+1667972778.39: check_integrity  = 1
+1667972778.39: check_md5        = 1
+1667972778.39: check_version    = 1
+1667972778.39: command_add_redirect = 0
+1667972778.39: commanderrfile   = speccmds.err
+1667972778.39: commandexe       = bzip2_base.hfi_wasm2c_hfiemulate2
+1667972778.39: commandfile      = speccmds.cmd
+1667972778.39: commandoutfile   = speccmds.out
+1667972778.39: commandstdoutfile = speccmds.stdout
+1667972778.39: compareerrfile   = compare.err
+1667972778.39: comparefile      = compare.cmd
+1667972778.39: compareoutfile   = compare.out
+1667972778.39: comparestdoutfile = compare.stdout
+1667972778.39: compile_error    = 0
+1667972778.39: compwhite        = 
+1667972778.39: configdir        = config
+1667972778.39: configpath       = /home/shr/Code/HardwareIsolation/hfi_spec/config/wasm_hfi_wasm2c_hfiemulate2.cfg
+1667972778.39: copies           = 1
+1667972778.39: datadir          = data
+1667972778.39: delay            = 0
+1667972778.39: deletebinaries   = 0
+1667972778.39: deletework       = 0
+1667972778.39: difflines        = 10
+1667972778.39: dirprot          = 511
+1667972778.39: endian           = 12345678
+1667972778.39: env_vars         = 0
+1667972778.39: exitvals         = spec_exit
+1667972778.39: expand_notes     = 0
+1667972778.39: expid            = 
+1667972778.39: ext              = hfi_wasm2c_hfiemulate2
+1667972778.39: fake             = 0
+1667972778.39: feedback         = 1
+1667972778.39: flag_url_base    = http://www.spec.org/auto/cpu2006/flags/
+1667972778.39: floatcompare     = 
+1667972778.39: help             = 0
+1667972778.39: http_proxy       = 
+1667972778.39: http_timeout     = 30
+1667972778.39: hw_avail         = Dec-9999
+1667972778.39: hw_cpu_char      = 
+1667972778.39: hw_cpu_mhz       = 3000
+1667972778.39: hw_cpu_name      = AMD Opteron 256
+1667972778.39: hw_disk          = SATA
+1667972778.39: hw_fpu           = Integrated
+1667972778.39: hw_memory        = 2 GB (2 x 1GB DDR333 CL2.5)
+1667972778.39: hw_model         = Tyan Thunder KKQS Pro (S4882)
+1667972778.39: hw_nchips        = 1
+1667972778.39: hw_ncores        = 1
+1667972778.39: hw_ncoresperchip = 1
+1667972778.39: hw_ncpuorder     = 1 chip
+1667972778.39: hw_nthreadspercore = 1
+1667972778.39: hw_ocache        = None
+1667972778.39: hw_pcache        = 64 KB I + 64 KB D on chip per chip
+1667972778.39: hw_scache        = 1 MB I+D on chip per chip
+1667972778.39: hw_tcache        = None
+1667972778.39: hw_vendor        = Tyan
+1667972778.39: ignore_errors    = yes
+1667972778.39: ignore_sigint    = 0
+1667972778.39: ignorecase       = 
+1667972778.39: info_wrap_columns = 50
+1667972778.39: inputdir         = input
+1667972778.39: iteration        = -1
+1667972778.39: iterations       = 1
+1667972778.39: keeptmp          = 0
+1667972778.39: license_num      = 0
+1667972778.39: line_width       = 0
+1667972778.39: locking          = 1
+1667972778.39: log              = CPU2006
+1667972778.39: log_line_width   = 0
+1667972778.39: log_timestamp    = 0
+1667972778.39: logname          = /home/shr/Code/HardwareIsolation/hfi_spec/result/CPU2006.004.log
+1667972778.39: lognum           = 004
+1667972778.39: mach             = default
+1667972778.39: mail_reports     = all
+1667972778.39: mailcompress     = 0
+1667972778.39: mailmethod       = smtp
+1667972778.39: mailport         = 25
+1667972778.39: mailserver       = 127.0.0.1
+1667972778.39: mailto           = 
+1667972778.39: make             = specmake
+1667972778.39: make_no_clobber  = 0
+1667972778.39: makeflags        = 
+1667972778.39: max_active_compares = 0
+1667972778.39: mean_anyway      = 0
+1667972778.39: min_report_runs  = 3
+1667972778.39: minimize_builddirs = 0
+1667972778.39: minimize_rundirs = 0
+1667972778.39: name             = bzip2
+1667972778.39: need_math        = 
+1667972778.39: no_input_handler = close
+1667972778.39: no_monitor       = 
+1667972778.39: note_preenv      = 0
+1667972778.39: notes0100        =  C base flags: -O2
+1667972778.39: notes0110        =  C++ base flags: -O2
+1667972778.39: notes0120        =  Fortran base flags: -O2
+1667972778.39: notes25          =  PORTABILITY=-DSPEC_CPU_LP64 is applied to all benchmarks in base.
+1667972778.39: notes_wrap_columns = 0
+1667972778.39: notes_wrap_indent =   
+1667972778.39: num              = 401
+1667972778.39: obiwan           = 
+1667972778.39: os_exe_ext       = 
+1667972778.39: output           = asc
+1667972778.39: output_format    = asc
+1667972778.39: output_root      = 
+1667972778.39: outputdir        = output
+1667972778.39: parallel_setup   = 1
+1667972778.39: parallel_setup_prefork = 
+1667972778.39: parallel_setup_type = fork
+1667972778.39: parallel_test    = 0
+1667972778.39: parallel_test_submit = 0
+1667972778.39: path             = /home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/401.bzip2
+1667972778.39: plain_train      = 1
+1667972778.39: preenv           = 1
+1667972778.39: prefix           = 
+1667972778.39: prepared_by      = 
+1667972778.39: ranks            = 1
+1667972778.39: rate             = 0
+1667972778.39: realuser         = your name here
+1667972778.39: rebuild          = 0
+1667972778.39: reftime          = reftime
+1667972778.39: reltol           = 
+1667972778.39: reportable       = 0
+1667972778.39: resultdir        = result
+1667972778.39: review           = 0
+1667972778.39: run              = all
+1667972778.39: rundir           = run
+1667972778.39: runspec          = /home/shr/Code/HardwareIsolation/hfi_spec/bin/runspec --config=wasm_hfi_wasm2c_hfiemulate2.cfg --action=build --define cores=1 --iterations=1 --noreportable --size=ref wasmint
+1667972778.39: safe_eval        = 1
+1667972778.39: section_specifier_fatal = 1
+1667972778.39: sendmail         = /usr/sbin/sendmail
+1667972778.39: setpgrp_enabled  = 1
+1667972778.39: setprocgroup     = 1
+1667972778.39: shrate           = 0
+1667972778.39: sigint           = 2
+1667972778.39: size             = ref
+1667972778.39: size_class       = ref
+1667972778.39: skipabstol       = 
+1667972778.39: skipobiwan       = 
+1667972778.39: skipreltol       = 
+1667972778.39: skiptol          = 
+1667972778.39: smarttune        = base
+1667972778.39: specdiff         = specdiff
+1667972778.39: specmake         = Makefile.YYYtArGeTYYYspec
+1667972778.39: specrun          = specinvoke
+1667972778.39: speed            = 0
+1667972778.39: srcalt           = 
+1667972778.39: srcdir           = src
+1667972778.39: stagger          = 10
+1667972778.39: strict_rundir_verify = 0
+1667972778.39: sw_avail         = Dec-9999
+1667972778.39: sw_base_ptrsize  = 64-bit
+1667972778.39: sw_compiler      = clang , clang++ & gfortran 4.1.0 (for AMD64)
+1667972778.39: sw_file          = ext3
+1667972778.39: sw_os            = SUSE SLES9 (for AMD64)
+1667972778.39: sw_other         = None
+1667972778.39: sw_peak_ptrsize  = Not Applicable
+1667972778.39: sw_state         = runlevel 3
+1667972778.39: sysinfo_program  = 
+1667972778.39: table            = 1
+1667972778.39: teeout           = yes
+1667972778.39: teerunout        = yes
+1667972778.39: test_date        = Nov-2022
+1667972778.39: test_sponsor     = Turbo Computers
+1667972778.39: tester           = 
+1667972778.39: top              = /home/shr/Code/HardwareIsolation/hfi_spec
+1667972778.39: train_with       = train
+1667972778.39: tune             = base
+1667972778.39: uid              = 1000
+1667972778.39: unbuffer         = 1
+1667972778.39: update-flags     = 0
+1667972778.39: use_submit_for_speed = 0
+1667972778.39: username         = shr
+1667972778.39: vendor           = anon
+1667972778.39: vendor_makefiles = 0
+1667972778.39: verbose          = 5
+1667972778.39: version          = 0
+1667972778.39: version_url      = http://www.spec.org/auto/cpu2006/current_version
+1667972778.39: worklist         = list
+1667972778.39: OUTPUT_RMFILES   = byoudoin.jpg.out input.combined.out input.program.out
+1667972778.39:   Compile for '401.bzip2' started at: Wed Nov  9 00:46:18 2022 (1667972778)
+1667972778.39: Issuing make.clean command 'specmake clean'
+1667972778.39: specmake clean 2> make.clean.err | tee make.clean.out
+1667972778.40: Start make.clean command: Wed Nov  9 00:46:18 2022 (1667972778)
+1667972778.40: specmake[1]: Entering directory `/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/401.bzip2/build/build_base_hfi_wasm2c_hfiemulate2.0000'
+1667972778.40: rm -rf bzip2
+1667972778.40: rm -rf bzip2.exe
+1667972778.40: rm -rf *.o  byoudoin.jpg.out input.combined.out input.program.out
+1667972778.40: find . \( -name \*.o -o -name '*.fppized.f*' \) -print | xargs rm -rf
+1667972778.41: rm -rf core
+1667972778.41: rm -rf 
+1667972778.41: specmake[1]: Leaving directory `/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/401.bzip2/build/build_base_hfi_wasm2c_hfiemulate2.0000'
+1667972778.41: Tee child 445656 exited with code 0 (exit code=0, signal=0)
+1667972778.41: Stop make.clean command: Wed Nov  9 00:46:18 2022 (1667972778)
+1667972778.41: Elapsed time for make.clean command: 00:00:00 (0)
+1667972778.41: Issuing make command 'specmake build'
+1667972778.41: specmake build 2> make.err | tee make.out
+1667972778.41: Start make command: Wed Nov  9 00:46:18 2022 (1667972778)
+1667972778.41: specmake[1]: Entering directory `/home/shr/Code/HardwareIsolation/hfi_spec/benchspec/CPU2006/401.bzip2/build/build_base_hfi_wasm2c_hfiemulate2.0000'
+1667972778.41: /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//bin/clang --sysroot /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//share/wasi-sysroot -Wl,--export-all -Wl,--global-base=100000 -Wl,-z,stack-size=1048576 -Wl,--growable-table -D_WASI_EMULATED_SIGNAL -lwasi-emulated-signal -c -o spec.o -DSPEC_CPU -DNDEBUG    -O2       -DSPEC_CPU_LP64         spec.c
+1667972778.42: clang-13: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1667972778.42: clang-13: warning: -Wl,--global-base=100000: 'linker' input unused [-Wunused-command-line-argument]
+1667972778.42: clang-13: warning: -Wl,-z,stack-size=1048576: 'linker' input unused [-Wunused-command-line-argument]
+1667972778.42: clang-13: warning: -Wl,--growable-table: 'linker' input unused [-Wunused-command-line-argument]
+1667972778.42: clang-13: warning: -lwasi-emulated-signal: 'linker' input unused [-Wunused-command-line-argument]
+1667972778.44: spec.c:76:27: warning: implicit conversion from 'long' to 'float' changes value from 2147483647 to 2147483648 [-Wimplicit-const-int-float-conversion]
+1667972778.44:         return ( (float) seedi / _M_MODULUS);
+1667972778.44:                                ~ ^~~~~~~~~~
+1667972778.44: spec.c:60:24: note: expanded from macro '_M_MODULUS'
+1667972778.44: #define _M_MODULUS     2147483647L /* (2**31)-1 */
+1667972778.44:                        ^~~~~~~~~~~
+1667972778.57: 1 warning generated.
+1667972778.57: /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//bin/clang --sysroot /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//share/wasi-sysroot -Wl,--export-all -Wl,--global-base=100000 -Wl,-z,stack-size=1048576 -Wl,--growable-table -D_WASI_EMULATED_SIGNAL -lwasi-emulated-signal -c -o blocksort.o -DSPEC_CPU -DNDEBUG    -O2       -DSPEC_CPU_LP64         blocksort.c
+1667972778.58: clang-13: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1667972778.58: clang-13: warning: -Wl,--global-base=100000: 'linker' input unused [-Wunused-command-line-argument]
+1667972778.58: clang-13: warning: -Wl,-z,stack-size=1048576: 'linker' input unused [-Wunused-command-line-argument]
+1667972778.58: clang-13: warning: -Wl,--growable-table: 'linker' input unused [-Wunused-command-line-argument]
+1667972778.58: clang-13: warning: -lwasi-emulated-signal: 'linker' input unused [-Wunused-command-line-argument]
+1667972779.37: /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//bin/clang --sysroot /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//share/wasi-sysroot -Wl,--export-all -Wl,--global-base=100000 -Wl,-z,stack-size=1048576 -Wl,--growable-table -D_WASI_EMULATED_SIGNAL -lwasi-emulated-signal -c -o bzip2.o -DSPEC_CPU -DNDEBUG    -O2       -DSPEC_CPU_LP64         bzip2.c
+1667972779.38: clang-13: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1667972779.38: clang-13: warning: -Wl,--global-base=100000: 'linker' input unused [-Wunused-command-line-argument]
+1667972779.38: clang-13: warning: -Wl,-z,stack-size=1048576: 'linker' input unused [-Wunused-command-line-argument]
+1667972779.38: clang-13: warning: -Wl,--growable-table: 'linker' input unused [-Wunused-command-line-argument]
+1667972779.38: clang-13: warning: -lwasi-emulated-signal: 'linker' input unused [-Wunused-command-line-argument]
+1667972779.40: bzip2.c:487:27: warning: incompatible pointer to integer conversion assigning to 'int' from 'void *' [-Wint-conversion]
+1667972779.40:    outputHandleJustInCase = NULL;
+1667972779.40:                           ^ ~~~~
+1667972779.41: bzip2.c:614:27: warning: incompatible pointer to integer conversion assigning to 'int' from 'void *' [-Wint-conversion]
+1667972779.41:    outputHandleJustInCase = NULL;
+1667972779.41:                           ^ ~~~~
+1667972779.52: 2 warnings generated.
+1667972779.52: /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//bin/clang --sysroot /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//share/wasi-sysroot -Wl,--export-all -Wl,--global-base=100000 -Wl,-z,stack-size=1048576 -Wl,--growable-table -D_WASI_EMULATED_SIGNAL -lwasi-emulated-signal -c -o bzlib.o -DSPEC_CPU -DNDEBUG    -O2       -DSPEC_CPU_LP64         bzlib.c
+1667972779.53: clang-13: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1667972779.53: clang-13: warning: -Wl,--global-base=100000: 'linker' input unused [-Wunused-command-line-argument]
+1667972779.53: clang-13: warning: -Wl,-z,stack-size=1048576: 'linker' input unused [-Wunused-command-line-argument]
+1667972779.53: clang-13: warning: -Wl,--growable-table: 'linker' input unused [-Wunused-command-line-argument]
+1667972779.53: clang-13: warning: -lwasi-emulated-signal: 'linker' input unused [-Wunused-command-line-argument]
+1667972780.24: /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//bin/clang --sysroot /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//share/wasi-sysroot -Wl,--export-all -Wl,--global-base=100000 -Wl,-z,stack-size=1048576 -Wl,--growable-table -D_WASI_EMULATED_SIGNAL -lwasi-emulated-signal -c -o compress.o -DSPEC_CPU -DNDEBUG    -O2       -DSPEC_CPU_LP64         compress.c
+1667972780.25: clang-13: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1667972780.25: clang-13: warning: -Wl,--global-base=100000: 'linker' input unused [-Wunused-command-line-argument]
+1667972780.25: clang-13: warning: -Wl,-z,stack-size=1048576: 'linker' input unused [-Wunused-command-line-argument]
+1667972780.25: clang-13: warning: -Wl,--growable-table: 'linker' input unused [-Wunused-command-line-argument]
+1667972780.25: clang-13: warning: -lwasi-emulated-signal: 'linker' input unused [-Wunused-command-line-argument]
+1667972781.54: /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//bin/clang --sysroot /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//share/wasi-sysroot -Wl,--export-all -Wl,--global-base=100000 -Wl,-z,stack-size=1048576 -Wl,--growable-table -D_WASI_EMULATED_SIGNAL -lwasi-emulated-signal -c -o crctable.o -DSPEC_CPU -DNDEBUG    -O2       -DSPEC_CPU_LP64         crctable.c
+1667972781.54: clang-13: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1667972781.54: clang-13: warning: -Wl,--global-base=100000: 'linker' input unused [-Wunused-command-line-argument]
+1667972781.54: clang-13: warning: -Wl,-z,stack-size=1048576: 'linker' input unused [-Wunused-command-line-argument]
+1667972781.54: clang-13: warning: -Wl,--growable-table: 'linker' input unused [-Wunused-command-line-argument]
+1667972781.54: clang-13: warning: -lwasi-emulated-signal: 'linker' input unused [-Wunused-command-line-argument]
+1667972781.57: /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//bin/clang --sysroot /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//share/wasi-sysroot -Wl,--export-all -Wl,--global-base=100000 -Wl,-z,stack-size=1048576 -Wl,--growable-table -D_WASI_EMULATED_SIGNAL -lwasi-emulated-signal -c -o decompress.o -DSPEC_CPU -DNDEBUG    -O2       -DSPEC_CPU_LP64         decompress.c
+1667972781.57: clang-13: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1667972781.57: clang-13: warning: -Wl,--global-base=100000: 'linker' input unused [-Wunused-command-line-argument]
+1667972781.57: clang-13: warning: -Wl,-z,stack-size=1048576: 'linker' input unused [-Wunused-command-line-argument]
+1667972781.57: clang-13: warning: -Wl,--growable-table: 'linker' input unused [-Wunused-command-line-argument]
+1667972781.57: clang-13: warning: -lwasi-emulated-signal: 'linker' input unused [-Wunused-command-line-argument]
+1667972782.61: /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//bin/clang --sysroot /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//share/wasi-sysroot -Wl,--export-all -Wl,--global-base=100000 -Wl,-z,stack-size=1048576 -Wl,--growable-table -D_WASI_EMULATED_SIGNAL -lwasi-emulated-signal -c -o huffman.o -DSPEC_CPU -DNDEBUG    -O2       -DSPEC_CPU_LP64         huffman.c
+1667972782.61: clang-13: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1667972782.61: clang-13: warning: -Wl,--global-base=100000: 'linker' input unused [-Wunused-command-line-argument]
+1667972782.61: clang-13: warning: -Wl,-z,stack-size=1048576: 'linker' input unused [-Wunused-command-line-argument]
+1667972782.61: clang-13: warning: -Wl,--growable-table: 'linker' input unused [-Wunused-command-line-argument]
+1667972782.61: clang-13: warning: -lwasi-emulated-signal: 'linker' input unused [-Wunused-command-line-argument]
+1667972782.73: /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//bin/clang --sysroot /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//share/wasi-sysroot -Wl,--export-all -Wl,--global-base=100000 -Wl,-z,stack-size=1048576 -Wl,--growable-table -D_WASI_EMULATED_SIGNAL -lwasi-emulated-signal -c -o randtable.o -DSPEC_CPU -DNDEBUG    -O2       -DSPEC_CPU_LP64         randtable.c
+1667972782.73: clang-13: warning: -Wl,--export-all: 'linker' input unused [-Wunused-command-line-argument]
+1667972782.73: clang-13: warning: -Wl,--global-base=100000: 'linker' input unused [-Wunused-command-line-argument]
+1667972782.73: clang-13: warning: -Wl,-z,stack-size=1048576: 'linker' input unused [-Wunused-command-line-argument]
+1667972782.73: clang-13: warning: -Wl,--growable-table: 'linker' input unused [-Wunused-command-line-argument]
+1667972782.73: clang-13: warning: -lwasi-emulated-signal: 'linker' input unused [-Wunused-command-line-argument]
+1667972782.76: /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//bin/clang --sysroot /home/shr/Code/HardwareIsolation/hfi_spec/../wasi-sdk//share/wasi-sysroot -Wl,--export-all -Wl,--global-base=100000 -Wl,-z,stack-size=1048576 -Wl,--growable-table -D_WASI_EMULATED_SIGNAL -lwasi-emulated-signal   -O2  -DSPEC_CPU_LP64        spec.o blocksort.o bzip2.o bzlib.o compress.o crctable.o decompress.o huffman.o randtable.o                     -o bzip2
+1667972782.77: file bzip2
+1667972782.77: bzip2: WebAssembly (wasm) binary module version 0x1 (MVP)
+1667972782.78: XXX >>>>> bzip2 <<<<<<
+1667972782.78: XXX saving wasi-clang final wasm as bzip2.wasm
+1667972782.78: cp bzip2 bzip2.wasm
+1667972782.78: /home/shr/Code/HardwareIsolation/hfi_spec/../hfi_wasm2c_sandbox_compiler/build_release_guardpages/wasm2c bzip2.wasm -o bzip2.wasm.c
+1667972782.85: gcc -O3 -DWASM_USE_HFI -DHFI_EMULATION2 -DHFI_USE_VOLATILE -o bzip2 bzip2.wasm.c /home/shr/Code/HardwareIsolation/hfi_spec/../hfi_wasm2c_sandbox_compiler/wasm2c/wasm-rt-impl.c /home/shr/Code/HardwareIsolation/hfi_spec/../hfi_wasm2c_sandbox_compiler/wasm2c/wasm-rt-os-unix.c /home/shr/Code/HardwareIsolation/hfi_spec/../hfi_wasm2c_sandbox_compiler/wasm2c/uvwasi-rt.c /home/shr/Code/HardwareIsolation/hfi_spec/../hfi_wasm2c_sandbox_compiler/wasm2c/wasm-rt-runner-static.c -I/home/shr/Code/HardwareIsolation/hfi_spec/../hfi_wasm2c_sandbox_compiler/wasm2c -I/home/shr/Code/HardwareIsolation/hfi_spec/../hfi_wasm2c_sandbox_compiler/third_party/uvwasi/include -I/home/shr/Code/HardwareIsolation/hfi_spec/../hw_isol_gem5/tests/test-progs/hfi/ -L/home/shr/Code/HardwareIsolation/hfi_spec/../hfi_wasm2c_sandbox_compiler/build_release_guardpages/_deps/libuv-build -L/home/shr/Code/HardwareIsolation/hfi_spec/../hfi_wasm2c_sandbox_compiler/build_release_guardpages/third_party/uvwasi -luvwasi_a -luv -lpthread -lm
+1667972789.56: file bzip2
