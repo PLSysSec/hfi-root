@@ -187,14 +187,20 @@ benchmark_env_setup: disable_hyperthreading disable_cpufreq
 benchmark_env_close: restore_hyperthreading shielding_off restore_cpufreq
 
 benchmark_graphite:
-	export DISPLAY=:99 && cd hfi_firefox && ./testsRunBenchmark "../benchmarks/graphite_test_$(CURR_TIME)" "graphite_perf_test"
-
-# cd hfi_firefox && ./testsRunBenchmark "../benchmarks/jpeg_black_width_test_$(CURR_TIME)" "jpeg_black_width_perf"
+	export DISPLAY=:99 && cd hfi_firefox && ./testsRunBenchmark "../benchmarks/graphite_test_$(CURR_TIME)" "graphite_perf_test" "stock boundschecks hfiemu2"
 
 benchmark_jpeg:
-	export DISPLAY=:99 && cd hfi_firefox && ./testsRunBenchmark "../benchmarks/jpeg_test_$(CURR_TIME)" "jpeg_perf"
+	export DISPLAY=:99 && cd hfi_firefox && ./testsRunBenchmark "../benchmarks/jpeg_test_$(CURR_TIME)" "jpeg_perf" "stock boundschecks hfiemu2"
 	./hfi_firefox/testsProduceImagePlotData.py ./benchmarks/jpeg_test_$(CURR_TIME)/compare_stock_terminal_analysis.json.dat ./benchmarks/jpeg_test_$(CURR_TIME)/jpeg_perf.plotdat
 	gnuplot -e "inputfilename='./benchmarks/jpeg_test_$(CURR_TIME)/jpeg_perf.plotdat';outputfilename='./benchmarks/jpeg_test_$(CURR_TIME)/jpeg_perf.pdf'" ./hfi_firefox/testsProduceImagePlot.gnu
+
+benchmark_graphite_segment:
+	export DISPLAY=:99 && cd hfi_firefox && ./testsRunBenchmark "../benchmarks/graphite_test_segment_$(CURR_TIME)" "graphite_perf_test" "stock segment"
+
+benchmark_jpeg_segment:
+	export DISPLAY=:99 && cd hfi_firefox && ./testsRunBenchmark "../benchmarks/jpeg_test_segment_$(CURR_TIME)" "jpeg_perf" "stock segment"
+	./hfi_firefox/testsProduceImagePlotData.py ./benchmarks/jpeg_test_segment_$(CURR_TIME)/compare_stock_terminal_analysis.json.dat ./benchmarks/jpeg_test_segment_$(CURR_TIME)/jpeg_perf.plotdat
+	gnuplot -e "inputfilename='./benchmarks/jpeg_test_segment_$(CURR_TIME)/jpeg_perf.plotdat';outputfilename='./benchmarks/jpeg_test_segment_$(CURR_TIME)/jpeg_perf.pdf'" ./hfi_firefox/testsProduceImagePlot.gnu
 
 SIGHTGLASS_OUTPUTFOLDER="$(REPO_PATH)/benchmarks/sightglass_emulated_$(CURR_TIME)/"
 
@@ -207,6 +213,16 @@ benchmark_sightglass_emulated:
 		make run_masking && \
 		make run_hfiemulate2
 	./benchmarks/plot_run.sh $(SIGHTGLASS_OUTPUTFOLDER)
+
+SIGHTGLASS_SEGMENT_OUTPUTFOLDER="$(REPO_PATH)/benchmarks/sightglass_emulated_segment_$(CURR_TIME)/"
+
+benchmark_sightglass_emulated_segment:
+	mkdir -p "$(SIGHTGLASS_SEGMENT_OUTPUTFOLDER)" && \
+		export SIGHTGLASS_OUTPUTFOLDER="$(SIGHTGLASS_SEGMENT_OUTPUTFOLDER)" && \
+		cd hfi-sightglass/mybuild && \
+		make run_guardpage && \
+		make run_segment
+	./benchmarks/plot_run.sh $(SIGHTGLASS_SEGMENT_OUTPUTFOLDER)
 
 install_btbflush: btbflush-module
 	# make -C does not work below
@@ -272,8 +288,10 @@ benchmark_wasmtime_instantiation:
 	RAYON_NUM_THREADS=1 cargo bench --bench instantiation | tee "$(REPO_PATH)/benchmarks/wasmtime_instantiation_$(CURR_TIME).txt"
 
 #### Keep Spec stuff separate so we can easily release other artifacts
-SPEC_BUILDS=wasm_hfi_wasm2c_hfiemulate2 wasm_hfi_wasm2c_guardpages wasm_hfi_wasm2c_boundschecks # wasm_hfi_wasm2c_masking
-# SPEC_BUILDS=wasm_hfi_wasm2c_guardpagespure wasm_hfi_wasm2c_fsgs
+ # wasm_hfi_wasm2c_masking
+SPEC_BUILDS=wasm_hfi_wasm2c_hfiemulate2 wasm_hfi_wasm2c_guardpages wasm_hfi_wasm2c_boundschecks wasm_hfi_wasm2c_guardpagespure wasm_hfi_wasm2c_fsgs
+SPEC_RUN=wasm_hfi_wasm2c_hfiemulate2 wasm_hfi_wasm2c_guardpages wasm_hfi_wasm2c_boundschecks
+SPEC_RUN_SEGMENT=wasm_hfi_wasm2c_guardpagespure wasm_hfi_wasm2c_fsgs
 
 hfi_spec:
 	git clone --recursive git@github.com:PLSysSec/hfi_spec.git
@@ -301,12 +319,21 @@ run_spec_graph:
 
 benchmark_spec:
 	cd hfi_spec && source shrc && cd config && \
-	for spec_build in $(SPEC_BUILDS); do \
+	for spec_build in $(SPEC_RUN); do \
 		runspec --config=$$spec_build.cfg --action=run --define cores=1 --iterations=1 --noreportable --size=ref wasmint; \
 	done
 	python3 spec_stats.py -i hfi_spec/result --filter  \
-		"hfi_spec/result/spec_results=hfi_wasm2c_boundschecks:BoundsChecks,hfi_wasm2c_hfiemulate2:HfiEmulation" -n $(words $(SPEC_BUILDS)) --usePercent
+		"hfi_spec/result/spec_results=hfi_wasm2c_boundschecks:BoundsChecks,hfi_wasm2c_hfiemulate2:HfiEmulation" -n $(words $(SPEC_RUN)) --usePercent
 	mv hfi_spec/result/ benchmarks/spec_$(CURR_TIME)
+
+benchmark_spec_segment:
+	cd hfi_spec && source shrc && cd config && \
+	for spec_build in $(SPEC_RUN_SEGMENT); do \
+		runspec --config=$$spec_build.cfg --action=run --define cores=1 --iterations=1 --noreportable --size=ref wasmint; \
+	done
+	python3 spec_stats.py -i hfi_spec/result --filter  \
+		"hfi_spec/result/spec_results=hfi_wasm2c_guardpagespure:GuardPages,hfi_wasm2c_fsgs:FSGS" -n $(words $(SPEC_RUN_SEGMENT)) --usePercent
+	mv hfi_spec/result/ benchmarks/spec_segment_$(CURR_TIME)
 
 clean:
 	cd hw_isol_gem5/mybuild && make clean
