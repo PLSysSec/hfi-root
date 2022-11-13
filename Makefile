@@ -12,7 +12,7 @@ CURR_TIME=$(shell date --iso=seconds)
 PARALLEL_COUNT=$(shell nproc)
 REPO_PATH=$(shell realpath .)
 
-DIRS=hw_isol_gem5 hfi_wasm2c_sandbox_compiler hfi_misc rlbox_hfi_wasm2c_sandbox hfi_firefox hfi-sightglass rust_libloading_aslr btbflush-module lucet-spectre hfi_spectre_webserver hfi-nginx
+DIRS=hw_isol_gem5 hfi_wasm2c_sandbox_compiler hfi_misc rlbox_hfi_wasm2c_sandbox hfi_firefox hfi-sightglass rust_libloading_aslr btbflush-module lucet-spectre hfi_spectre_webserver hfi-nginx node-hfi-opts
 
 hw_isol_gem5:
 	git clone --recursive git@github.com:PLSysSec/hw_isol_gem5.git
@@ -51,6 +51,9 @@ hfi_spectre_webserver:
 
 hfi-nginx:
 	git clone --recursive git@github.com:PLSysSec/hfi-nginx.git
+
+node-hfi-opts:
+	git clone --recursive git@github.com:PLSysSec/node-hfi-opts.git
 
 wasi-sdk-14.0-linux.tar.gz:
 	wget https://github.com/WebAssembly/wasi-sdk/releases/download/wasi-sdk-14/wasi-sdk-14.0-linux.tar.gz
@@ -148,7 +151,7 @@ build_wasmtime: build_wasmtime_hfi-baseline build_wasmtime_hfi-grow-without-mpro
 build_misc:
 	cd hfi_misc && make -j$(PARALLEL_COUNT) build
 
-build: build_gem5 build_wasm2c build_sightglass build_faas build_nginx build_firefox build_wasmtime build_misc
+build: build_gem5 build_wasm2c build_sightglass build_faas build_nginx build_firefox build_wasmtime build_misc build_node
 
 test-gem5:
 	cd hw_isol_gem5/mybuild && make test
