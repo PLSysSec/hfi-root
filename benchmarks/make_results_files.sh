@@ -1,6 +1,6 @@
 #!/bin/bash
 
-for c in guardpage boundschecks guardpage_asmmove hfiemulate2 hfi masking 
+for c in guardpage boundschecks guardpage_asmmove hfiemulate2 hfi masking segment
 do
 	awk '{
 	f = gensub("shootout-","","g",FILENAME)
