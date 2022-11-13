@@ -1,0 +1,10 @@
+Benchmark,stock,segment
+artificial_rgb8bit_best_1920.jpeg),242817295.0 (1.0),114573270.0 (0.472)
+artificial_rgb8bit_best_480.jpeg),6883901.0 (1.0),2743333.0 (0.399)
+artificial_rgb8bit_best_240.jpeg),1524981.0 (1.0),739397.0 (0.485)
+artificial_rgb8bit_default_1920.jpeg),337419930.0 (1.0),206744369.0 (0.613)
+artificial_rgb8bit_default_480.jpeg),12309933.0 (1.0),7443802.0 (0.605)
+artificial_rgb8bit_default_240.jpeg),2574072.0 (1.0),1744306.0 (0.678)
+artificial_rgb8bit_none_1920.jpeg),405994491.0 (1.0),309031754.0 (0.761)
+artificial_rgb8bit_none_480.jpeg),20671510.0 (1.0),10853955.0 (0.525)
+artificial_rgb8bit_none_240.jpeg),3221487.0 (1.0),2339925.0 (0.726)
