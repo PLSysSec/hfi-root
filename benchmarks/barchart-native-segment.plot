@@ -35,5 +35,5 @@ set grid ytics lt 1 lw 0 lc rgb "#bbbbbb"
 #      '< paste results_guardpage.out results_segment.out' using (100*$4/$2-100):xtic(1) title 'FSGS' linecolor rgb "#2B83BA" fill pattern 3
 
 plot \
-     '< paste results_guardpage.out results_guardpage.out' using (100):xtic(1) title 'GuardPage' linecolor rgb '#ABDDA4' fill pattern 3, \
-     '< paste results_guardpage.out results_segment.out' using (100*$4/$2):xtic(1) title 'FSGS' linecolor rgb "#2B83BA" fill pattern 3
+     '< paste results_guardpage.out results_guardpage.out' using (100):xtic(1) title 'Guard pages' linecolor rgb '#ABDDA4' fill pattern 3, \
+     '< paste results_guardpage.out results_segment.out' using (100*$4/$2):xtic(1) title 'ReBase' linecolor rgb "#2B83BA" fill pattern 3

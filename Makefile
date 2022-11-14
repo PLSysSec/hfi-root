@@ -316,9 +316,9 @@ build_spec: hfi_spec autopull_hfi_spec build_wasm2c_dependency
 	done
 
 run_spec_graph:
-	cd $(REPO_PATH)/benchmarks/spec_2022-11-06T10:25:19-05:00 && \
+	cd $(REPO_PATH)/benchmarks/spec_segment_2022-11-13T00:27:35-05:00 && \
 	python3 $(REPO_PATH)/spec_stats.py -i ./ --filter  \
-		"./spec_results=hfi_wasm2c_guardpagespure:GuardPages,hfi_wasm2c_fsgs:FSGS" -n $(words $(SPEC_BUILDS)) --usePercent
+		"./spec_results=hfi_wasm2c_guardpagespure:Guard pages,hfi_wasm2c_fsgs:ReBase" -n $(words $(SPEC_RUN_SEGMENT)) --usePercent
 
 benchmark_spec:
 	cd hfi_spec && source shrc && cd config && \
@@ -335,7 +335,7 @@ benchmark_spec_segment:
 		runspec --config=$$spec_build.cfg --action=run --define cores=1 --iterations=1 --noreportable --size=ref wasmint; \
 	done
 	python3 spec_stats.py -i hfi_spec/result --filter  \
-		"hfi_spec/result/spec_results=hfi_wasm2c_guardpagespure:GuardPages,hfi_wasm2c_fsgs:FSGS" -n $(words $(SPEC_RUN_SEGMENT)) --usePercent
+		"hfi_spec/result/spec_results=hfi_wasm2c_guardpagespure:Guard pages,hfi_wasm2c_fsgs:ReBase" -n $(words $(SPEC_RUN_SEGMENT)) --usePercent
 	mv hfi_spec/result/ benchmarks/spec_segment_$(CURR_TIME)
 
 clean:

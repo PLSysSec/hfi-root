@@ -17,7 +17,7 @@ cd $RESULTS
 ../make_results_files.sh
 if [[ $RESULTS == *"segment"* ]]; then
 	gnuplot ../barchart-native-segment.plot
-	pdfcrop $RESULTS/output-gem5.pdf $RESULTS/output-gem5.pdf
+	pdfcrop $RESULTS/output.pdf $RESULTS/output.pdf
 elif [[ $RESULTS == *"simulate"* ]]; then
 	gnuplot ../barchart-gem5.plot
 	pdfcrop $RESULTS/output-gem5.pdf $RESULTS/output-gem5.pdf

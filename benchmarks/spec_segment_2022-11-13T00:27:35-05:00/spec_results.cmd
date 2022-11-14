@@ -1,1 +1,1 @@
-Command: ['spec_stats.py', '-i', 'hfi_spec/result', '--filter', 'hfi_spec/result/spec_results=hfi_wasm2c_guardpagespure:GuardPages,hfi_wasm2c_fsgs:FSGS', '-n', '2', '--usePercent']
+Command: ['/home/shr/Code/HardwareIsolation/spec_stats.py', '-i', './', '--filter', './spec_results=hfi_wasm2c_guardpagespure:Guard pages,hfi_wasm2c_fsgs:ReBase', '-n', '2', '--usePercent']
