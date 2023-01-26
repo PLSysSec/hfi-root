@@ -349,10 +349,16 @@ benchmark_spec_segment:
 	mv hfi_spec/result/ benchmarks/spec_segment_$(CURR_TIME)
 
 benchmark_spectre_pht_hfi:
-	echo "Running Safeside Spectre-PHT POC without HFI"
+	echo "Running Safeside Spectre-pht POC without HFI"
 	cd ./hw_isol_gem5/mybuild/ && ./run-gem5.sh $(REPO_PATH)/hfi-safeside/build/demos/spectre_v1_pht_sa
-	echo "Running Safeside Spectre-PHT POC with HFI"
+	echo "Running Safeside Spectre-pht POC with HFI"
 	cd ./hw_isol_gem5/mybuild/ && ./run-gem5.sh $(REPO_PATH)/hfi-safeside/build/demos/spectre_v1_pht_sa_hfi
+
+benchmark_spectre_btb_hfi:
+	echo "Running Safeside Spectre-btb POC without HFI"
+	cd ./hw_isol_gem5/mybuild/ && ./run-gem5.sh $(REPO_PATH)/hfi-safeside/build/demos/spectre_v1_btb_sa
+	echo "Running Safeside Spectre-btb POC with HFI"
+	cd ./hw_isol_gem5/mybuild/ && ./run-gem5.sh $(REPO_PATH)/hfi-safeside/build/demos/spectre_v1_btb_sa_hfi
 
 clean:
 	cd hw_isol_gem5/mybuild && make clean
