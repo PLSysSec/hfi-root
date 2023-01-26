@@ -117,7 +117,7 @@ def make_graph(all_times, output_path, use_percent=False):
 
     #ax.set_xlabel('Spec2006 Benchmarks')
     if use_percent:
-        ax.set_ylabel('Execution overhead')
+        ax.set_ylabel('Normalized runtime')
     else:
         ax.set_ylabel('Relative execution time')
     ax.set_xticks(ind+width)
