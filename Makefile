@@ -12,7 +12,7 @@ CURR_TIME=$(shell date --iso=seconds)
 PARALLEL_COUNT=$(shell nproc)
 REPO_PATH=$(shell realpath .)
 
-DIRS=hw_isol_gem5 hfi_wasm2c_sandbox_compiler hfi_misc rlbox_hfi_wasm2c_sandbox hfi_firefox hfi-sightglass rust_libloading_aslr btbflush-module lucet-spectre hfi_spectre_webserver hfi-nginx node-hfi-opts
+DIRS=hw_isol_gem5 hfi_wasm2c_sandbox_compiler hfi_misc rlbox_hfi_wasm2c_sandbox hfi_firefox hfi-sightglass rust_libloading_aslr btbflush-module lucet-spectre hfi_spectre_webserver hfi-nginx node-hfi-opts hfi-safeside
 
 hw_isol_gem5:
 	git clone --recursive git@github.com:PLSysSec/hw_isol_gem5.git
@@ -54,6 +54,9 @@ hfi-nginx:
 
 node-hfi-opts:
 	git clone --recursive git@github.com:PLSysSec/node-hfi-opts.git
+
+hfi-safeside:
+	git clone --recursive git@github.com:PLSysSec/hfi-safeside.git
 
 wasi-sdk-14.0-linux.tar.gz:
 	wget https://github.com/WebAssembly/wasi-sdk/releases/download/wasi-sdk-14/wasi-sdk-14.0-linux.tar.gz
@@ -151,7 +154,11 @@ build_wasmtime: build_wasmtime_hfi-baseline build_wasmtime_hfi-grow-without-mpro
 build_misc:
 	cd hfi_misc && make -j$(PARALLEL_COUNT) build
 
-build: build_gem5 build_wasm2c build_sightglass build_faas build_nginx build_firefox build_wasmtime build_misc build_node
+build_safeside:
+	cmake -S ./hfi-safeside -B ./hfi-safeside/build -DCMAKE_BUILD_TYPE=Release
+	cd ./hfi-safeside/build && make -j$(PARALLEL_COUNT)
+
+build: build_gem5 build_wasm2c build_sightglass build_faas build_nginx build_firefox build_wasmtime build_misc build_node build_safeside
 
 test-gem5:
 	cd hw_isol_gem5/mybuild && make test
@@ -340,6 +347,12 @@ benchmark_spec_segment:
 	python3 spec_stats.py -i hfi_spec/result --filter  \
 		"hfi_spec/result/spec_results=hfi_wasm2c_guardpagespure:Stock,hfi_wasm2c_fsgs:Segue" -n $(words $(SPEC_RUN_SEGMENT)) --usePercent
 	mv hfi_spec/result/ benchmarks/spec_segment_$(CURR_TIME)
+
+benchmark_spectre_pht_hfi:
+	echo "Running Safeside Spectre-PHT POC without HFI"
+	cd ./hw_isol_gem5/mybuild/ && ./run-gem5.sh $(REPO_PATH)/hfi-safeside/build/demos/spectre_v1_pht_sa
+	echo "Running Safeside Spectre-PHT POC with HFI"
+	cd ./hw_isol_gem5/mybuild/ && ./run-gem5.sh $(REPO_PATH)/hfi-safeside/build/demos/spectre_v1_pht_sa_hfi
 
 clean:
 	cd hw_isol_gem5/mybuild && make clean
