@@ -12,7 +12,7 @@ CURR_TIME=$(shell date --iso=seconds)
 PARALLEL_COUNT=$(shell nproc)
 REPO_PATH=$(shell realpath .)
 
-DIRS=hw_isol_gem5 hfi_wasm2c_sandbox_compiler hfi_misc rlbox_hfi_wasm2c_sandbox hfi_firefox hfi-sightglass rust_libloading_aslr btbflush-module lucet-spectre hfi_spectre_webserver hfi-nginx node-hfi-opts hfi-safeside hfi-transientfail
+DIRS=hw_isol_gem5 hfi_wasm2c_sandbox_compiler hfi_misc rlbox_hfi_wasm2c_sandbox hfi_firefox hfi-sightglass rust_libloading_aslr btbflush-module lucet-spectre hfi_spectre_webserver hfi-nginx erim-nginx node-hfi-opts hfi-safeside hfi-transientfail
 
 hw_isol_gem5:
 	git clone --recursive git@github.com:PLSysSec/hw_isol_gem5.git
@@ -51,6 +51,10 @@ hfi_spectre_webserver:
 
 hfi-nginx:
 	git clone --recursive git@github.com:PLSysSec/hfi-nginx.git
+
+erim-nginx:
+	git clone --recursive git@github.com:PLSysSec/hfi-nginx.git $@
+	cd $@ && git checkout mpk
 
 node-hfi-opts:
 	git clone --recursive git@github.com:PLSysSec/node-hfi-opts.git
@@ -136,6 +140,7 @@ build_faas:
 
 build_nginx:
 	cd hfi-nginx/bench/webserver && ./build.sh
+	cd erim-nginx/bench/webserver && ./build.sh
 
 build_firefox:
 	cd hfi_firefox/mybuild && make build
@@ -260,10 +265,12 @@ benchmark_faas_finish:
 
 benchmark_nginx:
 	cd hfi-nginx/bench/webserver/ && ./simple_bench.sh 60
-	cd hfi-nginx/bench/webserver/ && ./draw.py
+	sleep 1
+	cd erim-nginx/bench/webserver/ && ./simple_bench.sh 60
 	mkdir -p ./benchmarks/nginx_$(CURR_TIME)
 	mv hfi-nginx/bench/webserver/*.log ./benchmarks/nginx_$(CURR_TIME)/
-	mv hfi-nginx/bench/webserver/nginx.png ./benchmarks/nginx_$(CURR_TIME)/nginx.png
+	mv hfi-nginx/bench/webserver/erim.log ./benchmarks/nginx_$(CURR_TIME)/erim.log
+	cd ./benchmarks/nginx_$(CURR_TIME) && hfi-nginx/bench/webserver/draw.py
 
 benchmark_wasmtime_regpressure:
 	# cp wasmtime-builds/hfi-baseline/target/release/libwasmtime_bench_api.so hfi-sightglass/engines/wasmtime/libengine.so
