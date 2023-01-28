@@ -12,7 +12,7 @@ CURR_TIME=$(shell date --iso=seconds)
 PARALLEL_COUNT=$(shell nproc)
 REPO_PATH=$(shell realpath .)
 
-DIRS=hw_isol_gem5 hfi_wasm2c_sandbox_compiler hfi_misc rlbox_hfi_wasm2c_sandbox hfi_firefox hfi-sightglass rust_libloading_aslr btbflush-module lucet-spectre hfi_spectre_webserver hfi-nginx node-hfi-opts hfi-safeside
+DIRS=hw_isol_gem5 hfi_wasm2c_sandbox_compiler hfi_misc rlbox_hfi_wasm2c_sandbox hfi_firefox hfi-sightglass rust_libloading_aslr btbflush-module lucet-spectre hfi_spectre_webserver hfi-nginx node-hfi-opts hfi-safeside hfi-transientfail
 
 hw_isol_gem5:
 	git clone --recursive git@github.com:PLSysSec/hw_isol_gem5.git
@@ -57,6 +57,9 @@ node-hfi-opts:
 
 hfi-safeside:
 	git clone --recursive git@github.com:PLSysSec/hfi-safeside.git
+
+hfi-transientfail:
+	git clone --recursive git@github.com:PLSysSec/hfi-transientfail.git
 
 wasi-sdk-14.0-linux.tar.gz:
 	wget https://github.com/WebAssembly/wasi-sdk/releases/download/wasi-sdk-14/wasi-sdk-14.0-linux.tar.gz
@@ -158,7 +161,10 @@ build_safeside:
 	cmake -S ./hfi-safeside -B ./hfi-safeside/build -DCMAKE_BUILD_TYPE=Release
 	cd ./hfi-safeside/build && make -j$(PARALLEL_COUNT)
 
-build: build_gem5 build_wasm2c build_sightglass build_faas build_nginx build_firefox build_wasmtime build_misc build_node build_safeside
+build_transientfail:
+	cd ./hfi-transientfail/pocs/spectre/BTB/sa_ip/ && make
+
+build: build_gem5 build_wasm2c build_sightglass build_faas build_nginx build_firefox build_wasmtime build_misc build_node build_safeside build_transientfail
 
 test-gem5:
 	cd hw_isol_gem5/mybuild && make test
@@ -355,10 +361,10 @@ benchmark_spectre_pht_hfi:
 	cd ./hw_isol_gem5/mybuild/ && ./run-gem5.sh $(REPO_PATH)/hfi-safeside/build/demos/spectre_v1_pht_sa_hfi
 
 benchmark_spectre_btb_hfi:
-	echo "Running Safeside Spectre-btb POC without HFI"
-	cd ./hw_isol_gem5/mybuild/ && ./run-gem5.sh $(REPO_PATH)/hfi-safeside/build/demos/spectre_v1_btb_sa
-	echo "Running Safeside Spectre-btb POC with HFI"
-	cd ./hw_isol_gem5/mybuild/ && ./run-gem5.sh $(REPO_PATH)/hfi-safeside/build/demos/spectre_v1_btb_sa_hfi
+	echo "Running Transientfail Spectre-btb POC without HFI"
+	cd ./hw_isol_gem5/mybuild/ && ./run-gem5.sh $(REPO_PATH)/hfi-transientfail/pocs/spectre/BTB/sa_ip/poc_x86
+	echo "Running Transientfail Spectre-btb POC with HFI (Will crash on success)"
+	cd ./hw_isol_gem5/mybuild/ && ./run-gem5.sh $(REPO_PATH)/hfi-transientfail/pocs/spectre/BTB/sa_ip/poc_x86_hfi
 
 clean:
 	cd hw_isol_gem5/mybuild && make clean
