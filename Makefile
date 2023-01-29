@@ -270,7 +270,7 @@ benchmark_nginx:
 	mkdir -p ./benchmarks/nginx_$(CURR_TIME)
 	mv hfi-nginx/bench/webserver/*.log ./benchmarks/nginx_$(CURR_TIME)/
 	mv erim-nginx/bench/webserver/erim.log ./benchmarks/nginx_$(CURR_TIME)/erim.log
-	cd ./benchmarks/nginx_$(CURR_TIME) && hfi-nginx/bench/webserver/draw.py
+	cd ./benchmarks/nginx_$(CURR_TIME) && $(REPO_PATH)/hfi-nginx/bench/webserver/draw.py
 
 benchmark_wasmtime_regpressure:
 	# cp wasmtime-builds/hfi-baseline/target/release/libwasmtime_bench_api.so hfi-sightglass/engines/wasmtime/libengine.so
