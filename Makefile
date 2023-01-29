@@ -94,6 +94,9 @@ bootstrap: get_source
 	pip3 install simplejson matplotlib
 	pip3 install --upgrade requests
 	npm install autocannon
+	# increase max mmap count for sandbox scaling test
+	echo "vm.max_map_count=1128000" | sudo tee -a /etc/sysctl.conf
+	sudo sysctl -p
 
 # Only needed if you need to rebuild sightglass wasm files
 install_docker:
@@ -154,9 +157,10 @@ build_wasmtime_%:
 	cd wasmtime-builds/$* && cargo build --release
 
 # build_wasmtime_hfi-grow-without-mprotect-lfence
-build_wasmtime: build_wasmtime_hfi-baseline build_wasmtime_hfi-grow-without-mprotect build_wasmtime_hfi-grow-without-mprotect-baseline build_wasmtime_hfi-baseline-instantiation build_wasmtime_hfi-reg-pressure build_wasmtime_hfi-reg-pressure2
+build_wasmtime: build_wasmtime_hfi-baseline build_wasmtime_hfi-grow-without-mprotect build_wasmtime_hfi-grow-without-mprotect-baseline build_wasmtime_hfi-baseline-instantiation build_wasmtime_hfi-reg-pressure build_wasmtime_hfi-reg-pressure2 build_wasmtime_hfi-noguardpages
 	cd wasmtime-builds/hfi-grow-without-mprotect/growth_bench && cargo build --release
 	cd wasmtime-builds/hfi-grow-without-mprotect-baseline/growth_bench && cargo build --release
+	cd wasmtime-builds/hfi-noguardpages/benches/colorguard_capacity_test && cargo build --release
 	cd sightglass && cargo build --release
 
 build_misc:
@@ -294,6 +298,16 @@ benchmark_wasmtime_mprotect:
 	# 	--engine $(REPO_PATH)/wasmtime-builds/hfi-grow-without-mprotect-baseline/target/release/libwasmtime_bench_api.so \
 	# 	--engine $(REPO_PATH)/wasmtime-builds/hfi-grow-without-mprotect/target/release/libwasmtime_bench_api.so \
 	# 	-- benchmarks/spidermonkey/benchmark.wasm | tee $(REPO_PATH)/benchmarks/wasmtime_mprotect_$(CURR_TIME).txt
+
+benchmark_wasmtime_scaling_noguardpages:
+	echo "Running wasmtime with guard pages. Will crash when OOM."
+	-cd wasmtime-builds/hfi-noguardpages/benches/colorguard_capacity_test && \
+	cargo run --release $(REPO_PATH)/wasmtime-builds/hfi-noguardpages/benches/instantiation/big.wat 1000 1000 no
+	sleep 3
+	echo "Running wasmtime without guard pages. Will crash when OOM."
+	# Passing "mpk" as the parameter does not use guard pages. Despite the name, the benchmark does not actually use MPK
+	-cd wasmtime-builds/hfi-noguardpages/benches/colorguard_capacity_test && \
+	cargo run --release $(REPO_PATH)/wasmtime-builds/hfi-noguardpages/benches/instantiation/big.wat 1000 1000 mpk
 
 WASM2C_MPROTECT_OUTPUTFOLDER="$(REPO_PATH)/benchmarks/wasm2c_mprotect_$(CURR_TIME)/"
 
