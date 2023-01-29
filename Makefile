@@ -269,7 +269,7 @@ benchmark_nginx:
 	cd erim-nginx/bench/webserver/ && ./simple_bench.sh 60
 	mkdir -p ./benchmarks/nginx_$(CURR_TIME)
 	mv hfi-nginx/bench/webserver/*.log ./benchmarks/nginx_$(CURR_TIME)/
-	mv hfi-nginx/bench/webserver/erim.log ./benchmarks/nginx_$(CURR_TIME)/erim.log
+	mv erim-nginx/bench/webserver/erim.log ./benchmarks/nginx_$(CURR_TIME)/erim.log
 	cd ./benchmarks/nginx_$(CURR_TIME) && hfi-nginx/bench/webserver/draw.py
 
 benchmark_wasmtime_regpressure:
