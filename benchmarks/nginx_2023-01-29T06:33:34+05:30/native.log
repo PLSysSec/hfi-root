@@ -1,0 +1,423 @@
+----0kb
+This is ApacheBench, Version 2.3 <$Revision: 1879490 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking localhost (be patient)
+
+
+Server Software:        nginx/1.12.1
+Server Hostname:        localhost
+Server Port:            443
+SSL/TLS Protocol:       TLSv1.2,ECDHE-RSA-AES128-GCM-SHA256,2048,128
+Server Temp Key:        ECDH P-256 256 bits
+TLS Server Name:        localhost
+
+Document Path:          /0kb
+Document Length:        0 bytes
+
+Concurrency Level:      100
+Time taken for tests:   60.000 seconds
+Complete requests:      1933332
+Failed requests:        0
+Keep-Alive requests:    1933332
+Total transferred:      481399668 bytes
+HTML transferred:       0 bytes
+Requests per second:    32222.19 [#/sec] (mean)
+Time per request:       3.103 [ms] (mean)
+Time per request:       0.031 [ms] (mean, across all concurrent requests)
+Transfer rate:          7835.28 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    0   1.6      0     248
+Processing:     0    3   0.5      3     184
+Waiting:        0    3   0.5      3     184
+Total:          0    3   1.6      3     248
+
+Percentage of the requests served within a certain time (ms)
+  50%      3
+  66%      3
+  75%      3
+  80%      3
+  90%      3
+  95%      3
+  98%      3
+  99%      3
+ 100%    248 (longest request)
+----1kb
+This is ApacheBench, Version 2.3 <$Revision: 1879490 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking localhost (be patient)
+
+
+Server Software:        nginx/1.12.1
+Server Hostname:        localhost
+Server Port:            443
+SSL/TLS Protocol:       TLSv1.2,ECDHE-RSA-AES128-GCM-SHA256,2048,128
+Server Temp Key:        ECDH P-256 256 bits
+TLS Server Name:        localhost
+
+Document Path:          /1kb
+Document Length:        1024 bytes
+
+Concurrency Level:      100
+Time taken for tests:   60.000 seconds
+Complete requests:      1795733
+Failed requests:        0
+Keep-Alive requests:    1795733
+Total transferred:      2294946774 bytes
+HTML transferred:       1838830592 bytes
+Requests per second:    29928.88 [#/sec] (mean)
+Time per request:       3.341 [ms] (mean)
+Time per request:       0.033 [ms] (mean, across all concurrent requests)
+Transfer rate:          37352.65 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    0   1.6      0     246
+Processing:     0    3   0.6      3     172
+Waiting:        0    3   0.6      3     172
+Total:          0    3   1.7      3     250
+
+Percentage of the requests served within a certain time (ms)
+  50%      3
+  66%      3
+  75%      3
+  80%      3
+  90%      3
+  95%      3
+  98%      3
+  99%      3
+ 100%    250 (longest request)
+----2kb
+This is ApacheBench, Version 2.3 <$Revision: 1879490 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking localhost (be patient)
+
+
+Server Software:        nginx/1.12.1
+Server Hostname:        localhost
+Server Port:            443
+SSL/TLS Protocol:       TLSv1.2,ECDHE-RSA-AES128-GCM-SHA256,2048,128
+Server Temp Key:        ECDH P-256 256 bits
+TLS Server Name:        localhost
+
+Document Path:          /2kb
+Document Length:        2048 bytes
+
+Concurrency Level:      100
+Time taken for tests:   60.000 seconds
+Complete requests:      1788329
+Failed requests:        0
+Keep-Alive requests:    1788329
+Total transferred:      4116733358 bytes
+HTML transferred:       3662497792 bytes
+Requests per second:    29805.47 [#/sec] (mean)
+Time per request:       3.355 [ms] (mean)
+Time per request:       0.034 [ms] (mean, across all concurrent requests)
+Transfer rate:          67004.09 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    0   1.6      0     248
+Processing:     0    3   0.6      3     174
+Waiting:        0    3   0.6      3     174
+Total:          0    3   1.7      3     253
+
+Percentage of the requests served within a certain time (ms)
+  50%      3
+  66%      3
+  75%      3
+  80%      3
+  90%      3
+  95%      3
+  98%      3
+  99%      3
+ 100%    253 (longest request)
+----4kb
+This is ApacheBench, Version 2.3 <$Revision: 1879490 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking localhost (be patient)
+
+
+Server Software:        nginx/1.12.1
+Server Hostname:        localhost
+Server Port:            443
+SSL/TLS Protocol:       TLSv1.2,ECDHE-RSA-AES128-GCM-SHA256,2048,128
+Server Temp Key:        ECDH P-256 256 bits
+TLS Server Name:        localhost
+
+Document Path:          /4kb
+Document Length:        4096 bytes
+
+Concurrency Level:      100
+Time taken for tests:   60.000 seconds
+Complete requests:      1687045
+Failed requests:        0
+Keep-Alive requests:    1687045
+Total transferred:      7340332795 bytes
+HTML transferred:       6910136320 bytes
+Requests per second:    28117.41 [#/sec] (mean)
+Time per request:       3.557 [ms] (mean)
+Time per request:       0.036 [ms] (mean, across all concurrent requests)
+Transfer rate:          119471.53 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    0   1.6      0     246
+Processing:     0    4   0.6      4     177
+Waiting:        0    4   0.6      4     177
+Total:          0    4   1.8      4     250
+
+Percentage of the requests served within a certain time (ms)
+  50%      4
+  66%      4
+  75%      4
+  80%      4
+  90%      4
+  95%      4
+  98%      4
+  99%      4
+ 100%    250 (longest request)
+----8kb
+This is ApacheBench, Version 2.3 <$Revision: 1879490 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking localhost (be patient)
+
+
+Server Software:        nginx/1.12.1
+Server Hostname:        localhost
+Server Port:            443
+SSL/TLS Protocol:       TLSv1.2,ECDHE-RSA-AES128-GCM-SHA256,2048,128
+Server Temp Key:        ECDH P-256 256 bits
+TLS Server Name:        localhost
+
+Document Path:          /8kb
+Document Length:        8192 bytes
+
+Concurrency Level:      100
+Time taken for tests:   60.000 seconds
+Complete requests:      1554509
+Failed requests:        0
+Keep-Alive requests:    1554509
+Total transferred:      13130937523 bytes
+HTML transferred:       12734537728 bytes
+Requests per second:    25908.47 [#/sec] (mean)
+Time per request:       3.860 [ms] (mean)
+Time per request:       0.039 [ms] (mean, across all concurrent requests)
+Transfer rate:          213719.57 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    0   1.7      0     247
+Processing:     0    4   0.7      4     176
+Waiting:        0    4   0.7      4     176
+Total:          0    4   1.9      4     251
+
+Percentage of the requests served within a certain time (ms)
+  50%      4
+  66%      4
+  75%      4
+  80%      4
+  90%      4
+  95%      4
+  98%      4
+  99%      4
+ 100%    251 (longest request)
+----16kb
+This is ApacheBench, Version 2.3 <$Revision: 1879490 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking localhost (be patient)
+
+
+Server Software:        nginx/1.12.1
+Server Hostname:        localhost
+Server Port:            443
+SSL/TLS Protocol:       TLSv1.2,ECDHE-RSA-AES128-GCM-SHA256,2048,128
+Server Temp Key:        ECDH P-256 256 bits
+TLS Server Name:        localhost
+
+Document Path:          /16kb
+Document Length:        16384 bytes
+
+Concurrency Level:      100
+Time taken for tests:   60.000 seconds
+Complete requests:      1016512
+Failed requests:        0
+Keep-Alive requests:    1016512
+Total transferred:      16914759680 bytes
+HTML transferred:       16654532608 bytes
+Requests per second:    16941.86 [#/sec] (mean)
+Time per request:       5.903 [ms] (mean)
+Time per request:       0.059 [ms] (mean, across all concurrent requests)
+Transfer rate:          275305.30 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    0   2.1      0     250
+Processing:     0    6   0.8      6     165
+Waiting:        0    6   0.8      6     165
+Total:          0    6   2.3      6     256
+
+Percentage of the requests served within a certain time (ms)
+  50%      6
+  66%      6
+  75%      6
+  80%      6
+  90%      6
+  95%      6
+  98%      6
+  99%      6
+ 100%    256 (longest request)
+----32kb
+This is ApacheBench, Version 2.3 <$Revision: 1879490 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking localhost (be patient)
+
+
+Server Software:        nginx/1.12.1
+Server Hostname:        localhost
+Server Port:            443
+SSL/TLS Protocol:       TLSv1.2,ECDHE-RSA-AES128-GCM-SHA256,2048,128
+Server Temp Key:        ECDH P-256 256 bits
+TLS Server Name:        localhost
+
+Document Path:          /32kb
+Document Length:        32768 bytes
+
+Concurrency Level:      100
+Time taken for tests:   60.000 seconds
+Complete requests:      715790
+Failed requests:        0
+Keep-Alive requests:    715790
+Total transferred:      23638248960 bytes
+HTML transferred:       23455006720 bytes
+Requests per second:    11929.82 [#/sec] (mean)
+Time per request:       8.382 [ms] (mean)
+Time per request:       0.084 [ms] (mean, across all concurrent requests)
+Transfer rate:          384736.82 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    0   2.6      0     248
+Processing:     0    8   0.9      8     184
+Waiting:        0    8   0.9      8     184
+Total:          0    8   2.7      8     256
+
+Percentage of the requests served within a certain time (ms)
+  50%      8
+  66%      8
+  75%      8
+  80%      8
+  90%      8
+  95%      8
+  98%      8
+  99%      8
+ 100%    256 (longest request)
+----64kb
+This is ApacheBench, Version 2.3 <$Revision: 1879490 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking localhost (be patient)
+
+
+Server Software:        nginx/1.12.1
+Server Hostname:        localhost
+Server Port:            443
+SSL/TLS Protocol:       TLSv1.2,ECDHE-RSA-AES128-GCM-SHA256,2048,128
+Server Temp Key:        ECDH P-256 256 bits
+TLS Server Name:        localhost
+
+Document Path:          /64kb
+Document Length:        65536 bytes
+
+Concurrency Level:      100
+Time taken for tests:   60.000 seconds
+Complete requests:      447458
+Failed requests:        0
+Keep-Alive requests:    447458
+Total transferred:      29439604194 bytes
+HTML transferred:       29324607488 bytes
+Requests per second:    7457.62 [#/sec] (mean)
+Time per request:       13.409 [ms] (mean)
+Time per request:       0.134 [ms] (mean, across all concurrent requests)
+Transfer rate:          479159.51 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    0   3.3      0     252
+Processing:     0   13   1.2     13     182
+Waiting:        0   13   1.2     13     182
+Total:          0   13   3.4     13     263
+
+Percentage of the requests served within a certain time (ms)
+  50%     13
+  66%     13
+  75%     13
+  80%     13
+  90%     13
+  95%     13
+  98%     13
+  99%     13
+ 100%    263 (longest request)
+----128kb
+This is ApacheBench, Version 2.3 <$Revision: 1879490 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking localhost (be patient)
+
+
+Server Software:        nginx/1.12.1
+Server Hostname:        localhost
+Server Port:            443
+SSL/TLS Protocol:       TLSv1.2,ECDHE-RSA-AES128-GCM-SHA256,2048,128
+Server Temp Key:        ECDH P-256 256 bits
+TLS Server Name:        localhost
+
+Document Path:          /128kb
+Document Length:        131072 bytes
+
+Concurrency Level:      100
+Time taken for tests:   60.000 seconds
+Complete requests:      258021
+Failed requests:        0
+Keep-Alive requests:    258021
+Total transferred:      33885897930 bytes
+HTML transferred:       33819328512 bytes
+Requests per second:    4300.33 [#/sec] (mean)
+Time per request:       23.254 [ms] (mean)
+Time per request:       0.233 [ms] (mean, across all concurrent requests)
+Transfer rate:          551526.16 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    0   4.4      0     263
+Processing:     0   23   1.4     23     189
+Waiting:        0   23   1.4     23     188
+Total:          0   23   4.5     23     277
+
+Percentage of the requests served within a certain time (ms)
+  50%     23
+  66%     23
+  75%     23
+  80%     23
+  90%     23
+  95%     23
+  98%     23
+  99%     23
+ 100%    277 (longest request)
