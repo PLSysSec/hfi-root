@@ -302,7 +302,7 @@ benchmark_wasmtime_mprotect:
 benchmark_wasmtime_scaling_noguardpages:
 	echo "Running wasmtime with guard pages. Will crash when OOM."
 	-cd wasmtime-builds/hfi-noguardpages/benches/colorguard_capacity_test && \
-	cargo run --release $(REPO_PATH)/wasmtime-builds/hfi-noguardpages/benches/instantiation/big.wat 1000 1000 no
+	cargo run --release $(REPO_PATH)/wasmtime-builds/hfi-noguardpages/benches/instantiation/big.wat 1 100000 no
 	sleep 3
 	echo "Running wasmtime without guard pages. Will crash when OOM."
 	# Passing "mpk" as the parameter does not use guard pages. Despite the name, the benchmark does not actually use MPK
