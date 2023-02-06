@@ -95,6 +95,7 @@ bootstrap: get_source
 	pip3 install --upgrade requests
 	npm install autocannon
 	# increase max mmap count for sandbox scaling test
+	echo "fs.inotify.max_user_watches=524288" | sudo tee -a /etc/sysctl.conf
 	echo "vm.max_map_count=1128000" | sudo tee -a /etc/sysctl.conf
 	sudo sysctl -p
 
