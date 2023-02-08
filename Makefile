@@ -383,7 +383,7 @@ benchmark_spectre_pht_hfi:
 	cd ./hw_isol_gem5/mybuild/ && ./run-gem5.sh $(REPO_PATH)/hfi-safeside/build/demos/spectre_v1_pht_sa_hfi
 	echo "Running Safeside Spectre-pht POC historgram generator"
 	cd ./hw_isol_gem5/mybuild/ && ./run-gem5.sh $(REPO_PATH)/hfi-safeside/build/demos/spectre_v1_pht_sa_latencies
-	echo "Copy the output into ./hw_isol_gem5/graph_char_latencies.py and run that to generate the graph"
+	echo "Copy the output into ./hw_isol_gem5/spectre-pht-signal.py and run that to generate the graph"
 
 benchmark_spectre_btb_hfi:
 	echo "Running Transientfail Spectre-btb POC without HFI"
