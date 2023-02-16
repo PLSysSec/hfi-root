@@ -11,7 +11,7 @@ to both code written from scratch and any code changes to existing projects
 
 ## Build Instructions
 
-**Requirements** - This repo has been tested on Ubuntu 22.04.1 LTS.
+**Requirements** - This repo has been tested on Ubuntu 20.04.5 LTS.
 
 **Note** - Do not use an existing machine; our setup installs/modifies packages
 on the machine and has been well tested on a fresh Ubuntu Install. Use a fresh
