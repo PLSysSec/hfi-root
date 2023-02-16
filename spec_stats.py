@@ -96,9 +96,9 @@ def make_graph(all_times, output_path, use_percent=False):
     ax = fig.add_subplot(111)
 
     plt.rcParams['pdf.fonttype'] = 42 # true type font
-    plt.rcParams['font.family'] = 'serif'
-    plt.rcParams['font.serif'] = ['Times New Roman'] + plt.rcParams['font.serif']
-    plt.rcParams['font.size'] = '8'
+    # plt.rcParams['font.family'] = 'serif'
+    # plt.rcParams['font.serif'] = ['Times New Roman'] + plt.rcParams['font.serif']
+    plt.rcParams['font.size'] = '11'
 
     vals = all_times_to_vals(all_times)
 
