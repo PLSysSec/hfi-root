@@ -4,6 +4,11 @@ This is the top level repo for the paper ``HFI'' . This repo will download and
 build all tools used in the paper such as modified compilers, gem5 simulator
 etc.
 
+All original code written as part of this project (and pulled in through
+Makefile as described below) are available under the MIT license. This applies
+to both code written from scratch and any code changes to existing projects
+(which may have their own licenses).
+
 ## Build Instructions
 
 **Requirements** - This repo has been tested on Ubuntu 22.04.1 LTS.
