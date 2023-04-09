@@ -150,7 +150,7 @@ build_firefox:
 	cd hfi_firefox/mybuild && make build
 
 build_wasmtime_%:
-	export REPOSITORY="git@github.com:PLSysSec/hfi-wasmtime.git" && \
+	export REPOSITORY="git@github.com:PLSysSec/hfi-wasmtime-pub.git" && \
 		export REVISION="$*" && \
 		export BUILD_DIR="$(REPO_PATH)/wasmtime-builds/$*" && \
 		mkdir -p $$BUILD_DIR && \
