@@ -41,15 +41,3 @@ To get the latest source of this repo and sub-repos, you can use
 ```bash
 make pull
 ```
-
-## Test Instructions
-
-After building the repo, you can reproduce the tests we perform in the paper as follows.
-
-### Gem5 sanity tests
-
-Runs HFI tests on the gem5 simulator, to ensure it works as expected.
-
-```bash
-make test-gem5
-```
